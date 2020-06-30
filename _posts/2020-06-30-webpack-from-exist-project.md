@@ -34,8 +34,8 @@ $ npm i -D webpack webpack-cli
 
 ```
 ./src/           //放程式碼
-./static/        //放靜態資源，例如不想被編譯的library，或者圖片檔之類的
-./dist/          //放編譯完成的結果(可以拿去部署)
+./static/        //放靜態資源，例如不想被打包的library，或者圖片檔之類的
+./dist/          //放建置完成的結果(可以拿去部署)
 ```
 
 接著新增兩個檔案
@@ -45,14 +45,14 @@ $ npm i -D webpack webpack-cli
 ./webpack.conf.js   //webpack的設定檔
 ```
 
-然後將編譯用的指令放到`package.json`裡
+然後將建置用的指令放到`package.json`裡
 
 ```json
 "scripts": {
     "build": "webpack --config webpack.conf.js",
   }
 ```
-這樣，只要執行`npm run build`就會編譯了 (但你現在執行會報錯就是，畢竟設定檔是空的)  
+這樣，只要執行`npm run build`就會建置了 (但你現在執行會報錯就是，畢竟設定檔是空的)  
 所以來編輯一下`webpack.conf.js`吧
 
 ```javascript
@@ -65,7 +65,7 @@ module.exports = {
   }
 }
 ```
-這時候再編譯一次，你的dist資料夾內就應該有個`output.js`檔，這樣就算是會動了。
+這時候再建置一次，你的dist資料夾內就應該有個`output.js`檔，這樣就算是會動了。
 
 ## 2. 撰寫`index.js`
 
@@ -324,7 +324,7 @@ $  npm i -D  webpack-dev-server
 
 ## 後記
 上面做了一大堆，其實我的原始需求: 根據業務需求自動載入我需要的某幾隻程式都還沒做XD  
-這我最後是透過分別寫兩個`webpack.conf.js`檔並分開編譯完成的
+這我最後是透過分別寫兩個`webpack.conf.js`檔並分開建置完成的
 
 ```
 $ webpack --config webpack.a.conf.js
