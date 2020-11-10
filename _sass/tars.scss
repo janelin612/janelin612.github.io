@@ -1,20 +1,22 @@
-img{
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+
+img {
     max-height: 480px;
 }
 
-.meme{
+.meme {
     max-width: 400px;
     margin: 0 auto;
 }
 
-.signature{
+.signature {
     text-align: right;
     font-family: monospace;
 }
 
-.bmc-block{
+.bmc-block {
     padding: 6px 0;
-    .bmc-greeting{
+    .bmc-greeting {
         font-size: 14px;
         line-height: 37px;
     }
