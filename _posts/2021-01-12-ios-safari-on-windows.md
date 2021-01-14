@@ -16,21 +16,23 @@ TL;TR 就安裝這個套件，照著裡面的 README 去走，就可以用了
 
 ### 安裝
 
+1. 安裝 iTunes
+
 1. 開啟 Powershell 然後執行:
 ```shell
 scoop bucket add extras
 scoop install ios-webkit-debug-proxy
 ```
-2. NPM Install
+1. NPM Install
 ```shell
 npm install remotedebug-ios-webkit-adapter -g
 ```
-3. 在 iPhone 的 Safari 設定裡面允許遠端偵錯
+1. 在 iPhone 的 Safari 設定裡面允許遠端偵錯
 
 ### 執行
 1. 在 CMD 把背景服務 run 起來
 ```shell
 remotedebug_ios_webkit_adapter --port=9000
 ```
-2. 在 Chrome 開啟 inspect 分頁 `chrome://inspect/#devices`
-3. 開工
+1. 在 Chrome 開啟 inspect 分頁 `chrome://inspect/#devices`
+1. 開工
