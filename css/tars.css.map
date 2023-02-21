@@ -1,0 +1,14 @@
+{
+	"version": 3,
+	"file": "tars.css",
+	"sources": [
+		"tars.scss",
+		"_sass/tars.scss"
+	],
+	"sourcesContent": [
+		"@import \"tars\";",
+		"@import url(\"https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap\");\n\nimg {\n  max-height: 480px;\n}\n\n.meme {\n  max-width: 400px;\n  margin: 0 auto;\n}\n\n.signature {\n  text-align: right;\n  font-family: monospace;\n}\n\n.bmc-block {\n  padding: 6px 0;\n\n  .bmc-greeting {\n    font-size: 14px;\n    line-height: 37px;\n  }\n}\n\n.post h2 {\n  border-left: solid #2980b9 6px;\n  padding: 8px 16px;\n}\n\n.ref {\n  font-size: 0.8em;\n  color: rgba($color: #000000, $alpha: 0.3);\n}\n\n.likecoin-button{\n  margin: 0 !important;\n}"
+	],
+	"names": [],
+	"mappings": "ACAA,OAAO,CAAC,4EAAI;AAEZ,AAAA,GAAG,CAAC,EACF,UAAU,EAAE,KAAK,GAClB;;AAED,AAAA,KAAK,CAAC,EACJ,SAAS,EAAE,KAAK,EAChB,MAAM,EAAE,MAAM,GACf;;AAED,AAAA,UAAU,CAAC,EACT,UAAU,EAAE,KAAK,EACjB,WAAW,EAAE,SAAS,GACvB;;AAED,AAAA,UAAU,CAAC,EACT,OAAO,EAAE,KAAK,GAMf;;AAPD,AAGE,UAHQ,CAGR,aAAa,CAAC,EACZ,SAAS,EAAE,IAAI,EACf,WAAW,EAAE,IAAI,GAClB;;AAGH,AAAA,KAAK,CAAC,EAAE,CAAC,EACP,WAAW,EAAE,iBAAiB,EAC9B,OAAO,EAAE,QAAQ,GAClB;;AAED,AAAA,IAAI,CAAC,EACH,SAAS,EAAE,KAAK,EAChB,KAAK,EAAe,kBAAO,GAC5B;;AAED,AAAA,gBAAgB,CAAA,EACd,MAAM,EAAE,YAAY,GACrB"
+}

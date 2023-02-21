@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+
+<title>用Nuxt.js改寫舊的專案 | Intertidal</title>
+<meta name="description" content="離上一篇 “關於我寫的乃木坂部落格備份站” 已經過了將近一年，當時的文章最後提到的幾個未來計畫要做的項目中其中一項：將整個網站用 Nuxt.js..." />
+<!-- facebook -->
+<meta property="og:url" content="https://janelin612.github.io/2021/07/21/turn-into-nuxtjs.html">
+<meta property="og:site_name" content="Intertidal">
+<meta property="og:title" content="用Nuxt.js改寫舊的專案 | Intertidal">
+<meta property="og:description" content="離上一篇 “關於我寫的乃木坂部落格備份站” 已經過了將近一年，當時的文章最後提到的幾個未來計畫要做的項目中其中一項：將整個網站用 Nuxt.js...">
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://janelin612.github.io/public/res/2021/eofijoijdsi.png">
+<!-- twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用Nuxt.js改寫舊的專案 | Intertidal">
+<meta name="twitter:description" content="離上一篇 “關於我寫的乃木坂部落格備份站” 已經過了將近一年，當時的文章最後提到的幾個未來計畫要做的項目中其中一項：將整個網站用 Nuxt.js...">
+  <meta name="msvalidate.01" content="D6451EE2AECEE8675E78CEEA635F67DA" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/css/tars.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"
+    media="none" onload="if(media!='all')media='all'"
+     />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://janelin612.github.io/2021/07/21/turn-into-nuxtjs.html" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+
+  <body> 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5K473GZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+
+      
+      <h2>
+        <a href="https://janelin612.github.io">Intertidal</a>
+      </h2>
+      
+      <p class="lead">潮間帶工作室</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item"
+        href="/about/">About Me</a>
+      
+      <a class="sidebar-nav-item"
+        href="/archive/">Archive</a>
+      
+      <a class="icon" href="/atom.xml" target="_blank"><i class="fas fa-rss"></i></a>
+      <a class="icon" href="https://github.com/janelin612" target="_blank"><i
+          class="fab fa-github"></i></a>
+      <a class="icon" href="mailto:janelin612@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <p>&copy; 2023. All rights reserved.</p>
+  </div>
+</div>
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">用Nuxt.js改寫舊的專案</h1>
+  <span class="post-date">21 Jul 2021</span>
+  <hr />
+  <p><img src="/public/res/2021/eofijoijdsi.png" alt="" /></p>
+
+<p>離上一篇 “<a href="/2020/07/03/about-n46-crawler.html">關於我寫的乃木坂部落格備份站</a>” 已經過了將近一年，當時的文章最後提到的幾個未來計畫要做的項目中其中一項：將整個網站用 Nuxt.js 改寫，終於於近期完成任務並上線了。</p>
+
+<!-- more -->
+
+<h2 id="改寫的過程">改寫的過程</h2>
+
+<p>有關 Nuxt.js 的基礎知識，我主要參考自這一篇文章：</p>
+
+<blockquote>
+  <p><a href="https://medium.com/@jackercleaninglab/ssr-nuxt-js-%E8%B6%85%E5%85%A5%E9%96%80-84a0823b45ed" target="_blank">SSR — Nuxt.js 超入門</a></p>
+</blockquote>
+
+<h3 id="理解-asyncdata">理解 <code class="language-plaintext highlighter-rouge">asyncData</code></h3>
+
+<p>從舊的 Vue.js 程式轉換成 Nuxt.js ，我卡最久的工作之一就是理解哪些事情要改在 <code class="language-plaintext highlighter-rouge">asyncData()</code> 去執行。<br />
+他是一個很神奇的設計，無論是在後端預先渲染還是前端正式執行的時候，都會呼叫到這個方法，所以我原本使用 http 連線去下載 json 檔的作法並不可行。</p>
+
+<p>最後是參考官方的討論串：<a href="https://github.com/nuxt/nuxt.js/issues/123" target="_blank">What is the best way to load json.</a><br />
+在程式裡面下判斷式，如果在後端就用 <code class="language-plaintext highlighter-rouge">fs.readFile()</code>，如果在前端則使用 <code class="language-plaintext highlighter-rouge">fetch()</code></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="nx">asyncData</span><span class="p">(){</span>
+  <span class="kd">let</span> <span class="nx">data</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">server</span><span class="p">){</span>
+    <span class="nx">data</span><span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="k">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="dl">'</span><span class="s1">xxx.json</span><span class="dl">'</span><span class="p">));</span>
+  <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span><span class="p">(</span><span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/xxxx.json</span><span class="dl">'</span><span class="p">)).</span><span class="nx">json</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>理解的過程，你會需要不斷翻閱的官方文件：<br />
+<a href="https://nuxtjs.org/docs/2.x/concepts/nuxt-lifecycle" target="_blank">Nuxt Lifecycle - NuxtJS</a></p>
+</blockquote>
+
+<h3 id="生成靜態網站">生成靜態網站</h3>
+
+<p>如果你建立專案的時候什麼設定都沒有改，那你最後建置出來的成品不會是一個靜態網站，而是一個要用 <code class="language-plaintext highlighter-rouge">node.js</code> 執行的伺服器程式。直到你在 <code class="language-plaintext highlighter-rouge">nuxt.config.js</code> 把 <code class="language-plaintext highlighter-rouge">target</code> 指定成 <code class="language-plaintext highlighter-rouge">static</code> 他才會改輸出靜態網站：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">target</span><span class="p">:</span> <span class="dl">"</span><span class="s2">static</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// default is 'server'</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>改過之後你每次部署都要先執行 <code class="language-plaintext highlighter-rouge">build</code>，接著再執行 <code class="language-plaintext highlighter-rouge">generate</code>，這樣你才會在 <code class="language-plaintext highlighter-rouge">./dist</code> 資料夾看到成果。</p>
+
+<p>不過很不幸的如果你的程式有用到動態路由，那動態路由的頁面會全部消失，因為程式不知道你到底有哪些頁面要生成，你需要自己在 <code class="language-plaintext highlighter-rouge">nuxt.config.js</code> 裡面把路由表生成出來</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">generate</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">routes</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">[</span><span class="dl">"</span><span class="s2">page1</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">page2</span><span class="dl">"</span><span class="p">];</span> <span class="c1">//自己生成這個陣列</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>生成陣列的方法可以獨立成一支程式，下一段還用的到。</p>
+</blockquote>
+
+<blockquote>
+  <p>有關靜態網站的官方文件：<a href="https://nuxtjs.org/docs/2.x/features/deployment-targets#static-hosting" target="_blank">Static Hosting - NuxtJS </a></p>
+</blockquote>
+
+<h3 id="sitemap">Sitemap</h3>
+
+<p>官方有套件 <code class="language-plaintext highlighter-rouge">@nuxtjs/sitemap</code> 可以使用，安裝好之後他就會自動生成 sitemap，但會遇到跟上面一樣的問題，動態路由記得要自己宣告。</p>
+
+<h3 id="301-轉址">301 轉址</h3>
+
+<p>我這次改寫的過程，一併更改了網址的路徑，他給我帶來了兩個額外的麻煩，仔細想想有點後悔當初為何改這樣的設計。</p>
+
+<p>舊網址：<code class="language-plaintext highlighter-rouge">/nanase.nishino/index.html</code><br />
+新網址：<code class="language-plaintext highlighter-rouge">/mb/nanase.nishino/</code></p>
+
+<p>第一個麻煩就是這裡要提到的，我需要為了 SEO 把舊的流量留住，不能出現 404 畫面，所以我在原本對應的路由上新增一支程式，透過在 html head 區塊塞資料的方式完成轉址</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"refresh"</span> <span class="na">content=</span><span class="s">"0; url=NEW_URL"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"canonical"</span> <span class="na">href=</span><span class="s">"NEW_URL"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">meta</code> ：讓網頁載入的時候就馬上重新導向至新網址<br />
+<code class="language-plaintext highlighter-rouge">link</code> ：跟搜尋引擎宣告新網址才是標準網址</p>
+
+<p>多虧這個是 Nuxt 的專案，所以我可以在新的 <code class="language-plaintext highlighter-rouge">head()</code> 區塊完成以上宣告。</p>
+
+<p>第二個麻煩是部落格內文的圖片相對路徑全錯，這個我就比較土法煉鋼，直接用正規表達式把路徑全改了…</p>
+
+<h2 id="新增的功能">新增的功能</h2>
+
+<p>這次改版不單純只是搬遷，我還額外補上了幾個小東西</p>
+
+<h3 id="1內文搜尋">1.內文搜尋</h3>
+
+<p><img src="/public/res/2021/aoisfjoijv.jpg" alt="" /></p>
+
+<p>搜尋功能因為我自己覺得只靠前端完成應該會嚴重拖累效能所以遲遲沒有設計，實際做好之後的成果還不錯，雖然確實會卡頓一下，但應該還在可以被接受的程度？</p>
+
+<p>原理也很單純，在輸入搜尋關鍵字之後，程式會去把所有的部落格文章用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMParser" target="_blank">DOMParser</a> 把純文字的部分取出，然後就用字串比對的方式生成結果。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">getInnerText</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">dom</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domParser</span><span class="p">.</span><span class="nx">parseFromString</span><span class="p">(</span><span class="nx">html</span><span class="p">,</span> <span class="dl">"</span><span class="s2">text/html</span><span class="dl">"</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">dom</span><span class="p">.</span><span class="nx">activeElement</span><span class="p">.</span><span class="nx">innerText</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/public/res/2021/ewafghijou.jpg" alt="" /></p>
+
+<p>另外是搜尋結果會高亮顯示，此功能仰賴第三方套件 <a href="https://markjs.io/" target="_blank">mark.js</a> 完成</p>
+
+<h3 id="2分享">2.分享</h3>
+
+<p><img src="/public/res/2021/efijoqrw.jpg" alt="" /><br />
+這次做了兩個分享鈕，第一個沒什麼好說的，分享至 Twitter，這部分遵照<a href="https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/guides/web-intent" target="_blank">官方文件</a>生成一個帶指定參數的 intent url 就可以了。比較有趣的是第二顆分享鈕。</p>
+
+<p><img src="/public/res/2021/shejoaiscj.jpg" alt="" />
+他會觸發系統原生的分享畫面，截圖是 Windows 10 的，你如果用手機瀏覽的話，會顯示 Android 或 iOS 作業系統本身的分享介面，類似下圖。</p>
+
+<p><img src="/public/res/2021/shareui.png" alt="" />
+<a href="https://docs.microsoft.com/zh-tw/xamarin/essentials/share?tabs=android" target="_blank" class="ref">圖片來源 - Microsoft Docs</a></p>
+
+<p>這是 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share" target="_blank">Web Share API</a> 提供的功能，讓你可以透過簡單的 js 程式去觸發：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">title</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="k">await</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">share</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="剩餘的目標">剩餘的目標</h2>
+
+<p>除了改寫之外，當時還列了幾個其他的目標：</p>
+
+<ul>
+  <li>買域名：<br />
+其實前陣子陸續有在看，但是域名是要錢的，所以一直有在反思是否真的有必要，畢竟如果為了養域名，要在網站塞廣告我就覺得有點本末倒置了。</li>
+  <li>建資料庫：<br />
+這個基本上是棄案了，現在這樣還在可以接受的範圍內。倒是最近認識了一個東西叫做 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/IndexedDB_API" target="_blank">IndexedDB</a>，正在研究我的網站用不用的到它。</li>
+  <li>追加成員：<br />
+新成員一直都有在更新(今年又畢業了好幾個…)，至於往前追加的部分就一樣繼續擱置吧。</li>
+</ul>
+
+<h2 id="後記">後記</h2>
+
+<p>感謝每個使用過這個專案的使用者，知道有人在瀏覽、看到有人分享，都是讓我繼續維護這個專案的動力來源。即使你們大部分都是日文使用者根本看不懂這篇文章，但還是謝謝：)</p>
+
+<p>最後附上專案連結，喜歡的話賞個星星吧<br />
+<a href="https://github.com/janelin612/n46-crawler">janelin612/n46-crawler: Nogizaka46 Blog Crawler - 乃木坂 46 卒業成員部落格備份工具 </a></p>
+
+</div>
+
+<div class="bmc-block">
+  <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div>
+  <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+</div>
+<div class="likecoin-embed likecoin-button" data-liker-id="janelin612" data-href="https://janelin612.github.io/2021/07/21/turn-into-nuxtjs.html"></div>
+<script src="https://static.like.co/sdk/v1/button.js"></script>
+<hr />
+
+<div class="next">
+  <ul class="related-posts">
+    
+    <li>
+      <small>Previous :</small>
+      <h3><a href="/2021/06/24/split-large-text-file.html">分割大型文字檔
+          <small>24 Jun 2021</small></a>
+      </h3>
+    </li>
+    
+    
+    <li>
+      <small>Next :</small>
+      <h3><a href="/2021/08/04/services-be-useful-someday.html">也許某天會派上用場的網路服務
+          <small>04 Aug 2021</small></a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

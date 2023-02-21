@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+
+<title>2019年後在Eclipse開發Android的指南 | Intertidal</title>
+<meta name="description" content="2019年後，如果你還想用Eclipse開發Android的專案，關於準備開發環境有幾件事情需要注意" />
+<!-- facebook -->
+<meta property="og:url" content="https://janelin612.github.io/2019/04/24/develop-android-on-eclipse-in-2019.html">
+<meta property="og:site_name" content="Intertidal">
+<meta property="og:title" content="2019年後在Eclipse開發Android的指南 | Intertidal">
+<meta property="og:description" content="2019年後，如果你還想用Eclipse開發Android的專案，關於準備開發環境有幾件事情需要注意">
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://janelin612.github.io/public/res/2019/android-1869510_1280.jpg">
+<!-- twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019年後在Eclipse開發Android的指南 | Intertidal">
+<meta name="twitter:description" content="2019年後，如果你還想用Eclipse開發Android的專案，關於準備開發環境有幾件事情需要注意">
+  <meta name="msvalidate.01" content="D6451EE2AECEE8675E78CEEA635F67DA" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/css/tars.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"
+    media="none" onload="if(media!='all')media='all'"
+     />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://janelin612.github.io/2019/04/24/develop-android-on-eclipse-in-2019.html" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+
+  <body> 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5K473GZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+
+      
+      <h2>
+        <a href="https://janelin612.github.io">Intertidal</a>
+      </h2>
+      
+      <p class="lead">潮間帶工作室</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item"
+        href="/about/">About Me</a>
+      
+      <a class="sidebar-nav-item"
+        href="/archive/">Archive</a>
+      
+      <a class="icon" href="/atom.xml" target="_blank"><i class="fas fa-rss"></i></a>
+      <a class="icon" href="https://github.com/janelin612" target="_blank"><i
+          class="fab fa-github"></i></a>
+      <a class="icon" href="mailto:janelin612@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <p>&copy; 2023. All rights reserved.</p>
+  </div>
+</div>
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">2019年後在Eclipse開發Android的指南</h1>
+  <span class="post-date">24 Apr 2019</span>
+  <hr />
+  <p><img src="/public/res/2019/android-1869510_1280.jpg" alt="" />
+在 2019 年，如果你還想用 Eclipse 開發 Android 的專案，想必你一定有著滿腹的委屈與說不完的苦衷，就跟我一樣。</p>
+
+<!-- more -->
+
+<h2 id="1安裝-eclipse">1.安裝 Eclipse</h2>
+
+<p>此部分我就不再花篇幅整理了，就照步驟裝，應該不會出差錯才是。</p>
+
+<h2 id="2安裝-adt">2.安裝 ADT</h2>
+
+<p>ADT 全名 Android Development Toolkit，把它當成是 Eclipse 跟 Android SDK 溝通的工具吧</p>
+
+<ol>
+  <li>於主畫面工具列選擇<code class="language-plaintext highlighter-rouge">Help/Install New Software</code>
+<img src="/public/res/2019/eclipse-install-new-software.jpg" alt="" /></li>
+  <li>於彈出視窗點選<code class="language-plaintext highlighter-rouge">Add</code>添加新的套件庫
+    <ul>
+      <li>Name: 隨便你填，我填<code class="language-plaintext highlighter-rouge">Android</code></li>
+      <li>Location: <code class="language-plaintext highlighter-rouge">http://dl-ssl.google.com/android/eclipse</code>
+<img src="/public/res/2019/eclipse-repo-android.jpg" alt="" /></li>
+    </ul>
+  </li>
+  <li>把顯示出來的東西全部裝一裝，跳什麼警告通通給他同意就對了</li>
+  <li>最後會請你指定 SDK 的目錄，此部分就待下個步驟完成後填上吧</li>
+</ol>
+
+<h2 id="3安裝-sdk">3.安裝 SDK</h2>
+
+<p>這步驟才是這篇文章真正要講的東西，你要是胡亂裝就會沒辦法用了。<br />
+在整理出這篇心得之前，我曾經幹過以下的事情：</p>
+
+<ul>
+  <li>跟 Android Studio 共用 SDK</li>
+  <li>去<a href="https://developer.android.com/studio/#downloads" target="\_blank">AS 官網</a>下載最新的獨立 SDK Tools</li>
+</ul>
+
+<p>結果就是通通都不能用，只會顯示錯誤訊息</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Failed to get the required ADT version number from the SDK
+The Android Developer Toolkit may not work properly.
+</code></pre></div></div>
+
+<h3 id="正確的作法">正確的作法</h3>
+
+<p>會出錯的原因是 Google 早就<a href="https://android-developers.googleblog.com/2016/11/support-ended-for-eclipse-android.html" target="\_blank">停止支援 ADT</a>了，現在的 SDK 都是專為 Android Studio 設計的，所以你要是用最新提供的 SDK 必死無疑。<strong>請獨立下載一個舊版的，並放在另一個資料夾裡面</strong></p>
+
+<p>舊版 SDK 下載連結：</p>
+
+<ul>
+  <li><a href="https://dl.google.com/android/android-sdk_r24.4.1-windows.zip">android-sdk_r24.4.1-windows.zip</a></li>
+  <li><a href="https://dl.google.com/android/android-sdk_r24.4.1-macosx.zip">android-sdk_r24.4.1-macosx.zip</a></li>
+  <li><a href="https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz">android-sdk_r24.4.1-linux.tgz</a></li>
+</ul>
+
+<p>完成後回到 Eclipse，在<code class="language-plaintext highlighter-rouge">Windows/Preferences/Android</code>分頁內，指定你的資料夾位置後存檔重開
+<img src="/public/res/2019/your-sdk-loc.jpg" alt="" /></p>
+
+<p>最後在工具列的<code class="language-plaintext highlighter-rouge">Windows</code>選項內找到你的 SDK Manager，一切順利的話應該就可以看到畫面，可以開始選擇你要安裝的版本了<br />
+ヽ(∀ ﾟ )人(ﾟ ∀ ﾟ)人( ﾟ ∀)人(∀ ﾟ )人(ﾟ ∀ ﾟ)人( ﾟ ∀)ﾉ</p>
+
+<h2 id="後記">後記</h2>
+
+<p>不管你最後怎麼解決了 Eclipse 上的問題，請永遠不要忘了，趕快把專案轉移到 Android Studio 上才是正確的作法。過時的東西就讓它入土為安吧(合十)</p>
+
+</div>
+
+<div class="bmc-block">
+  <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div>
+  <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+</div>
+<div class="likecoin-embed likecoin-button" data-liker-id="janelin612" data-href="https://janelin612.github.io/2019/04/24/develop-android-on-eclipse-in-2019.html"></div>
+<script src="https://static.like.co/sdk/v1/button.js"></script>
+<hr />
+
+<div class="next">
+  <ul class="related-posts">
+    
+    <li>
+      <small>Previous :</small>
+      <h3><a href="/2019/04/11/android-studio-keymap.html">Android Studio個人常用快捷鍵
+          <small>11 Apr 2019</small></a>
+      </h3>
+    </li>
+    
+    
+    <li>
+      <small>Next :</small>
+      <h3><a href="/2019/04/30/interview-note.html">面試紀錄
+          <small>30 Apr 2019</small></a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

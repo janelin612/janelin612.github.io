@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+
+<title>追蹤DOM內部的變化事件 | Intertidal</title>
+<meta name="description" content="之前遇到一個問題是想要擷取 dom 的加入事件，把每一筆加入的項目抽出來做額外的處理。最一開始我傻呼呼地想要用監聽 onchange 來解決，所..." />
+<!-- facebook -->
+<meta property="og:url" content="https://janelin612.github.io/2021/11/05/detect-dom-change-event.html">
+<meta property="og:site_name" content="Intertidal">
+<meta property="og:title" content="追蹤DOM內部的變化事件 | Intertidal">
+<meta property="og:description" content="之前遇到一個問題是想要擷取 dom 的加入事件，把每一筆加入的項目抽出來做額外的處理。最一開始我傻呼呼地想要用監聽 onchange 來解決，所...">
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://janelin612.github.io/public/res/ogimg.jpg">
+<!-- twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="追蹤DOM內部的變化事件 | Intertidal">
+<meta name="twitter:description" content="之前遇到一個問題是想要擷取 dom 的加入事件，把每一筆加入的項目抽出來做額外的處理。最一開始我傻呼呼地想要用監聽 onchange 來解決，所...">
+  <meta name="msvalidate.01" content="D6451EE2AECEE8675E78CEEA635F67DA" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/css/tars.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"
+    media="none" onload="if(media!='all')media='all'"
+     />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://janelin612.github.io/2021/11/05/detect-dom-change-event.html" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+
+  <body> 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5K473GZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+
+      
+      <h2>
+        <a href="https://janelin612.github.io">Intertidal</a>
+      </h2>
+      
+      <p class="lead">潮間帶工作室</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item"
+        href="/about/">About Me</a>
+      
+      <a class="sidebar-nav-item"
+        href="/archive/">Archive</a>
+      
+      <a class="icon" href="/atom.xml" target="_blank"><i class="fas fa-rss"></i></a>
+      <a class="icon" href="https://github.com/janelin612" target="_blank"><i
+          class="fab fa-github"></i></a>
+      <a class="icon" href="mailto:janelin612@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <p>&copy; 2023. All rights reserved.</p>
+  </div>
+</div>
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">追蹤DOM內部的變化事件</h1>
+  <span class="post-date">05 Nov 2021</span>
+  <hr />
+  <p>之前遇到一個問題是想要擷取 dom 的加入事件，把每一筆加入的項目抽出來做額外的處理。</p>
+
+<p>最一開始我傻呼呼地想要用監聽 <code class="language-plaintext highlighter-rouge">onchange</code> 來解決，所以把程式寫成這樣</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">dom</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">ol</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">dom</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">change</span><span class="dl">"</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>想當然爾，他是沒有任何反應的。</p>
+
+<!-- more -->
+
+<p>查了一下<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event" target="_blank">MDN</a>：</p>
+
+<blockquote>
+  <p>The change event is fired for <code class="language-plaintext highlighter-rouge">input</code>, <code class="language-plaintext highlighter-rouge">select</code>, and <code class="language-plaintext highlighter-rouge">textarea</code> elements when an alteration to the element’s value is committed by the user.</p>
+</blockquote>
+
+<p>總之<code class="language-plaintext highlighter-rouge">onchange</code>不是用來監聽這種事件的。</p>
+
+<h2 id="mutationobserver">MutationObserver</h2>
+
+<p>真正符合需求的是這個東西，MutationObserver。
+一樣讀一下<a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/MutationObserver" target="_blank">MDN</a>，
+它可以用來監聽目標的子節點是否有增減，以及目標本身屬性是否有變化。</p>
+
+<p>寫起來大概像這樣</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 要監聽的目標</span>
+<span class="kd">let</span> <span class="nx">target</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">ol</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">observer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MutationObserver</span><span class="p">((</span><span class="nx">mutationList</span><span class="p">,</span> <span class="nx">observer</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Doing something...</span>
+<span class="p">});</span>
+
+<span class="c1">// 開始監聽</span>
+<span class="nx">observer</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">childList</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// 監聽子節點</span>
+  <span class="na">attributes</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// 監聽自身屬性變化</span>
+  <span class="na">subtree</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="c1">// 必要時使用disconnect結束監聽</span>
+<span class="nx">observer</span><span class="p">.</span><span class="nx">disconnect</span><span class="p">();</span>
+</code></pre></div></div>
+
+</div>
+
+<div class="bmc-block">
+  <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div>
+  <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+</div>
+<div class="likecoin-embed likecoin-button" data-liker-id="janelin612" data-href="https://janelin612.github.io/2021/11/05/detect-dom-change-event.html"></div>
+<script src="https://static.like.co/sdk/v1/button.js"></script>
+<hr />
+
+<div class="next">
+  <ul class="related-posts">
+    
+    <li>
+      <small>Previous :</small>
+      <h3><a href="/2021/08/04/services-be-useful-someday.html">也許某天會派上用場的網路服務
+          <small>04 Aug 2021</small></a>
+      </h3>
+    </li>
+    
+    
+    <li>
+      <small>Next :</small>
+      <h3><a href="/2021/12/25/look-back-2021.html">回顧 2021
+          <small>25 Dec 2021</small></a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

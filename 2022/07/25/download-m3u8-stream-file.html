@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+
+<title>從瀏覽器下載m3u8串流檔案 | Intertidal</title>
+<meta name="description" content="雖然網路上隨便搜尋也可以找到不少下載工具，不過這邊還是簡單紀錄一下，如何自己寫JS程式下載" />
+<!-- facebook -->
+<meta property="og:url" content="https://janelin612.github.io/2022/07/25/download-m3u8-stream-file.html">
+<meta property="og:site_name" content="Intertidal">
+<meta property="og:title" content="從瀏覽器下載m3u8串流檔案 | Intertidal">
+<meta property="og:description" content="雖然網路上隨便搜尋也可以找到不少下載工具，不過這邊還是簡單紀錄一下，如何自己寫JS程式下載">
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://janelin612.github.io/public/res/ogimg.jpg">
+<!-- twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="從瀏覽器下載m3u8串流檔案 | Intertidal">
+<meta name="twitter:description" content="雖然網路上隨便搜尋也可以找到不少下載工具，不過這邊還是簡單紀錄一下，如何自己寫JS程式下載">
+  <meta name="msvalidate.01" content="D6451EE2AECEE8675E78CEEA635F67DA" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/css/tars.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"
+    media="none" onload="if(media!='all')media='all'"
+     />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://janelin612.github.io/2022/07/25/download-m3u8-stream-file.html" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+
+  <body> 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5K473GZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+
+      
+      <h2>
+        <a href="https://janelin612.github.io">Intertidal</a>
+      </h2>
+      
+      <p class="lead">潮間帶工作室</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item"
+        href="/about/">About Me</a>
+      
+      <a class="sidebar-nav-item"
+        href="/archive/">Archive</a>
+      
+      <a class="icon" href="/atom.xml" target="_blank"><i class="fas fa-rss"></i></a>
+      <a class="icon" href="https://github.com/janelin612" target="_blank"><i
+          class="fab fa-github"></i></a>
+      <a class="icon" href="mailto:janelin612@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <p>&copy; 2023. All rights reserved.</p>
+  </div>
+</div>
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">從瀏覽器下載m3u8串流檔案</h1>
+  <span class="post-date">25 Jul 2022</span>
+  <hr />
+  <p>現在的影音市場，串流播放已經幾乎完全取代下載檔案的習慣了，所以也很難直接看到完整檔案的下載連結，取而代之的是一堆碎片化的串流檔案。</p>
+
+<p>雖然網路上隨便搜尋也可以找到不少下載工具，不過這邊還是簡單紀錄一下，如果想要自己寫 Javascript 程式去下載該如何處理。</p>
+
+<!-- more -->
+
+<h2 id="m3u8-檔">M3U8 檔</h2>
+
+<p>一般來說，串流播放的起點通常會下載一個附檔名為<code class="language-plaintext highlighter-rouge">.m3u8</code>的檔案，其內容大致上會長這樣：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:11
+#EXT-X-MEDIA-SEQUENCE:1
+
+#EXTINF:xxxx
+file-00001.ts
+#EXTINF:xxxx
+file-00002.ts
+#EXTINF:xxxx
+file-00003.ts
+#EXT-X-ENDLIST
+</code></pre></div></div>
+
+<p>將<code class="language-plaintext highlighter-rouge">#</code>字號開頭的行數忽略後，會得到</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>file-00001.ts
+file-00002.ts
+file-00003.ts
+</code></pre></div></div>
+
+<p>可以簡單地將其理解為一份串流檔案列表，也就是讓播放器知道接下來要依序下載播放哪些檔案。</p>
+
+<p>有時候這些檔案列表會是使用相對路徑紀錄，像是上述的那樣，這時候要記得使用原本<code class="language-plaintext highlighter-rouge">m3u8</code>檔案的下載網址作為相對路徑。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>m3u8 檔案路徑範例
+https://example.com/music/stream.m3u8
+
+ts 檔實際位置
+https://example.com/music/file-00001.ts
+</code></pre></div></div>
+
+<p>理解檔案格式之後，寫成程式就很簡單了</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 自己去找到m3u8的網址，這邊不另外說明</span>
+<span class="kd">const</span> <span class="nx">m3u8</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://example.com/music/stream.m3u8</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// 保存相對路徑資訊</span>
+<span class="kd">let</span> <span class="nx">path</span> <span class="o">=</span> <span class="sr">/https:</span><span class="se">\/\/</span><span class="sr">.+</span><span class="se">\/</span><span class="sr">/</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">m3u8</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+<span class="c1">// 下載m3u8檔案內容</span>
+<span class="kd">let</span> <span class="nx">content</span> <span class="o">=</span> <span class="k">await</span> <span class="p">(</span><span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">m3u8</span><span class="p">)).</span><span class="nx">text</span><span class="p">();</span>
+<span class="c1">// 用換行切割檔案、並忽略#字號開頭的行數，最後將檔名補上相對路徑後輸出成陣列</span>
+<span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nx">content</span>
+  <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="nx">x</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="dl">"</span><span class="s2">#</span><span class="dl">"</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">path</span> <span class="o">+</span> <span class="nx">x</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="ts-檔">TS 檔</h2>
+
+<p>ts 檔就是一堆攜帶實際內容的二進位檔，這就無法直接打開了。不過有趣的事情是他們幾乎不用做任何處理，直接全部依序打包在一起，並宣告好正確的檔案類型就是完整的檔案了。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 依序下載串流內容</span>
+<span class="kd">let</span> <span class="nx">bufferList</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="k">await</span> <span class="p">(</span><span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">])).</span><span class="nx">arrayBuffer</span><span class="p">();</span>
+  <span class="nx">bufferList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// 打包檔案。</span>
+<span class="kd">let</span> <span class="nx">fileBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">(</span><span class="nx">bufferList</span><span class="p">,</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">audio/mpeg3</span><span class="dl">"</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>關於 Blob 的 Type 如何宣告：<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types" target="_blank">Common MIME types</a></p>
+</blockquote>
+
+<h2 id="下載">下載</h2>
+
+<p>最後一步，在瀏覽器上觸發下載事件。<br />
+原理是生成一個<code class="language-plaintext highlighter-rouge">&lt;a&gt;&lt;\a&gt;</code>，然後把剛剛打包好的檔案連結放進去並執行點擊</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">music.mp3</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">fileBlob</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+</code></pre></div></div>
+
+</div>
+
+<div class="bmc-block">
+  <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div>
+  <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+</div>
+<div class="likecoin-embed likecoin-button" data-liker-id="janelin612" data-href="https://janelin612.github.io/2022/07/25/download-m3u8-stream-file.html"></div>
+<script src="https://static.like.co/sdk/v1/button.js"></script>
+<hr />
+
+<div class="next">
+  <ul class="related-posts">
+    
+    <li>
+      <small>Previous :</small>
+      <h3><a href="/2022/06/01/fitbit-charge-4.html">Fitbit Charge 4 手環使用心得
+          <small>01 Jun 2022</small></a>
+      </h3>
+    </li>
+    
+    
+    <li>
+      <small>Next :</small>
+      <h3><a href="/2022/09/02/xgp-games-review.html">XGP 8款遊戲遊玩心得
+          <small>02 Sep 2022</small></a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

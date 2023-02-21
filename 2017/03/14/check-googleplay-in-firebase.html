@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+
+<title>Firebase檢查GooglePlayService是否可用 | Intertidal</title>
+<meta name="description" content="前言Firebase 自從被估狗買走之後，就算是 GooglePlayService 的延伸吧，所以一樣會有如果手機沒有 GooglePlay ..." />
+<!-- facebook -->
+<meta property="og:url" content="https://janelin612.github.io/2017/03/14/check-googleplay-in-firebase.html">
+<meta property="og:site_name" content="Intertidal">
+<meta property="og:title" content="Firebase檢查GooglePlayService是否可用 | Intertidal">
+<meta property="og:description" content="前言Firebase 自從被估狗買走之後，就算是 GooglePlayService 的延伸吧，所以一樣會有如果手機沒有 GooglePlay ...">
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://janelin612.github.io/public/res/ogimg.jpg">
+<!-- twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Firebase檢查GooglePlayService是否可用 | Intertidal">
+<meta name="twitter:description" content="前言Firebase 自從被估狗買走之後，就算是 GooglePlayService 的延伸吧，所以一樣會有如果手機沒有 GooglePlay ...">
+  <meta name="msvalidate.01" content="D6451EE2AECEE8675E78CEEA635F67DA" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/css/tars.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"
+    media="none" onload="if(media!='all')media='all'"
+     />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://janelin612.github.io/2017/03/14/check-googleplay-in-firebase.html" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+
+  <body> 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5K473GZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+
+      
+      <h2>
+        <a href="https://janelin612.github.io">Intertidal</a>
+      </h2>
+      
+      <p class="lead">潮間帶工作室</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item"
+        href="/about/">About Me</a>
+      
+      <a class="sidebar-nav-item"
+        href="/archive/">Archive</a>
+      
+      <a class="icon" href="/atom.xml" target="_blank"><i class="fas fa-rss"></i></a>
+      <a class="icon" href="https://github.com/janelin612" target="_blank"><i
+          class="fab fa-github"></i></a>
+      <a class="icon" href="mailto:janelin612@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <p>&copy; 2023. All rights reserved.</p>
+  </div>
+</div>
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Firebase檢查GooglePlayService是否可用</h1>
+  <span class="post-date">14 Mar 2017</span>
+  <hr />
+  <h2 id="前言">前言</h2>
+<p>Firebase 自從被估狗買走之後，就算是 GooglePlayService 的延伸吧，所以一樣會有如果手機沒有 GooglePlay 服務(像是中國白牌手機)就沒有 Firebase 可以用的問題。</p>
+
+<p>Firebase 本身的 API 卻沒有提供檢查該手機有沒有 Firebase 可以用的方法。還好，前面提到他一樣是基於 GooglePlayService ，所以我們可以用該手機有沒有 GooglePlayService 的結果作為 Firebase 可不可以用的依據。</p>
+
+<!-- more -->
+
+<h2 id="問題">問題</h2>
+<p>但事情總是沒有那麼單純，不然我也不用特地記下來了。<br />
+翻了翻<a href="https://developers.google.com/android/reference/com/google/android/gms/common/GoogleApiAvailability">官方文件</a>，得知我要 call 的 method叫做：</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">GoogleApiAvailability</span>
+	<span class="o">.</span><span class="na">getInstance</span><span class="o">()</span>
+	<span class="o">.</span><span class="na">isGooglePlayServicesAvailable</span><span class="o">();</span></code></pre></figure>
+
+<p>但是我在 Android Studio 呼叫時卻說找不到這個 Class…<br />
+我一開始朝向我沒有引入GooglePlayService的 library 這個方向去解，但後來 import 進來之後卻遇到衝突，這意味著 Firebase 應該已經幫我引入好了才對。<br />
+最後從 Package Name 開始一個一個追蹤下去才找到問題所在：</p>
+
+<h2 id="解答">解答</h2>
+
+<p><img src="https://1.bp.blogspot.com/-ALHiv7mocYI/WMfjdSJwp2I/AAAAAAAAnU8/c7qFtO77_084o2rx7UwAqJZNgAW39Jt7ACLcB/s1600/2017-03-14_160552.png" alt="" />
+Google 不知道為啥，把 GooglePlayService 裡的幾個 public Class 執行了程式碼模糊，害我找了一兩個小時，才把這問題搞定…</p>
+
+<p>希望下一版 GooglePlayService 可以把這個鳥問題修正。</p>
+
+</div>
+
+<div class="bmc-block">
+  <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div>
+  <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+</div>
+<div class="likecoin-embed likecoin-button" data-liker-id="janelin612" data-href="https://janelin612.github.io/2017/03/14/check-googleplay-in-firebase.html"></div>
+<script src="https://static.like.co/sdk/v1/button.js"></script>
+<hr />
+
+<div class="next">
+  <ul class="related-posts">
+    
+    <li>
+      <small>Previous :</small>
+      <h3><a href="/2017/02/23/about-firebase.html">Firebase 小小心得
+          <small>23 Feb 2017</small></a>
+      </h3>
+    </li>
+    
+    
+    <li>
+      <small>Next :</small>
+      <h3><a href="/2017/08/03/tomcat-with-gitlab-ci.html">Tomcat + Gitlab CI 配置持續整合環境
+          <small>03 Aug 2017</small></a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

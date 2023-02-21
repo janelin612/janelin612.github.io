@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+
+<title>使用Blueprint撰寫API文件 | Intertidal</title>
+<meta name="description" content="稍微記錄一下使用Blueprint作為 API 文件生成工具的小小心得我自己過去都用 Markdown 在寫文件，但是基於 md 檔本身其實格式..." />
+<!-- facebook -->
+<meta property="og:url" content="https://janelin612.github.io/2018/03/28/buleprint-api.html">
+<meta property="og:site_name" content="Intertidal">
+<meta property="og:title" content="使用Blueprint撰寫API文件 | Intertidal">
+<meta property="og:description" content="稍微記錄一下使用Blueprint作為 API 文件生成工具的小小心得我自己過去都用 Markdown 在寫文件，但是基於 md 檔本身其實格式...">
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://janelin612.github.io/public/res/2018/blueprintapi.jpg">
+<!-- twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Blueprint撰寫API文件 | Intertidal">
+<meta name="twitter:description" content="稍微記錄一下使用Blueprint作為 API 文件生成工具的小小心得我自己過去都用 Markdown 在寫文件，但是基於 md 檔本身其實格式...">
+  <meta name="msvalidate.01" content="D6451EE2AECEE8675E78CEEA635F67DA" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/css/tars.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"
+    media="none" onload="if(media!='all')media='all'"
+     />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://janelin612.github.io/2018/03/28/buleprint-api.html" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+
+  <body> 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5K473GZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+
+      
+      <h2>
+        <a href="https://janelin612.github.io">Intertidal</a>
+      </h2>
+      
+      <p class="lead">潮間帶工作室</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item"
+        href="/about/">About Me</a>
+      
+      <a class="sidebar-nav-item"
+        href="/archive/">Archive</a>
+      
+      <a class="icon" href="/atom.xml" target="_blank"><i class="fas fa-rss"></i></a>
+      <a class="icon" href="https://github.com/janelin612" target="_blank"><i
+          class="fab fa-github"></i></a>
+      <a class="icon" href="mailto:janelin612@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <p>&copy; 2023. All rights reserved.</p>
+  </div>
+</div>
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">使用Blueprint撰寫API文件</h1>
+  <span class="post-date">28 Mar 2018</span>
+  <hr />
+  <p><img src="/public/res/2018/blueprintapi.jpg" alt="" /></p>
+
+<p>稍微記錄一下使用<a href="https://apiblueprint.org/" target="\_blank">Blueprint</a>作為 API 文件生成工具的小小心得</p>
+
+<p>我自己過去都用 Markdown 在寫文件，但是基於 md 檔本身其實格式過於基本，對於要排版出好閱讀的 API 文件依舊稍嫌不足，Blueprint 本身的概念剛好補足了我對這塊的需求：</p>
+
+<blockquote>
+  <p>撰寫一個 md 檔，然後輸出一個漂亮的 API 文件</p>
+</blockquote>
+
+<!-- more -->
+
+<h2 id="前置作業">前置作業</h2>
+
+<ul>
+  <li>Markdown Editor : 不用多作解釋了吧，自己愛用啥就用啥，反正他就只是要寫 MD 檔，我目前是用 VSCode</li>
+  <li>Aglio : 主要的渲染器，由<code class="language-plaintext highlighter-rouge">npm</code>安裝吧</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> aglio
+</code></pre></div></div>
+
+<h2 id="語法介紹">語法介紹</h2>
+
+<p><a href="https://apiblueprint.org/documentation/tutorial.html" target="\_blank">官方說明文件</a> 要學會怎麼寫文件，首先當然是看寫文件的工具的文件(這啥繞口令)<br />
+以下簡單紀錄一下我有用到的入門語法：</p>
+
+<h3 id="metadata">metadata</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FORMAT:1A
+HOST: http://your.domain.com/api
+</code></pre></div></div>
+
+<p>寫在 md 檔最開頭，分別用來記錄使用的 Blueprint 語法版本與 API 的主機位址<br />
+後者要寫不寫隨便，有寫的話 Gen 出來的 API 說明會包含完整網址</p>
+
+<h3 id="標題">標題</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 我的API文件
+</code></pre></div></div>
+
+<p>整個 MD 檔第一個 <code class="language-plaintext highlighter-rouge">#</code> 會被當成整份文件的標題</p>
+
+<h3 id="群組">群組</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Group 訂單
+</code></pre></div></div>
+
+<p>使用 <code class="language-plaintext highlighter-rouge">Group</code> 關鍵字的 <code class="language-plaintext highlighter-rouge">#</code> 會被視為 API 群組名稱，可以用此為 API 分類</p>
+
+<h3 id="resource">Resource</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## 訂單狀態 [/OrderStatus]
+### 查詢訂單狀態 [GET]
+使用本API可以查詢到訂單的狀態
+</code></pre></div></div>
+
+<p>使用 <code class="language-plaintext highlighter-rouge">## 說明 [url name]</code> 可以定義一個 API 的進入點(網址)，而使用 <code class="language-plaintext highlighter-rouge">### 說明 [method]</code> 則會定義允許使用的 HttpMethod。 下方可以緊接著寫下詳細的 API 說明，一樣可以使用 <code class="language-plaintext highlighter-rouge">+</code> 定義條列式的說明</p>
+
+<h3 id="response-body">Response Body</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+ Response 200 (applicaiton/json)
+
+	{success:true,message:""}
+</code></pre></div></div>
+
+<p>使用<code class="language-plaintext highlighter-rouge">+ Response 狀態碼 (Content-type)</code>來定義回應 需要注意的是<strong>如果定義了方法卻沒有定義任何回應會編譯失敗</strong><br />
+另外也可以定義 Header</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+ Response 200 (applicaiton/json)
+	+ Header
+		Key : value
+	+ Body
+		{success:true,message:""}
+</code></pre></div></div>
+
+<h3 id="request-body">Request Body</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+ Request (applicaiton/json)
+
+	{var1:"0",var2:"1"}
+</code></pre></div></div>
+
+<p>與 <code class="language-plaintext highlighter-rouge">Response Body</code> 定義起來的感覺很像</p>
+
+<h3 id="url-parameter">Url Parameter</h3>
+
+<p>這個比較複雜一點，如果你的 API 是使用 Http Get，那你的 API 在使用的時候像這樣：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://your.domain.com/api/getData?id=12345 //常見寫法
+http://your.domain.com/api/data/12345       //可以 這很restful
+</code></pre></div></div>
+
+<p>那你的 API 文件撰寫的時候要寫成這樣</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## 資料 [/getData{?id}] or [/data/{id}]
+### 取得資料 [GET]
++ Parameter
+	+ id : `12345` (integer,required) - 資料ID
+</code></pre></div></div>
+
+<ul>
+  <li>網址的部分要用<code class="language-plaintext highlighter-rouge">{}</code>格式化，其中如果是用<code class="language-plaintext highlighter-rouge">?</code>帶參數的要特別寫成<code class="language-plaintext highlighter-rouge">{?var1,var2}</code></li>
+  <li>
+    <p>底下要帶一個關鍵字為<code class="language-plaintext highlighter-rouge">Parameter</code>的列表</p>
+
+    <ul>
+      <li>
+        <p>子列表格式意義為</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>參數名稱 : 範例值 (資料型態, required || optional ) - 說明
+</code></pre></div>        </div>
+      </li>
+      <li>只有參數名稱必填，其他欄位都是選填</li>
+      <li><strong>如果 Parameter 內的參數與網址上沒有定義的格式化字串會編譯失敗</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="輸出">輸出</h2>
+
+<p>寫完後使用 aglio 渲染並輸出</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aglio <span class="nt">-i</span> MD檔名.md <span class="nt">-o</span> HTML檔名.html                  //最精簡的寫法
+aglio <span class="nt">--theme</span> slate <span class="nt">-i</span> MD檔名.md <span class="nt">-o</span> HTML檔名.html    //輸出深色版本
+</code></pre></div></div>
+
+<h2 id="補充">補充</h2>
+
+<p>另一個我覺得寫得很好的教學文件: <a href="https://yami.io/api-blueprint-tutorial/" target="\_blank">https://yami.io/api-blueprint-tutorial/</a></p>
+
+</div>
+
+<div class="bmc-block">
+  <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div>
+  <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+</div>
+<div class="likecoin-embed likecoin-button" data-liker-id="janelin612" data-href="https://janelin612.github.io/2018/03/28/buleprint-api.html"></div>
+<script src="https://static.like.co/sdk/v1/button.js"></script>
+<hr />
+
+<div class="next">
+  <ul class="related-posts">
+    
+    <li>
+      <small>Previous :</small>
+      <h3><a href="/2018/01/08/vue-js-in-ie.html">Vue.js在IE的相容性
+          <small>08 Jan 2018</small></a>
+      </h3>
+    </li>
+    
+    
+    <li>
+      <small>Next :</small>
+      <h3><a href="/2018/04/11/csharp-sha256.html">使用C#計算SHA-256
+          <small>11 Apr 2018</small></a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

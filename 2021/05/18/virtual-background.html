@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+
+<title>在瀏覽器實作虛擬會議室 | Intertidal</title>
+<meta name="description" content="這一年因為武漢肺炎的關係，使用網路會議室開會的頻率變得越來越高，而現在幾個主流的服務都有提供虛擬會議室的功能，簡單來說就是無需綠幕的去背，藉此避..." />
+<!-- facebook -->
+<meta property="og:url" content="https://janelin612.github.io/2021/05/18/virtual-background.html">
+<meta property="og:site_name" content="Intertidal">
+<meta property="og:title" content="在瀏覽器實作虛擬會議室 | Intertidal">
+<meta property="og:description" content="這一年因為武漢肺炎的關係，使用網路會議室開會的頻率變得越來越高，而現在幾個主流的服務都有提供虛擬會議室的功能，簡單來說就是無需綠幕的去背，藉此避...">
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://janelin612.github.io/public/res/2021/woivhe.jpg">
+<!-- twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在瀏覽器實作虛擬會議室 | Intertidal">
+<meta name="twitter:description" content="這一年因為武漢肺炎的關係，使用網路會議室開會的頻率變得越來越高，而現在幾個主流的服務都有提供虛擬會議室的功能，簡單來說就是無需綠幕的去背，藉此避...">
+  <meta name="msvalidate.01" content="D6451EE2AECEE8675E78CEEA635F67DA" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/css/tars.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"
+    media="none" onload="if(media!='all')media='all'"
+     />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://janelin612.github.io/2021/05/18/virtual-background.html" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+
+  <body> 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5K473GZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+
+      
+      <h2>
+        <a href="https://janelin612.github.io">Intertidal</a>
+      </h2>
+      
+      <p class="lead">潮間帶工作室</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item"
+        href="/about/">About Me</a>
+      
+      <a class="sidebar-nav-item"
+        href="/archive/">Archive</a>
+      
+      <a class="icon" href="/atom.xml" target="_blank"><i class="fas fa-rss"></i></a>
+      <a class="icon" href="https://github.com/janelin612" target="_blank"><i
+          class="fab fa-github"></i></a>
+      <a class="icon" href="mailto:janelin612@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <p>&copy; 2023. All rights reserved.</p>
+  </div>
+</div>
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">在瀏覽器實作虛擬會議室</h1>
+  <span class="post-date">18 May 2021</span>
+  <hr />
+  <p><img src="/public/res/2021/woivhe.jpg" alt="" /></p>
+
+<p>這一年因為武漢肺炎的關係，使用網路會議室開會的頻率變得越來越高，而現在幾個主流的服務都有提供虛擬會議室的功能，簡單來說就是無需綠幕的去背，藉此避免在家工作時背景亂糟糟的。</p>
+
+<!-- more -->
+
+<p>最近公司要我嘗試實作這功能，以下簡單紀錄一下做法與結果。</p>
+
+<h2 id="使用到的技術">使用到的技術</h2>
+
+<p>可以理解到，此需求最核心的問題是如何從每一禎的視訊畫面中找出人在哪裡。<br />
+一開始去找了一些影像處理的涵式庫，例如 OpenCV 之類的，後來發現我找的方向錯了，真正需要的東西是 <a href="https://www.tensorflow.org/js?hl=zh-tw" target="_blank">TensorFlow.js</a></p>
+
+<p><img src="/public/res/2021/tf_logo_social.png" alt="" /></p>
+
+<p>TensorFlow 是個開源的機器學習工具，TensorFlow.js 就是他的 JavaScript 版，可以跑在 Node.js 或者直接跑在瀏覽器上。最棒的是它有提供幾個已經預先訓練好的模型可以使用，其中就包含辨識人體的機器學習模型 <a href="https://github.com/tensorflow/tfjs-models/tree/master/body-pix" target="_blank">BodyPix</a></p>
+
+<p>於是大概的思維如下：</p>
+
+<ol>
+  <li>使用瀏覽器的 API 擷取視訊畫面</li>
+  <li>把畫面丟給 TensorFlow 分離出人與背景的像素</li>
+  <li>在 html canvas 把背景與切割好的人物像素合成</li>
+  <li>把 canvas 當成視訊串流進行輸出</li>
+  <li>把串流接上 WebRTC</li>
+</ol>
+
+<h3 id="1-取得視訊畫面">1. 取得視訊畫面</h3>
+
+<p>引入涵式庫</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.1"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+</code></pre></div></div>
+
+<p>準備需要的元素</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;video</span> <span class="na">id=</span><span class="s">"video"</span> <span class="na">src=</span><span class="s">""</span> <span class="na">hidden</span><span class="nt">&gt;&lt;/video&gt;</span>
+  <span class="nt">&lt;canvas</span> <span class="na">id=</span><span class="s">"canvas"</span><span class="nt">&gt;&lt;/canvas&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</code></pre></div></div>
+
+<p>然後撰寫 js</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">videoElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">video</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">canvas</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">width</span> <span class="o">=</span> <span class="mi">640</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">height</span> <span class="o">=</span> <span class="mi">480</span><span class="p">;</span>
+
+<span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">stream</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaDevices</span><span class="p">.</span><span class="nx">getUserMedia</span><span class="p">({</span>
+    <span class="na">video</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">audio</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="p">});</span>
+
+  <span class="nx">videoElement</span><span class="p">.</span><span class="nx">onplaying</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">settings</span> <span class="o">=</span> <span class="nx">stream</span><span class="p">.</span><span class="nx">getVideoTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">].</span><span class="nx">getSettings</span><span class="p">();</span>
+    <span class="nx">width</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+    <span class="nx">height</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+
+    <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+    <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
+    <span class="nx">init</span><span class="p">();</span>
+  <span class="p">};</span>
+  <span class="nx">videoElement</span><span class="p">.</span><span class="nx">srcObject</span> <span class="o">=</span> <span class="nx">stream</span><span class="p">;</span>
+  <span class="nx">videoElement</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<p>大致上就是取得視訊畫面，然後丟到 html video 上面播放，撥放後執行 <code class="language-plaintext highlighter-rouge">init()</code> 開始後續工作。<br />
+記得要存好拿到影片的長寬資訊，繪圖的時候會需要。</p>
+
+<h3 id="2-執行-bodypix">2. 執行 BodyPix</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">modelOption</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">architecture</span><span class="p">:</span> <span class="dl">"</span><span class="s2">MobileNetV1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">outputStride</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="na">multiplier</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span>
+    <span class="na">quantBytes</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="p">};</span>
+  <span class="kd">let</span> <span class="nx">net</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">bodyPix</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">modelOption</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">image</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">loadImage</span><span class="p">(</span><span class="dl">"</span><span class="s2">my-background.jpg</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">draw</span><span class="p">(</span><span class="nx">net</span><span class="p">,</span> <span class="nx">image</span><span class="p">),</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">//ms</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>初始化模型，這邊設定的方式請參考<a href="https://github.com/tensorflow/tfjs-models/blob/master/body-pix/README.md#loading-the-model" target="_blank">官方說明文件</a>，選擇的結果會影響判斷的準確度與需要的硬體性能。</li>
+  <li>從檔案讀取需要使用的背景照片。找個漂亮的風景圖或會議室照片之類的，也有公司有提供免費的圖給大家玩，如果你的老闆不介意看到你在<a href="http://www.ufotable.com/kmt_wallpaper/" target="_blank">鬼滅之刃</a>或<a href="https://www.ghibli.jp/info/013251/" target="_blank">神隱少女</a>的場景開會的話。</li>
+  <li>定時重複執行繪圖</li>
+</ol>
+
+<h3 id="3-合成畫面">3. 合成畫面</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">foregroundColor</span> <span class="o">=</span> <span class="p">{</span> <span class="na">r</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">g</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">a</span><span class="p">:</span> <span class="mi">255</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">backgroundColor</span> <span class="o">=</span> <span class="p">{</span> <span class="na">r</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">g</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">a</span><span class="p">:</span> <span class="mi">0</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">segmentOption</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">flipHorizontal</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">internalResolution</span><span class="p">:</span> <span class="dl">"</span><span class="s2">medium</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">segmentationThreshold</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">draw</span><span class="p">(</span><span class="nx">net</span><span class="p">,</span> <span class="nx">backgroundImage</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">segmentation</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">net</span><span class="p">.</span><span class="nx">segmentPerson</span><span class="p">(</span><span class="nx">videoElement</span><span class="p">,</span> <span class="nx">segmentOption</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">maskData</span> <span class="o">=</span> <span class="nx">bodyPix</span><span class="p">.</span><span class="nx">toMask</span><span class="p">(</span><span class="nx">segmentation</span><span class="p">,</span> <span class="nx">foregroundColor</span><span class="p">,</span> <span class="nx">backgroundColor</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">"</span><span class="s2">2d</span><span class="dl">"</span><span class="p">);</span>
+
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">globalCompositeOperation</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">destination-over</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">putImageData</span><span class="p">(</span><span class="nx">maskData</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">globalCompositeOperation</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">source-in</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">videoElement</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">globalCompositeOperation</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">destination-atop</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">backgroundImage</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>設定前景、背景色、與辨識參數(參數一樣參考<a href="https://github.com/tensorflow/tfjs-models/blob/master/body-pix/README.md#params-in-segmentperson" target="_blank">官方文件</a>設定)</li>
+  <li>執行主程式 <code class="language-plaintext highlighter-rouge">bodyPix.toMask()</code> 取得遮罩</li>
+  <li>將遮罩與視訊畫面、背景畫面疊圖</li>
+</ol>
+
+<p>理論上至此已經可以在瀏覽器上測試，並於螢幕上看到運算結果。</p>
+
+<h3 id="4取得串流">4.取得串流</h3>
+
+<p>最後執行 <code class="language-plaintext highlighter-rouge">canvas.captureStream()</code> 即可將 canvas 轉換成 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream" target="_blank">MediaStream</a> ，然後就去串接自己的 WebRTC 服務吧。</p>
+
+<h2 id="成果如何">成果如何？</h2>
+
+<p>不好意思露臉就沒放測試的圖了。<br />
+辨識的結果我覺得還算準確，只要你不是穿跟背景顏色一樣的衣服，基本上可以精確抓出頭、手、身體。<br />
+但問題是滿吃效能的，測試過程中我的瀏覽器當掉過好幾次，沒當機也是記憶體滿載，不確定是瀏覽器性能的原罪，還是我程式撰寫還需要改善。</p>
+
+<p>總之目前的成果我覺得不到可以正式上線的程度，勉強堪用而已。<br />
+有點好奇那使用 Node.js 來跑會不會比較好？之後有空再來嘗試吧。</p>
+
+<ul>
+  <li>封面圖片來源：<a href="https://www.elitedaily.com/p/8-zoom-office-backgrounds-to-make-your-video-calls-look-professional-22643940" target="_blank">elitedaily</a></li>
+</ul>
+
+</div>
+
+<div class="bmc-block">
+  <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div>
+  <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+</div>
+<div class="likecoin-embed likecoin-button" data-liker-id="janelin612" data-href="https://janelin612.github.io/2021/05/18/virtual-background.html"></div>
+<script src="https://static.like.co/sdk/v1/button.js"></script>
+<hr />
+
+<div class="next">
+  <ul class="related-posts">
+    
+    <li>
+      <small>Previous :</small>
+      <h3><a href="/2021/01/12/ios-safari-on-windows.html">在Windows上對ios的Safari進行偵錯
+          <small>12 Jan 2021</small></a>
+      </h3>
+    </li>
+    
+    
+    <li>
+      <small>Next :</small>
+      <h3><a href="/2021/06/24/split-large-text-file.html">分割大型文字檔
+          <small>24 Jun 2021</small></a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

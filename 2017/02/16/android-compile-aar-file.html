@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+
+<title>Android 編譯AAR檔 | Intertidal</title>
+<meta name="description" content="前言基於某些理由，例如：  拆出去方便管理  有些小tools想要每個自己寫的專案都可以使用，卻嫌複製貼上太愚蠢  你想要保護某些部分的程式，不..." />
+<!-- facebook -->
+<meta property="og:url" content="https://janelin612.github.io/2017/02/16/android-compile-aar-file.html">
+<meta property="og:site_name" content="Intertidal">
+<meta property="og:title" content="Android 編譯AAR檔 | Intertidal">
+<meta property="og:description" content="前言基於某些理由，例如：  拆出去方便管理  有些小tools想要每個自己寫的專案都可以使用，卻嫌複製貼上太愚蠢  你想要保護某些部分的程式，不...">
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://janelin612.github.io/public/res/ogimg.jpg">
+<!-- twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 編譯AAR檔 | Intertidal">
+<meta name="twitter:description" content="前言基於某些理由，例如：  拆出去方便管理  有些小tools想要每個自己寫的專案都可以使用，卻嫌複製貼上太愚蠢  你想要保護某些部分的程式，不...">
+  <meta name="msvalidate.01" content="D6451EE2AECEE8675E78CEEA635F67DA" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/css/tars.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"
+    media="none" onload="if(media!='all')media='all'"
+     />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://janelin612.github.io/2017/02/16/android-compile-aar-file.html" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+
+  <body> 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5K473GZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+
+      
+      <h2>
+        <a href="https://janelin612.github.io">Intertidal</a>
+      </h2>
+      
+      <p class="lead">潮間帶工作室</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item"
+        href="/about/">About Me</a>
+      
+      <a class="sidebar-nav-item"
+        href="/archive/">Archive</a>
+      
+      <a class="icon" href="/atom.xml" target="_blank"><i class="fas fa-rss"></i></a>
+      <a class="icon" href="https://github.com/janelin612" target="_blank"><i
+          class="fab fa-github"></i></a>
+      <a class="icon" href="mailto:janelin612@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <p>&copy; 2023. All rights reserved.</p>
+  </div>
+</div>
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Android 編譯AAR檔</h1>
+  <span class="post-date">16 Feb 2017</span>
+  <hr />
+  <h2 id="前言">前言</h2>
+<p>基於某些理由，例如：</p>
+
+<ul>
+  <li>拆出去方便管理</li>
+  <li>有些小tools想要每個自己寫的專案都可以使用，卻嫌複製貼上太愚蠢</li>
+  <li>你想要保護某些部分的程式，不想交出原始碼</li>
+</ul>
+
+<p>這時候你可能需要將一個原始的專案包裝起來之後以aar檔的形式讓其他專案可以引用。</p>
+
+<!-- more -->
+
+<h2 id="作法">作法</h2>
+
+<ol>
+  <li>Gradle
+    <ol>
+      <li>將<code class="language-plaintext highlighter-rouge">module.gradle</code>的第一行從<code class="language-plaintext highlighter-rouge">apply plugin: 'com.android.application'</code>後面的部分改成<code class="language-plaintext highlighter-rouge">'com.android.library'</code></li>
+      <li>移除下方<code class="language-plaintext highlighter-rouge">defaultConfig.applicationId</code>，library 型態的專案不允許有這個欄位</li>
+    </ol>
+  </li>
+  <li>AndroidManifest.xml
+    <ol>
+      <li>把跟啟動有關的<code class="language-plaintext highlighter-rouge">&lt;intent-filter&gt;</code>清空，通常會在MainActivity的區塊裡面</li>
+      <li>把application區塊的<code class="language-plaintext highlighter-rouge">android:icon</code>和<code class="language-plaintext highlighter-rouge">android:label</code>移除，不然會跟引用他的專案相衝</li>
+    </ol>
+  </li>
+  <li>重新Build一次專案吧</li>
+  <li>出來的檔案會在<code class="language-plaintext highlighter-rouge">.\app\build\outputs\aar\</code>裡面</li>
+</ol>
+
+<h2 id="如何引用">如何引用</h2>
+<ol>
+  <li>將剛剛build好的aar檔丟到<code class="language-plaintext highlighter-rouge">.\app\lib\</code>裡面</li>
+  <li>編輯<code class="language-plaintext highlighter-rouge">moudle.gradle</code>
+    <ol>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">android</code>區塊新增以下內容</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  repositories {
+     flatDir {
+         dirs 'libs'
+     }
+ }
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">dependencies</code>區塊新增以下內容</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> compile(name: 'yourAarFileName', ext: 'aar')
+</code></pre></div>        </div>
+      </li>
+    </ol>
+  </li>
+  <li>Sync your gradle~</li>
+</ol>
+
+<h2 id="注意">注意</h2>
+
+<ul>
+  <li>aar檔自己的gradle引用的所有dependencies，是不會被編譯進去的，所以都需要在引用AAR的專案再import一次</li>
+  <li>如果有啟用程式碼模糊，記得將public方法取消，不然沒人能用你的套件 : \</li>
+</ul>
+
+</div>
+
+<div class="bmc-block">
+  <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div>
+  <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+</div>
+<div class="likecoin-embed likecoin-button" data-liker-id="janelin612" data-href="https://janelin612.github.io/2017/02/16/android-compile-aar-file.html"></div>
+<script src="https://static.like.co/sdk/v1/button.js"></script>
+<hr />
+
+<div class="next">
+  <ul class="related-posts">
+    
+    <li>
+      <small>Previous :</small>
+      <h3><a href="/2017/01/11/git-modify-author.html">Git 大量修改作者資料
+          <small>11 Jan 2017</small></a>
+      </h3>
+    </li>
+    
+    
+    <li>
+      <small>Next :</small>
+      <h3><a href="/2017/02/16/android-unsatisfiedlinkerror.html">Android UnsatisfiedLinkError 問題
+          <small>16 Feb 2017</small></a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

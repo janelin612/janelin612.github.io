@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+img { max-height: 480px; }
+
+.meme { max-width: 400px; margin: 0 auto; }
+
+.signature { text-align: right; font-family: monospace; }
+
+.bmc-block { padding: 6px 0; }
+
+.bmc-block .bmc-greeting { font-size: 14px; line-height: 37px; }
+
+.post h2 { border-left: solid #2980b9 6px; padding: 8px 16px; }
+
+.ref { font-size: 0.8em; color: rgba(0, 0, 0, 0.3); }
+
+.likecoin-button { margin: 0 !important; }
+
+/*# sourceMappingURL=tars.css.map */
