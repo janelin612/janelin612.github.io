@@ -89,6 +89,30 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/07/07/chinese-characters-decoding.html">
+        JS處理中文亂碼問題
+      </a>
+    </h1>
+
+    <span class="post-date">07 Jul 2019</span>
+
+    <p>昨天從 FB 下載了一份包含所有對話紀錄的 JSON 檔，但裡面的中文字編碼有問題，通通變成下面這個樣子</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"</span><span class="se">\u</span><span class="s2">00e7</span><span class="se">\u</span><span class="s2">0094</span><span class="se">\u</span><span class="s2">009f</span><span class="se">\u</span><span class="s2">00e6</span><span class="se">\u</span><span class="s2">0097</span><span class="se">\u</span><span class="s2">00a5"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>本來想說這種事情應該很簡單，就把他每個字元當成<code class="language-plaintext highlighter-rouge">char</code>轉存不就得了，結果轉出來的東西從網頁上看還是一團亂碼…</p>
+
+
+
+    
+    <a href="/2019/07/07/chinese-characters-decoding.html">Read more »</a>
+    
+    <hr>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/06/19/chrome-file-access-from-files.html">
         處理Chrome無法讀取本地端文件問題
       </a>
@@ -129,25 +153,6 @@
 
     
     <a href="/2019/06/11/firefox-delete-history.html">Read more »</a>
-    
-    <hr>
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/05/10/bookmarklets.html">
-        來寫個bookmarklet吧
-      </a>
-    </h1>
-
-    <span class="post-date">10 May 2019</span>
-
-    <p>前幾年某天深夜想對某個網站做一些操作，卻發現該站沒有使用jquery，那時候就在想有沒有一個可以快速注入jquery到網站內的方法，後來就找到這個東西- bookmarklet 書籤列小工具。</p>
-
-
-
-    
-    <a href="/2019/05/10/bookmarklets.html">Read more »</a>
     
     <hr>
   </div>
