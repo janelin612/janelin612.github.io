@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+
+<title>OBS 如何做到循環錄影 | Intertidal</title>
+<meta name="description" content="希望保留原本的主機平台的錄影邏輯，就是按下存檔時保留最後幾分鐘的影片。為此花了點時間研究 OBS 如何做到循環錄影" />
+<!-- facebook -->
+<meta property="og:url" content="https://janelin612.github.io/2023/11/26/obs-recycle-recording.html">
+<meta property="og:site_name" content="Intertidal">
+<meta property="og:title" content="OBS 如何做到循環錄影 | Intertidal">
+<meta property="og:description" content="希望保留原本的主機平台的錄影邏輯，就是按下存檔時保留最後幾分鐘的影片。為此花了點時間研究 OBS 如何做到循環錄影">
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://janelin612.github.io/public/res/nk46le8.jpg">
+<!-- twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OBS 如何做到循環錄影 | Intertidal">
+<meta name="twitter:description" content="希望保留原本的主機平台的錄影邏輯，就是按下存檔時保留最後幾分鐘的影片。為此花了點時間研究 OBS 如何做到循環錄影">
+  <meta name="msvalidate.01" content="D6451EE2AECEE8675E78CEEA635F67DA" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/css/tars.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"
+    media="none" onload="if(media!='all')media='all'"
+     />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://janelin612.github.io/2023/11/26/obs-recycle-recording.html" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+
+  <body> 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5K473GZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+
+      
+      <h2>
+        <a href="https://janelin612.github.io">Intertidal</a>
+      </h2>
+      
+      <p class="lead">潮間帶工作室</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item"
+        href="/about/">About Me</a>
+      
+      <a class="sidebar-nav-item"
+        href="/archive/">Archive</a>
+      
+      <a class="icon" href="/atom.xml" target="_blank"><i class="fas fa-rss"></i></a>
+      <a class="icon" href="https://github.com/janelin612" target="_blank"><i
+          class="fab fa-github"></i></a>
+      <a class="icon" href="mailto:janelin612@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <p>&copy; 2023. All rights reserved.</p>
+  </div>
+</div>
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">OBS 如何做到循環錄影</h1>
+  <span class="post-date">26 Nov 2023</span>
+  <hr />
+  <p>上個月買了一張圓剛的影像擷取卡 <a href="https://www.avermedia.com/tw/product-detail/GC551G2" target="\_blank">GC551G2</a>，雖說目前暫無開實況的打算，不過終於是可以錄製 NS 的遊玩影片（內建只能錄 30 秒，太短了）。除此之外分享遊戲截圖也方便很多，甚至比 <a href="https://disp.cc/b/Gossiping/aiaG" target="\_blank">Genius 截圖法</a>還要快。</p>
+
+<p>但我其實不打算整個遊玩過程全部錄影，而是希望保留原本的主機平台的錄影邏輯，就是按下存檔時保留最後幾分鐘的影片。為此花了點時間研究 OBS 如何做到循環錄影。</p>
+
+<!-- more -->
+
+<h2 id="一開始的想法">一開始的想法</h2>
+
+<p>最初我想到的方法是，透過 OBS 自動分割檔案的功能，再額外搭配一隻程式去監聽檔案數量就可以做到。</p>
+
+<p>例如每 10 分鐘分割一個檔案，這樣我只要留下最新的 3~4 個影片檔，就可以確定保留最後 30 分鐘的遊玩影片。</p>
+
+<p><img src="/public/res/2023/p6fkt1zx.jpg" alt="" /></p>
+
+<p>邏輯上可行，但實際上不是個好方法。因為這樣你要保留檔案的時候要暫停遊戲去把錄影檔搬去其他資料夾放著，除此之外事後還要把每個 10 分鐘的影片重新拼裝起來。</p>
+
+<h2 id="正確做法">正確做法</h2>
+
+<p>比較好的做法是使用<strong>重播緩衝區</strong>。取這名字實在是不太好懂，我一開始以為這是直播中斷的時候在用的。
+<img src="/public/res/2023/om7depko.jpg" alt="" /></p>
+
+<p>啟用重播緩衝區之後，它會讓你輸入你要保留的秒數，像我輸入 300 就會保留最後五分鐘。</p>
+
+<h3 id="注意事項">注意事項</h3>
+
+<ul>
+  <li>緩衝區佔用的是你的記憶體，不是硬碟容量，所以要留多長的影片還取決於電腦記憶體夠不夠用。</li>
+  <li>開始遊戲的時候你要記得手動啟用緩衝，OBS 不會自動幫你開始。</li>
+  <li>要存檔的時候直接按右邊的下載符號就會保留檔案了。（我是直接綁快捷鍵，F1 截圖 F2 錄影）</li>
+</ul>
+
+<p><img src="/public/res/2023/31uba0w5.jpg" alt="" /></p>
+
+</div>
+
+<div class="bmc-block">
+  <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div>
+  <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+</div>
+<div class="likecoin-embed likecoin-button" data-liker-id="janelin612" data-href="https://janelin612.github.io/2023/11/26/obs-recycle-recording.html"></div>
+<script src="https://static.like.co/sdk/v1/button.js"></script>
+<hr />
+
+<div class="next">
+  <ul class="related-posts">
+    
+    <li>
+      <small>Previous :</small>
+      <h3><a href="/2023/10/18/firebase-image-hosting.html">Firebase Storage 圖床
+          <small>18 Oct 2023</small></a>
+      </h3>
+    </li>
+    
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
