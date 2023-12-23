@@ -89,6 +89,33 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2021/11/05/detect-dom-change-event.html">
+        追蹤DOM內部的變化事件
+      </a>
+    </h1>
+
+    <span class="post-date">05 Nov 2021</span>
+
+    <p>之前遇到一個問題是想要擷取 dom 的加入事件，把每一筆加入的項目抽出來做額外的處理。</p>
+
+<p>最一開始我傻呼呼地想要用監聽 <code class="language-plaintext highlighter-rouge">onchange</code> 來解決，所以把程式寫成這樣</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">dom</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">ol</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">dom</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">change</span><span class="dl">"</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>想當然爾，他是沒有任何反應的。</p>
+
+
+
+    
+    <a href="/2021/11/05/detect-dom-change-event.html">Read more »</a>
+    
+    <hr>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2021/08/04/services-be-useful-someday.html">
         也許某天會派上用場的網路服務
       </a>
@@ -124,25 +151,6 @@
 
     
     <a href="/2021/07/21/turn-into-nuxtjs.html">Read more »</a>
-    
-    <hr>
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2021/06/24/split-large-text-file.html">
-        分割大型文字檔
-      </a>
-    </h1>
-
-    <span class="post-date">24 Jun 2021</span>
-
-    <p>最近伺服器遇到問題，需要爬 Log，但 Log 檔如果一開始沒有做好 logrotate 的話，動輒都是數十萬行的，事後閱讀起來有點痛苦，所以想說有沒有辦法可以指定個行號之後把檔案切開。</p>
-
-
-
-    
-    <a href="/2021/06/24/split-large-text-file.html">Read more »</a>
     
     <hr>
   </div>
