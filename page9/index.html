@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -117,7 +129,7 @@
 
     <span class="post-date">16 Jan 2020</span>
 
-    <p>原本嘗試遵照 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/File/Using_files_from_web_applications" target="_blank">在網頁應用程式中使用本地檔案</a> 的方法用<code class="language-plaintext highlighter-rouge">onchange</code>事件去提取檔案，卻一直提取失敗。</p>
+    <p>原本嘗試遵照 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/File/Using_files_from_web_applications">在網頁應用程式中使用本地檔案</a> 的方法用<code class="language-plaintext highlighter-rouge">onchange</code>事件去提取檔案，卻一直提取失敗。</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;input type="file" id="input" @change="handleFiles(this.files)"&gt;
 </code></pre></div></div>

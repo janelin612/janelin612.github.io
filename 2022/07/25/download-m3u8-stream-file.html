@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -162,7 +174,7 @@ https://example.com/music/file-00001.ts
 </code></pre></div></div>
 
 <blockquote>
-  <p>關於 Blob 的 Type 如何宣告：<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types" target="_blank">Common MIME types</a></p>
+  <p>關於 Blob 的 Type 如何宣告：<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types">Common MIME types</a></p>
 </blockquote>
 
 <h2 id="下載">下載</h2>

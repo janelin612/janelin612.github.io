@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -90,7 +102,7 @@
   <span class="post-date">11 Jun 2019</span>
   <hr />
   <p><img src="/public/res/2019/1280px-Firefox.png" alt="" /><br />
-大概是好幾年前，那時還沒有強制禁用<a href="https://zh.wikipedia.org/wiki/NPAPI" target="\_blank">NPAPI</a>，我曾經有裝個擴充套件是可以指定刪除幾天前(例如 180 天前)然後瀏覽次數低於幾次的紀錄清掃器。後來隨著禁用舊式擴充套件之後這個套件也因為沒再更新而消失了。</p>
+大概是好幾年前，那時還沒有強制禁用<a href="https://zh.wikipedia.org/wiki/NPAPI">NPAPI</a>，我曾經有裝個擴充套件是可以指定刪除幾天前(例如 180 天前)然後瀏覽次數低於幾次的紀錄清掃器。後來隨著禁用舊式擴充套件之後這個套件也因為沒再更新而消失了。</p>
 
 <p>所以我就想說那我自己進 DB 下 SQL 總可以吧？</p>
 
@@ -110,7 +122,7 @@
 
 <h3 id="操作工具">操作工具</h3>
 
-<p>由於該資料庫使用的是 sqlite，故我選擇在 npm 上安裝<a href="https://www.npmjs.com/package/sqlite3" target="\_blank"><code class="language-plaintext highlighter-rouge">sqlite3</code></a>作為我的讀寫工具</p>
+<p>由於該資料庫使用的是 sqlite，故我選擇在 npm 上安裝<a href="https://www.npmjs.com/package/sqlite3"><code class="language-plaintext highlighter-rouge">sqlite3</code></a>作為我的讀寫工具</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm i sqlite3
 </code></pre></div></div>
@@ -148,7 +160,7 @@
 我個人使用上的感覺是如果你大概手動選擇個 300 筆左右的紀錄按刪除，火狐就會卡死沒有回應一陣子了，猜測是執行刪除指令執行了 300 次，產生 N+1 Query 問題</p>
 
 <blockquote>
-  <p>補充: <a href="https://stackoverflow.com/a/97253" target="\_blank">What is the “N+1 selects problem” in ORM</a></p>
+  <p>補充: <a href="https://stackoverflow.com/a/97253">What is the “N+1 selects problem” in ORM</a></p>
 </blockquote>
 
 <p>所以進瀏覽紀錄慢慢篩選慢慢刪肯定不是好辦法。<br />

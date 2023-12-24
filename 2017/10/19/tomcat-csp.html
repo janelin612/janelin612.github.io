@@ -9,18 +9,18 @@
 
 
 <title>Tomcat Servlet 設定同源政策 | Intertidal</title>
-<meta name="description" content="由於本次交付客戶的程式被要求要設定相關的參數，因此稍微研究了一下同源政策(Same-origin policy)是啥，並記錄一下怎麼在tomca..." />
+<meta name="description" content="由於本次交付客戶的程式被要求要設定相關的參數，因此稍微研究了一下同源政策(Same-origin policy)是啥，並記錄一下怎麼在 tomc..." />
 <!-- facebook -->
 <meta property="og:url" content="https://janelin612.github.io/2017/10/19/tomcat-csp.html">
 <meta property="og:site_name" content="Intertidal">
 <meta property="og:title" content="Tomcat Servlet 設定同源政策 | Intertidal">
-<meta property="og:description" content="由於本次交付客戶的程式被要求要設定相關的參數，因此稍微研究了一下同源政策(Same-origin policy)是啥，並記錄一下怎麼在tomca...">
+<meta property="og:description" content="由於本次交付客戶的程式被要求要設定相關的參數，因此稍微研究了一下同源政策(Same-origin policy)是啥，並記錄一下怎麼在 tomc...">
 <meta property="og:type" content="article" />
 <meta property="og:image" content="https://janelin612.github.io/public/res/nk46le8.jpg">
 <!-- twitter -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat Servlet 設定同源政策 | Intertidal">
-<meta name="twitter:description" content="由於本次交付客戶的程式被要求要設定相關的參數，因此稍微研究了一下同源政策(Same-origin policy)是啥，並記錄一下怎麼在tomca...">
+<meta name="twitter:description" content="由於本次交付客戶的程式被要求要設定相關的參數，因此稍微研究了一下同源政策(Same-origin policy)是啥，並記錄一下怎麼在 tomc...">
   <meta name="msvalidate.01" content="D6451EE2AECEE8675E78CEEA635F67DA" />
   <!-- CSS -->
   <link rel="stylesheet" href="/public/css/poole.css">
@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -89,22 +101,24 @@
   <h1 class="post-title">Tomcat Servlet 設定同源政策</h1>
   <span class="post-date">19 Oct 2017</span>
   <hr />
-  <p>由於本次交付客戶的程式被要求要設定相關的參數，因此稍微研究了一下同源政策(Same-origin policy)是啥，並記錄一下怎麼在tomcat伺服器上完成設定。</p>
+  <p>由於本次交付客戶的程式被要求要設定相關的參數，因此稍微研究了一下同源政策(Same-origin policy)是啥，並記錄一下怎麼在 tomcat 伺服器上完成設定。</p>
 
 <!-- more -->
 
 <h2 id="1-同源政策-same-origin-policy">1. 同源政策 (Same-origin Policy)</h2>
 
 <h3 id="簡介">簡介</h3>
-<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/Security/Same-origin_policy" target="_blank">MDN上關於同源政策的文件</a><br />
-同源政策指的是定義網頁上的程式碼可以使用那些網域的資料，包括.js檔，圖片資源，以及CSS文件都會被限制。</p>
 
-<p>很容易理解的，同源政策的存在是為了防止跨網域攻擊XSS。簡單來說就是怕你不小心載入了別人的攻擊程式碼，乾脆限制只有我指定的某些網域的程式碼可以被執行 :D</p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/Security/Same-origin_policy">MDN 上關於同源政策的文件</a><br />
+同源政策指的是定義網頁上的程式碼可以使用那些網域的資料，包括.js 檔，圖片資源，以及 CSS 文件都會被限制。</p>
+
+<p>很容易理解的，同源政策的存在是為了防止跨網域攻擊 XSS。簡單來說就是怕你不小心載入了別人的攻擊程式碼，乾脆限制只有我指定的某些網域的程式碼可以被執行 :D</p>
 
 <h3 id="設定方式">設定方式</h3>
-<p>基本上設定方式都是在header加東西。由於我只被客戶要求要設定<code class="language-plaintext highlighter-rouge">Content-Security-Policy</code>，所以以下也只介紹這個XD</p>
 
-<p>直接用我最後設定好的CSP當成範例吧：</p>
+<p>基本上設定方式都是在 header 加東西。由於我只被客戶要求要設定<code class="language-plaintext highlighter-rouge">Content-Security-Policy</code>，所以以下也只介紹這個 XD</p>
+
+<p>直接用我最後設定好的 CSP 當成範例吧：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Content-Security-Policy : default-src 'self';script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';style-src 'self' 'unsafe-inline' ;img-src *
 </code></pre></div></div>
@@ -112,10 +126,10 @@
 <p>總共有這幾種資源可以設定</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">defalut-src</code>	：如果以下有東西沒設定就會讀取這個</li>
-  <li><code class="language-plaintext highlighter-rouge">script-src</code>	：關於javascript的部分</li>
-  <li><code class="language-plaintext highlighter-rouge">style-src </code>	：關於css的部分</li>
-  <li><code class="language-plaintext highlighter-rouge">img-src</code> 		：關於圖片的部分</li>
+  <li><code class="language-plaintext highlighter-rouge">defalut-src</code> ：如果以下有東西沒設定就會讀取這個</li>
+  <li><code class="language-plaintext highlighter-rouge">script-src</code> ：關於 javascript 的部分</li>
+  <li><code class="language-plaintext highlighter-rouge">style-src </code> ：關於 css 的部分</li>
+  <li><code class="language-plaintext highlighter-rouge">img-src</code> ：關於圖片的部分</li>
 </ul>
 
 <p>然後有這幾種設定值</p>
@@ -123,33 +137,33 @@
 <ul>
   <li><code class="language-plaintext highlighter-rouge">*</code> ：很好懂，全部放行的意思</li>
   <li><code class="language-plaintext highlighter-rouge">'self'</code> ：只有跟自己同網域的資源才放行</li>
-  <li><code class="language-plaintext highlighter-rouge">http://xxxx</code> :  指定某個網域放行，如我的範例就對CDN過來的js檔放行</li>
+  <li><code class="language-plaintext highlighter-rouge">http://xxxx</code> : 指定某個網域放行，如我的範例就對 CDN 過來的 js 檔放行</li>
   <li><code class="language-plaintext highlighter-rouge">none</code>：全部禁止</li>
 </ul>
 
-<p>除上述之外，CSP還另外定義了一些跟javascript還有CSS有關的設定值</p>
+<p>除上述之外，CSP 還另外定義了一些跟 javascript 還有 CSS 有關的設定值</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">unsafe-inline</code> ： 若你在<code class="language-plaintext highlighter-rouge">script-src</code>跟<code class="language-plaintext highlighter-rouge">style-src</code> <strong>沒有</strong>宣告這個選項，則你的該網頁預設會禁止使用inline程式碼，也就是以下這種寫法會無法執行</li>
+  <li><code class="language-plaintext highlighter-rouge">unsafe-inline</code> ： 若你在<code class="language-plaintext highlighter-rouge">script-src</code>跟<code class="language-plaintext highlighter-rouge">style-src</code> <strong>沒有</strong>宣告這個選項，則你的該網頁預設會禁止使用 inline 程式碼，也就是以下這種寫法會無法執行</li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javacript"</span><span class="nt">&gt;</span>
 	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">這段無法執行~</span><span class="dl">"</span><span class="p">)</span>
-<span class="nt">&lt;/script&gt;</span> </code></pre></figure>
+<span class="nt">&lt;/script&gt;</span></code></pre></figure>
 
-<p>只能從外部引入js檔</p>
+<p>只能從外部引入 js 檔</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"./your_code.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></figure>
 
-<p>CSS檔同樣道理。</p>
+<p>CSS 檔同樣道理。</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">unsafe-eval</code> ： <code class="language-plaintext highlighter-rouge">eval()</code>是個超強的function，所以也很危險。 與上面的一樣，若你<strong>沒有</strong>在<code class="language-plaintext highlighter-rouge">script-src</code>宣告這個選項，則你的網頁會直接禁用<code class="language-plaintext highlighter-rouge">eval()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">unsafe-eval</code> ： <code class="language-plaintext highlighter-rouge">eval()</code>是個超強的 function，所以也很危險。 與上面的一樣，若你<strong>沒有</strong>在<code class="language-plaintext highlighter-rouge">script-src</code>宣告這個選項，則你的網頁會直接禁用<code class="language-plaintext highlighter-rouge">eval()</code></li>
 </ul>
 
 <p>綜合以上，重新檢視一下我的設定值</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Content-Security-Policy : 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Content-Security-Policy :
 	default-src 'self';
 	script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';
 	style-src 'self' 'unsafe-inline' ;
@@ -158,8 +172,8 @@
 
 <ul>
   <li>預設只有同網域的資源可以載入</li>
-  <li>script的部分允許同網域、指定的CDN網址可以載入，並允許inline-script &amp; eval函式</li>
-  <li>css的部分只允許同網域，並允許inline-script</li>
+  <li>script 的部分允許同網域、指定的 CDN 網址可以載入，並允許 inline-script &amp; eval 函式</li>
+  <li>css 的部分只允許同網域，並允許 inline-script</li>
   <li>圖片的部分全部放行</li>
 </ul>
 
@@ -172,7 +186,7 @@
   <li>同一個資源的多個設定值用空格分開</li>
 </ul>
 
-<h2 id="2-在tomcat-servlet-設定-header">2. 在Tomcat Servlet 設定 header</h2>
+<h2 id="2-在-tomcat-servlet-設定-header">2. 在 Tomcat Servlet 設定 header</h2>
 
 <p>簡單說明:</p>
 
@@ -182,29 +196,30 @@
   <li>在全域的<code class="language-plaintext highlighter-rouge">web.xml</code>檔宣告整個網站的子目錄皆適用此<code class="language-plaintext highlighter-rouge">Filter</code></li>
 </ol>
 
-<h3 id="2-1-實作filter">2-1 實作Filter</h3>
+<h3 id="2-1-實作-filter">2-1 實作 Filter</h3>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyFilter</span> <span class="kd">implements</span> <span class="nc">Filter</span> <span class="o">{</span>
-  <span class="nd">@Override</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="nc">ServletRequest</span> <span class="n">req</span><span class="o">,</span> <span class="nc">ServletResponse</span> <span class="n">resp</span><span class="o">,</span>
-      <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
-    
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="nc">ServletRequest</span> <span class="n">req</span><span class="o">,</span> <span class="nc">ServletResponse</span> <span class="n">resp</span><span class="o">,</span>
+<span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+
     <span class="nc">HttpServletRequest</span> <span class="n">httpReq</span><span class="o">=(</span><span class="nc">HttpServletRequest</span><span class="o">)</span><span class="n">req</span><span class="o">;</span>
     <span class="nc">HttpServletResponse</span> <span class="n">httpResp</span><span class="o">=(</span><span class="nc">HttpServletResponse</span><span class="o">)</span><span class="n">resp</span><span class="o">;</span>
     <span class="n">httpResp</span><span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">"Content-Security-Policy"</span><span class="o">,</span> <span class="s">"YOUR_CONFIGURE"</span><span class="o">);</span>
     <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">httpReq</span><span class="o">,</span> <span class="n">httpResp</span><span class="o">);</span>
-  <span class="o">}</span>
+
+<span class="o">}</span>
 <span class="o">}</span></code></pre></figure>
 
 <h3 id="2-2-在webxml宣告適用範圍">2-2 在<code class="language-plaintext highlighter-rouge">web.xml</code>宣告適用範圍</h3>
 
 <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;filter&gt;</span>
-    <span class="nt">&lt;filter-name&gt;</span>CSP-Filter<span class="nt">&lt;/filter-name&gt;</span>
-    <span class="nt">&lt;filter-class&gt;</span>YOUR.PACKAGE.YOUR_FILTER<span class="nt">&lt;/filter-class&gt;</span>
+<span class="nt">&lt;filter-name&gt;</span>CSP-Filter<span class="nt">&lt;/filter-name&gt;</span>
+<span class="nt">&lt;filter-class&gt;</span>YOUR.PACKAGE.YOUR_FILTER<span class="nt">&lt;/filter-class&gt;</span>
 <span class="nt">&lt;/filter&gt;</span>
 <span class="nt">&lt;filter-mapping&gt;</span>
-    <span class="nt">&lt;filter-name&gt;</span>CSP-Filter<span class="nt">&lt;/filter-name&gt;</span>
-    <span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
+<span class="nt">&lt;filter-name&gt;</span>CSP-Filter<span class="nt">&lt;/filter-name&gt;</span>
+<span class="nt">&lt;url-pattern&gt;</span>/\*<span class="nt">&lt;/url-pattern&gt;</span>
 <span class="nt">&lt;/filter-mapping&gt;</span></code></pre></figure>
 
 <p>以上。</p>

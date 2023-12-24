@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -121,7 +133,7 @@
     <span class="post-date">11 Jun 2019</span>
 
     <p><img src="/public/res/2019/1280px-Firefox.png" alt="" /><br />
-大概是好幾年前，那時還沒有強制禁用<a href="https://zh.wikipedia.org/wiki/NPAPI" target="\_blank">NPAPI</a>，我曾經有裝個擴充套件是可以指定刪除幾天前(例如 180 天前)然後瀏覽次數低於幾次的紀錄清掃器。後來隨著禁用舊式擴充套件之後這個套件也因為沒再更新而消失了。</p>
+大概是好幾年前，那時還沒有強制禁用<a href="https://zh.wikipedia.org/wiki/NPAPI">NPAPI</a>，我曾經有裝個擴充套件是可以指定刪除幾天前(例如 180 天前)然後瀏覽次數低於幾次的紀錄清掃器。後來隨著禁用舊式擴充套件之後這個套件也因為沒再更新而消失了。</p>
 
 <p>所以我就想說那我自己進 DB 下 SQL 總可以吧？</p>
 
@@ -142,7 +154,7 @@
 
     <span class="post-date">10 May 2019</span>
 
-    <p>前幾年某天深夜想對某個網站做一些操作，卻發現該站沒有使用jquery，那時候就在想有沒有一個可以快速注入jquery到網站內的方法，後來就找到這個東西- bookmarklet 書籤列小工具。</p>
+    <p>前幾年某天深夜想對某個網站做一些操作，卻發現該站沒有使用 jquery，那時候就在想有沒有一個可以快速注入 jquery 到網站內的方法，後來就找到這個東西- bookmarklet 書籤列小工具。</p>
 
 
 

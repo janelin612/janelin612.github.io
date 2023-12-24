@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -100,11 +112,11 @@
 <h2 id="使用到的技術">使用到的技術</h2>
 
 <p>可以理解到，此需求最核心的問題是如何從每一禎的視訊畫面中找出人在哪裡。<br />
-一開始去找了一些影像處理的涵式庫，例如 OpenCV 之類的，後來發現我找的方向錯了，真正需要的東西是 <a href="https://www.tensorflow.org/js?hl=zh-tw" target="_blank">TensorFlow.js</a></p>
+一開始去找了一些影像處理的涵式庫，例如 OpenCV 之類的，後來發現我找的方向錯了，真正需要的東西是 <a href="https://www.tensorflow.org/js?hl=zh-tw">TensorFlow.js</a></p>
 
 <p><img src="/public/res/2021/tf_logo_social.png" alt="" /></p>
 
-<p>TensorFlow 是個開源的機器學習工具，TensorFlow.js 就是他的 JavaScript 版，可以跑在 Node.js 或者直接跑在瀏覽器上。最棒的是它有提供幾個已經預先訓練好的模型可以使用，其中就包含辨識人體的機器學習模型 <a href="https://github.com/tensorflow/tfjs-models/tree/master/body-pix" target="_blank">BodyPix</a></p>
+<p>TensorFlow 是個開源的機器學習工具，TensorFlow.js 就是他的 JavaScript 版，可以跑在 Node.js 或者直接跑在瀏覽器上。最棒的是它有提供幾個已經預先訓練好的模型可以使用，其中就包含辨識人體的機器學習模型 <a href="https://github.com/tensorflow/tfjs-models/tree/master/body-pix">BodyPix</a></p>
 
 <p>於是大概的思維如下：</p>
 
@@ -180,8 +192,8 @@
 </code></pre></div></div>
 
 <ol>
-  <li>初始化模型，這邊設定的方式請參考<a href="https://github.com/tensorflow/tfjs-models/blob/master/body-pix/README.md#loading-the-model" target="_blank">官方說明文件</a>，選擇的結果會影響判斷的準確度與需要的硬體性能。</li>
-  <li>從檔案讀取需要使用的背景照片。找個漂亮的風景圖或會議室照片之類的，也有公司有提供免費的圖給大家玩，如果你的老闆不介意看到你在<a href="http://www.ufotable.com/kmt_wallpaper/" target="_blank">鬼滅之刃</a>或<a href="https://www.ghibli.jp/info/013251/" target="_blank">神隱少女</a>的場景開會的話。</li>
+  <li>初始化模型，這邊設定的方式請參考<a href="https://github.com/tensorflow/tfjs-models/blob/master/body-pix/README.md#loading-the-model">官方說明文件</a>，選擇的結果會影響判斷的準確度與需要的硬體性能。</li>
+  <li>從檔案讀取需要使用的背景照片。找個漂亮的風景圖或會議室照片之類的，也有公司有提供免費的圖給大家玩，如果你的老闆不介意看到你在<a href="http://www.ufotable.com/kmt_wallpaper/">鬼滅之刃</a>或<a href="https://www.ghibli.jp/info/013251/">神隱少女</a>的場景開會的話。</li>
   <li>定時重複執行繪圖</li>
 </ol>
 
@@ -211,7 +223,7 @@
 </code></pre></div></div>
 
 <ol>
-  <li>設定前景、背景色、與辨識參數(參數一樣參考<a href="https://github.com/tensorflow/tfjs-models/blob/master/body-pix/README.md#params-in-segmentperson" target="_blank">官方文件</a>設定)</li>
+  <li>設定前景、背景色、與辨識參數(參數一樣參考<a href="https://github.com/tensorflow/tfjs-models/blob/master/body-pix/README.md#params-in-segmentperson">官方文件</a>設定)</li>
   <li>執行主程式 <code class="language-plaintext highlighter-rouge">bodyPix.toMask()</code> 取得遮罩</li>
   <li>將遮罩與視訊畫面、背景畫面疊圖</li>
 </ol>
@@ -220,7 +232,7 @@
 
 <h3 id="4取得串流">4.取得串流</h3>
 
-<p>最後執行 <code class="language-plaintext highlighter-rouge">canvas.captureStream()</code> 即可將 canvas 轉換成 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream" target="_blank">MediaStream</a> ，然後就去串接自己的 WebRTC 服務吧。</p>
+<p>最後執行 <code class="language-plaintext highlighter-rouge">canvas.captureStream()</code> 即可將 canvas 轉換成 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream">MediaStream</a> ，然後就去串接自己的 WebRTC 服務吧。</p>
 
 <h2 id="成果如何">成果如何？</h2>
 
@@ -232,7 +244,7 @@
 有點好奇那使用 Node.js 來跑會不會比較好？之後有空再來嘗試吧。</p>
 
 <ul>
-  <li>封面圖片來源：<a href="https://www.elitedaily.com/p/8-zoom-office-backgrounds-to-make-your-video-calls-look-professional-22643940" target="_blank">elitedaily</a></li>
+  <li>封面圖片來源：<a href="https://www.elitedaily.com/p/8-zoom-office-backgrounds-to-make-your-video-calls-look-professional-22643940">elitedaily</a></li>
 </ul>
 
 </div>

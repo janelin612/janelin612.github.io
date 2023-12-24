@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -91,7 +103,7 @@
   <hr />
   <p><img src="/public/res/2020/2020-06-30_184850.jpg" alt="" /></p>
 
-<p>網路上有不少手把手一步一步把<a href="https://webpack.js.org/" target="_blank">Webpack</a>專案建構起來的教學，但如果你是想要把手邊亂七八糟的專案導入 Webpack 呢？</p>
+<p>網路上有不少手把手一步一步把<a href="https://webpack.js.org/">Webpack</a>專案建構起來的教學，但如果你是想要把手邊亂七八糟的專案導入 Webpack 呢？</p>
 
 <!-- more -->
 
@@ -388,7 +400,7 @@ $ npm i -D webpack webpack-cli
 </code></pre></div></div>
 
 <blockquote>
-  <p>詳細設定: <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank">TerserWebpackPlugin</a></p>
+  <p>詳細設定: <a href="https://webpack.js.org/plugins/terser-webpack-plugin/">TerserWebpackPlugin</a></p>
 </blockquote>
 
 <h3 id="開發用伺服器dev-server">開發用伺服器<code class="language-plaintext highlighter-rouge">dev-server</code></h3>

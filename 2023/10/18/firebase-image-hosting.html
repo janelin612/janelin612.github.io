@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -126,7 +138,7 @@
 <p>CORS 的部分理論上也有一堆設定要改，但我沒改就能用了，有點不可思議。</p>
 
 <blockquote>
-  <p>關於 CORS 的官方設定教學：<a href="https://firebase.google.com/docs/storage/web/download-files#cors_configuration" target="\_blank">CORS Configuration</a></p>
+  <p>關於 CORS 的官方設定教學：<a href="https://firebase.google.com/docs/storage/web/download-files#cors_configuration">CORS Configuration</a></p>
 </blockquote>
 
 <h2 id="後端程式">後端程式</h2>
@@ -177,7 +189,7 @@
 </code></pre></div></div>
 
 <blockquote>
-  <p>官方文件：<a href="https://firebase.google.com/docs/storage/admin/start?hl=en#shareable_urls" target="\_blank">Get a shareable download URL</a></p>
+  <p>官方文件：<a href="https://firebase.google.com/docs/storage/admin/start?hl=en#shareable_urls">Get a shareable download URL</a></p>
 </blockquote>
 
 </div>

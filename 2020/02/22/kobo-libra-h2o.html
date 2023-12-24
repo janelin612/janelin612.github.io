@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -99,7 +111,7 @@
 
 <p>基本上有花時間做過功課的人肯定會越查越傷腦筋，畢竟各家定價、機器本身的優劣，以及商城的好壞都不一樣，幾乎不太可能找到一台完全滿意的機種。</p>
 
-<p>其實我心中最喜歡的機器是 <a href="https://readmoo.com/mooink-series/mooink-pro" target="_blank">Readmoo mooInk Pro</a> ，但他實在是超出我預算太多了，所以最後買了我覺得外觀比較符合我個人喜好的 Kobo Libra H2O ( 對，好看最重要 )</p>
+<p>其實我心中最喜歡的機器是 <a href="https://readmoo.com/mooink-series/mooink-pro">Readmoo mooInk Pro</a> ，但他實在是超出我預算太多了，所以最後買了我覺得外觀比較符合我個人喜好的 Kobo Libra H2O ( 對，好看最重要 )</p>
 
 <p>我買了白色的款式，一來是白色好看，二來我手邊所有 3C 設備都是黑的，想換個口味？然後我沒有買保護殼，因為我預期的使用情境是取代藏書而已，沒有攜帶出門邊搭捷運邊看的計畫。</p>
 
@@ -112,7 +124,7 @@
 <ul>
   <li>尺寸很剛好：<br />
 這種事情感覺就見仁見智，但我目前使用幾個小時的感覺是這個手感我很滿意。不過這樣的認知建立在我看的都是 epub，如果你要看的是不支援重新排版的格式，那把 A4 大小的文件放在這上面看我覺得應該不會是太好的體驗。</li>
-  <li>跟 <a href="https://app.getpocket.com/" target="_blank">Pocket</a> 稍後閱讀服務整合：<br />
+  <li>跟 <a href="https://app.getpocket.com/">Pocket</a> 稍後閱讀服務整合：<br />
 之前做功課的時候沒注意到這個東西，到手才發現這功能挺棒的。<br />
 像 Evernote 那樣，Pocket 會去解析網站的 html 區塊，然後轉換內文成為乾淨的文字格式。整合到閱讀器上之後你就可以用電子書的方式閱讀長篇的網頁文章</li>
 </ul>

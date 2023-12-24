@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -92,7 +104,7 @@
   <p><img src="/public/res/2019/DSC_6547.jpg" alt="" />
 靠鍵盤吃飯的軟體工程師幫自己準備一把好的鍵盤也是一種投資，但我自己在租屋處用的鍵盤線都佈好了懶得每天拔來拔去，所以就決定買第二把機械鍵盤。</p>
 
-<p>我原先是使用 OZONE 的<a href="http://www.coolpc.com.tw/phpBB2/viewtopic.php?f=77&amp;t=166565" target="\_blank">Strike Battle 87</a>，是一把 80%的茶軸，個人使用的很習慣，所以我就以 80%茶軸作為目標去找，最後讓我找到了這把 Ducky 的天際線。</p>
+<p>我原先是使用 OZONE 的<a href="http://www.coolpc.com.tw/phpBB2/viewtopic.php?f=77&amp;t=166565">Strike Battle 87</a>，是一把 80%的茶軸，個人使用的很習慣，所以我就以 80%茶軸作為目標去找，最後讓我找到了這把 Ducky 的天際線。</p>
 
 <!-- more -->
 

@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -117,12 +129,12 @@
 <p><img src="/public/res/2019/hex-to-string.jpg" alt="" /></p>
 
 <blockquote>
-  <p><a href="https://cryptii.com/pipes/hex-decoder" target="\_blank">Hex decoder: Online hexadecimal to text converter</a></p>
+  <p><a href="https://cryptii.com/pipes/hex-decoder">Hex decoder: Online hexadecimal to text converter</a></p>
 </blockquote>
 
 <h2 id="byte-array-to-string">byte array to string</h2>
 
-<p>搞懂他到底是什麼編碼格式之後，就是要開始寫轉檔程式了（總不能一行一行貼上去面的網站翻譯吧）在 stackoverflow 上有這麼一篇提問：<a href="https://stackoverflow.com/a/18729931" target="\_blank">How to convert UTF8 string to byte array?</a> 下方的解答有人分享了轉換的規則：</p>
+<p>搞懂他到底是什麼編碼格式之後，就是要開始寫轉檔程式了（總不能一行一行貼上去面的網站翻譯吧）在 stackoverflow 上有這麼一篇提問：<a href="https://stackoverflow.com/a/18729931">How to convert UTF8 string to byte array?</a> 下方的解答有人分享了轉換的規則：</p>
 
 <ul>
   <li>多位元組的情形下，第一個位元組前面<code class="language-plaintext highlighter-rouge">1</code>的數量即代表該字元所需要的位元組數量。扣除這個資訊所占用的位元後剩下的位元即為資料區塊</li>

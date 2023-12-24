@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -108,7 +120,7 @@
 
 <h3 id="人力銀行的選擇">人力銀行的選擇</h3>
 
-<p>我在 104、1111 還有 <a href="https://www.yourator.co/" target="\_blank">yourator</a> 上都有開履歷，其中寫的比較認真的是 yourator，數字銀行都是從 yourator 寫好的自傳複製過去的。</p>
+<p>我在 104、1111 還有 <a href="https://www.yourator.co/">yourator</a> 上都有開履歷，其中寫的比較認真的是 yourator，數字銀行都是從 yourator 寫好的自傳複製過去的。</p>
 
 <p>yourator 跟前兩個有做出差異化，所以比較難跟數字人力銀行擺在一起比較。<br />
 單純比較 104 跟 1111 的話</p>
@@ -149,7 +161,7 @@
 
 <blockquote>
   <p>PS:面試我的主管有寫了篇文章介紹公司，面試前可以先讀一下<br />
-<a href="https://medium.com/inline.tw/%E5%BE%9E-1-%E5%88%B0-50-%E6%88%91%E5%9C%A8-inline-%E7%9A%84-640-%E5%A4%A9-2cfc8c913fe0" target="\_blank">從 1 到 50 —  我在 inline 的 640 天</a></p>
+<a href="https://medium.com/inline.tw/%E5%BE%9E-1-%E5%88%B0-50-%E6%88%91%E5%9C%A8-inline-%E7%9A%84-640-%E5%A4%A9-2cfc8c913fe0">從 1 到 50 —  我在 inline 的 640 天</a></p>
 </blockquote>
 
 <hr />

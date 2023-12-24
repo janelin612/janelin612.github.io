@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -128,7 +140,7 @@ Pixel 3 沒有耳機孔，但包裝內同時附上了一條 USB-C 轉 3.5mm jack
 <p>先說耳機好了，耳機的音質實在是不怎麼樣。虧他還敢拿出來單獨販售…</p>
 
 <blockquote>
-  <p><a href="https://store.google.com/tw/product/usb_c_earbuds" target="\_blank">Google Pixel USB-C™ 耳塞式耳機</a></p>
+  <p><a href="https://store.google.com/tw/product/usb_c_earbuds">Google Pixel USB-C™ 耳塞式耳機</a></p>
 </blockquote>
 
 <p>加上我習慣戴耳罩式跟入耳式的了，覺得這副耳機的隔音效果實在是零分。偏偏我需要用手機聽音樂的時機就是在捷運上，使用體驗十分糟糕。</p>
@@ -139,7 +151,7 @@ Pixel 3 沒有耳機孔，但包裝內同時附上了一條 USB-C 轉 3.5mm jack
 
 <ul>
   <li>沒有 LED 通知燈：他可能覺得使用者都會啟用 Always-on 的功能所以就沒有裝指示燈，但我很仰賴那個小燈號來看有沒有新訊息啊。</li>
-  <li>不支援 Miracast ：我有一隻微軟的<a href="https://www.microsoft.com/accessories/zh-tw/products/adapters/wireless-display-adapter-2/p3q-00015" target="\_blank">無線顯示轉接器</a>，結果 Pixel 3 連不上去我才想到 Google 當然是只會支援自家的 Chromecast …</li>
+  <li>不支援 Miracast ：我有一隻微軟的<a href="https://www.microsoft.com/accessories/zh-tw/products/adapters/wireless-display-adapter-2/p3q-00015">無線顯示轉接器</a>，結果 Pixel 3 連不上去我才想到 Google 當然是只會支援自家的 Chromecast …</li>
 </ul>
 
 <h2 id="結語">結語</h2>

@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -106,7 +118,7 @@
 而我又十分懶惰，不想一筆一筆建檔，本來就要這麼放棄了，直到在 Facebook 看到網友的分享才注意到閱讀器裡面的資料庫可以直接讀取。</p>
 
 <blockquote>
-  <p>原討論串:<a href="https://www.facebook.com/groups/KoboTWN/posts/3159293394299852" target="\_blank">樂天 Kobo 電子書社群</a></p>
+  <p>原討論串:<a href="https://www.facebook.com/groups/KoboTWN/posts/3159293394299852">樂天 Kobo 電子書社群</a></p>
 </blockquote>
 
 <p>所以要做的事情就很簡單了：</p>
@@ -169,12 +181,12 @@
 
 <h2 id="寫成程式">寫成程式</h2>
 
-<p>Notion API 的用法網路上應該不少教學，官方的<a href="https://developers.notion.com/reference/intro" target="\_blank">API 文件</a>也還算清楚，我就不花太多篇幅贅述了</p>
+<p>Notion API 的用法網路上應該不少教學，官方的<a href="https://developers.notion.com/reference/intro">API 文件</a>也還算清楚，我就不花太多篇幅贅述了</p>
 
 <h3 id="1-事前準備">1. 事前準備</h3>
 
 <ol>
-  <li>在<a href="https://www.notion.so/my-integrations" target="\_blank">My integrations</a>頁面開一支新程式，並記下你的 API token</li>
+  <li>在<a href="https://www.notion.so/my-integrations">My integrations</a>頁面開一支新程式，並記下你的 API token</li>
   <li>建立一個可以供 API 讀寫的 Page，記下你的 Page ID 並將 Page 分享給你的 Integrations</li>
 </ol>
 
@@ -236,7 +248,7 @@
 </code></pre></div></div>
 
 <blockquote>
-  <p>網址參數的意義參考自此篇討論串：<a href="https://github.com/janeczku/calibre-web/issues/1347" target="\_blank">[Kobo] Performance issues with cover images #1347 </a></p>
+  <p>網址參數的意義參考自此篇討論串：<a href="https://github.com/janeczku/calibre-web/issues/1347">[Kobo] Performance issues with cover images #1347 </a></p>
 </blockquote>
 
 <p>由於 Notion 並不支援透過 API 直接上傳檔案作為頁面的 Banner 使用，所以除非願意自己架圖床，不然只能先這樣透過外站的資源處理了</p>

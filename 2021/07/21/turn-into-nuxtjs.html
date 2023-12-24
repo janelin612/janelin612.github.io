@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -100,7 +112,7 @@
 <p>有關 Nuxt.js 的基礎知識，我主要參考自這一篇文章：</p>
 
 <blockquote>
-  <p><a href="https://medium.com/@jackercleaninglab/ssr-nuxt-js-%E8%B6%85%E5%85%A5%E9%96%80-84a0823b45ed" target="_blank">SSR — Nuxt.js 超入門</a></p>
+  <p><a href="https://medium.com/@jackercleaninglab/ssr-nuxt-js-%E8%B6%85%E5%85%A5%E9%96%80-84a0823b45ed">SSR — Nuxt.js 超入門</a></p>
 </blockquote>
 
 <h3 id="理解-asyncdata">理解 <code class="language-plaintext highlighter-rouge">asyncData</code></h3>
@@ -108,7 +120,7 @@
 <p>從舊的 Vue.js 程式轉換成 Nuxt.js ，我卡最久的工作之一就是理解哪些事情要改在 <code class="language-plaintext highlighter-rouge">asyncData()</code> 去執行。<br />
 他是一個很神奇的設計，無論是在後端預先渲染還是前端正式執行的時候，都會呼叫到這個方法，所以我原本使用 http 連線去下載 json 檔的作法並不可行。</p>
 
-<p>最後是參考官方的討論串：<a href="https://github.com/nuxt/nuxt.js/issues/123" target="_blank">What is the best way to load json.</a><br />
+<p>最後是參考官方的討論串：<a href="https://github.com/nuxt/nuxt.js/issues/123">What is the best way to load json.</a><br />
 在程式裡面下判斷式，如果在後端就用 <code class="language-plaintext highlighter-rouge">fs.readFile()</code>，如果在前端則使用 <code class="language-plaintext highlighter-rouge">fetch()</code></p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="nx">asyncData</span><span class="p">(){</span>
@@ -123,7 +135,7 @@
 
 <blockquote>
   <p>理解的過程，你會需要不斷翻閱的官方文件：<br />
-<a href="https://nuxtjs.org/docs/2.x/concepts/nuxt-lifecycle" target="_blank">Nuxt Lifecycle - NuxtJS</a></p>
+<a href="https://nuxtjs.org/docs/2.x/concepts/nuxt-lifecycle">Nuxt Lifecycle - NuxtJS</a></p>
 </blockquote>
 
 <h3 id="生成靜態網站">生成靜態網站</h3>
@@ -153,7 +165,7 @@
 </blockquote>
 
 <blockquote>
-  <p>有關靜態網站的官方文件：<a href="https://nuxtjs.org/docs/2.x/features/deployment-targets#static-hosting" target="_blank">Static Hosting - NuxtJS </a></p>
+  <p>有關靜態網站的官方文件：<a href="https://nuxtjs.org/docs/2.x/features/deployment-targets#static-hosting">Static Hosting - NuxtJS </a></p>
 </blockquote>
 
 <h3 id="sitemap">Sitemap</h3>
@@ -192,7 +204,7 @@
 
 <p>搜尋功能因為我自己覺得只靠前端完成應該會嚴重拖累效能所以遲遲沒有設計，實際做好之後的成果還不錯，雖然確實會卡頓一下，但應該還在可以被接受的程度？</p>
 
-<p>原理也很單純，在輸入搜尋關鍵字之後，程式會去把所有的部落格文章用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMParser" target="_blank">DOMParser</a> 把純文字的部分取出，然後就用字串比對的方式生成結果。</p>
+<p>原理也很單純，在輸入搜尋關鍵字之後，程式會去把所有的部落格文章用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMParser">DOMParser</a> 把純文字的部分取出，然後就用字串比對的方式生成結果。</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">getInnerText</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">dom</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domParser</span><span class="p">.</span><span class="nx">parseFromString</span><span class="p">(</span><span class="nx">html</span><span class="p">,</span> <span class="dl">"</span><span class="s2">text/html</span><span class="dl">"</span><span class="p">);</span>
@@ -202,20 +214,20 @@
 
 <p><img src="/public/res/2021/ewafghijou.jpg" alt="" /></p>
 
-<p>另外是搜尋結果會高亮顯示，此功能仰賴第三方套件 <a href="https://markjs.io/" target="_blank">mark.js</a> 完成</p>
+<p>另外是搜尋結果會高亮顯示，此功能仰賴第三方套件 <a href="https://markjs.io/">mark.js</a> 完成</p>
 
 <h3 id="2分享">2.分享</h3>
 
 <p><img src="/public/res/2021/efijoqrw.jpg" alt="" /><br />
-這次做了兩個分享鈕，第一個沒什麼好說的，分享至 Twitter，這部分遵照<a href="https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/guides/web-intent" target="_blank">官方文件</a>生成一個帶指定參數的 intent url 就可以了。比較有趣的是第二顆分享鈕。</p>
+這次做了兩個分享鈕，第一個沒什麼好說的，分享至 Twitter，這部分遵照<a href="https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/guides/web-intent">官方文件</a>生成一個帶指定參數的 intent url 就可以了。比較有趣的是第二顆分享鈕。</p>
 
 <p><img src="/public/res/2021/shejoaiscj.jpg" alt="" />
 他會觸發系統原生的分享畫面，截圖是 Windows 10 的，你如果用手機瀏覽的話，會顯示 Android 或 iOS 作業系統本身的分享介面，類似下圖。</p>
 
 <p><img src="/public/res/2021/shareui.png" alt="" />
-<a href="https://docs.microsoft.com/zh-tw/xamarin/essentials/share?tabs=android" target="_blank" class="ref">圖片來源 - Microsoft Docs</a></p>
+<a href="https://docs.microsoft.com/zh-tw/xamarin/essentials/share?tabs=android" class="ref">圖片來源 - Microsoft Docs</a></p>
 
-<p>這是 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share" target="_blank">Web Share API</a> 提供的功能，讓你可以透過簡單的 js 程式去觸發：</p>
+<p>這是 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share">Web Share API</a> 提供的功能，讓你可以透過簡單的 js 程式去觸發：</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">title</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
@@ -232,7 +244,7 @@
   <li>買域名：<br />
 其實前陣子陸續有在看，但是域名是要錢的，所以一直有在反思是否真的有必要，畢竟如果為了養域名，要在網站塞廣告我就覺得有點本末倒置了。</li>
   <li>建資料庫：<br />
-這個基本上是棄案了，現在這樣還在可以接受的範圍內。倒是最近認識了一個東西叫做 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/IndexedDB_API" target="_blank">IndexedDB</a>，正在研究我的網站用不用的到它。</li>
+這個基本上是棄案了，現在這樣還在可以接受的範圍內。倒是最近認識了一個東西叫做 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/IndexedDB_API">IndexedDB</a>，正在研究我的網站用不用的到它。</li>
   <li>追加成員：<br />
 新成員一直都有在更新(今年又畢業了好幾個…)，至於往前追加的部分就一樣繼續擱置吧。</li>
 </ul>

@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -93,25 +105,31 @@
 
 <!-- more -->
 
-<p>先附上最後寫完的成果：<a href="https://github.com/janelin612/1a2b" target="_blank">janelin612/1a2b</a></p>
+<p>先附上最後寫完的成果：<a href="https://github.com/janelin612/1a2b">janelin612/1a2b</a></p>
 
 <h2 id="遊戲本體">遊戲本體</h2>
+
 <h3 id="出題">出題</h3>
+
 <p>出題的部分本質上就是怎麼從 0~9 之中隨機挑出四個不重複的數字。<br />
 我最後選擇直接準備好一個 0~9 的陣列，然後隨機選一個之後把選中的從陣列中移除，這樣選四次。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">pool</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">2</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">3</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">4</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">5</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">6</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">7</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">8</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">9</span><span class="dl">"</span><span class="p">];</span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">pool</span><span class="p">.</span><span class="nx">length</span><span class="p">));</span>
-    <span class="nx">answer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">pool</span><span class="p">[</span><span class="nx">index</span><span class="p">]);</span>
-    <span class="nx">pool</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="p">};</span>
+  <span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">pool</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+  <span class="nx">answer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">pool</span><span class="p">[</span><span class="nx">index</span><span class="p">]);</span>
+  <span class="nx">pool</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div></div>
+
 <blockquote>
   <p>總覺得有更好的做法</p>
 </blockquote>
 
 <h3 id="判斷">判斷</h3>
-<p>我原本以為這遊戲最值得討論的部分是如何寫判斷幾A幾B，但實際寫一遍發現很簡單，把猜的數字跟答案都拆成陣列之後依序檢查數字有沒有存在，存在的話再追加確認位置對不對就結束了。</p>
+
+<p>我原本以為這遊戲最值得討論的部分是如何寫判斷幾 A 幾 B，但實際寫一遍發現很簡單，把猜的數字跟答案都拆成陣列之後依序檢查數字有沒有存在，存在的話再追加確認位置對不對就結束了。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="nx">guess</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">""</span><span class="p">).</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">val</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -127,43 +145,50 @@
 </code></pre></div></div>
 
 <h2 id="解題機器人">解題機器人</h2>
+
 <p>遊戲最後花了一個下午的時間把 UI 跟邏輯兜出來，寫完總覺得有點…太空虛了。<br />
 於是異想天開決定補上一個自動解題的機器人，設計的時候有加上一個目標是要用最少的次數猜出答案，不然用迴圈把全部的數字猜一遍就好，沒啥挑戰性。</p>
 
 <h3 id="正解">正解</h3>
+
 <p>程式碼蠻長的，我就不整段貼上來了，直接附上連結：<br />
-<a href="https://github.com/janelin612/1a2b/blob/master/robot.js" target="_blank"> 1a2b/robot.js </a></p>
+<a href="https://github.com/janelin612/1a2b/blob/master/robot.js"> 1a2b/robot.js </a></p>
 
 <p>大致上的做法是：</p>
+
 <ol>
   <li>生成所有不重複數字組合，共 10x9x8x7=5040 種</li>
   <li>根據回傳的 AB 結果過濾掉與之衝突的其他候選答案</li>
   <li>重複直到候選答案剩 1 個或者剛好 4A 命中</li>
 </ol>
 
-<p>例如你猜1234拿到2A0B的話，就要把所有3A的結果濾掉(1x34 12x4 123x)，又例如你猜5678拿到1A0B的話，就要把2A以上的結果濾掉(5xx8 56xx xx78 …etc)</p>
+<p>例如你猜 1234 拿到 2A0B 的話，就要把所有 3A 的結果濾掉(1x34 12x4 123x)，又例如你猜 5678 拿到 1A0B 的話，就要把 2A 以上的結果濾掉(5xx8 56xx xx78 …etc)</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">_c</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_checker</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-   <span class="c1">//當3A時，則留下與猜的答案有3個一樣的且不能有4個一樣的 後面依此類推</span>
-   <span class="k">this</span><span class="p">.</span><span class="nx">_pool</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_pool</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">val</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-       <span class="k">return</span> <span class="nx">_c</span><span class="p">.</span><span class="nx">fix3</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">ans</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">_c</span><span class="p">.</span><span class="nx">fix4</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">ans</span><span class="p">);</span>
-   <span class="p">})</span>
+  <span class="c1">//當3A時，則留下與猜的答案有3個一樣的且不能有4個一樣的 後面依此類推</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">_pool</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_pool</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">val</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">_c</span><span class="p">.</span><span class="nx">fix3</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">ans</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">_c</span><span class="p">.</span><span class="nx">fix4</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">ans</span><span class="p">);</span>
+  <span class="p">});</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>透過這樣的作法，幾乎可以保證在7次內猜到正確答案。</p>
+
+<p>透過這樣的作法，幾乎可以保證在 7 次內猜到正確答案。</p>
 
 <h3 id="棄案">棄案</h3>
+
 <p>討論正解很無趣，因為一定早就有人寫出來了，搞不好人家的演算法還比你的快。所以我想紀錄一下中間找解法的時候想到的一些腦動大開的作法。</p>
 
 <h4 id="1模擬人的行為">1.模擬人的行為</h4>
-<p>第一個想到的做法肯定就是想要複製我的決策過程，例如在猜到3A0B的時候會試圖去替換掉其中一個數字，然後再根據新猜出來的結果去回推我替換掉的數字是正解還是那個錯誤的。<br />
+
+<p>第一個想到的做法肯定就是想要複製我的決策過程，例如在猜到 3A0B 的時候會試圖去替換掉其中一個數字，然後再根據新猜出來的結果去回推我替換掉的數字是正解還是那個錯誤的。<br />
 這樣的問題在於，程式碼要能夠知道自己在幹嘛並決定後續的決策，再根據結果判斷決策是否正確。那我不就得對所有的行為進行定義，例如”替換一個數字”、”調動數字的順序”之類的。</p>
 
-<p>我覺得更像是在寫一個 AI，所以直接放棄，太難了XD</p>
+<p>我覺得更像是在寫一個 AI，所以直接放棄，太難了 XD</p>
 
 <h4 id="2權重">2.權重</h4>
-<p>模擬人的行為太困難，那要怎麼像個電腦一樣的思考呢？我想到的是替每個位置的每個數字準備一個權重分數，變成一張 X軸是第一格到第四格，Y 軸是0~9的矩陣，矩陣內就填入權重分數，然後比對前後猜測的結果去計算比重。<br />
+
+<p>模擬人的行為太困難，那要怎麼像個電腦一樣的思考呢？我想到的是替每個位置的每個數字準備一個權重分數，變成一張 X 軸是第一格到第四格，Y 軸是 0~9 的矩陣，矩陣內就填入權重分數，然後比對前後猜測的結果去計算比重。<br />
 例如 A 從 3A 掉成 2A，就表示猜的結果離正解越來越遠了，那剛剛調動的數字權重就應該調低，也就是”那個位置傾向不屬於他”的概念。</p>
 
 <p>後來放棄的原因是這樣沒有猜比較少次，因為這樣的設計反而需要猜很多次，權重的差異化才會出來，答案才會有意義。</p>

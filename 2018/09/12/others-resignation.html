@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -101,11 +113,11 @@
 不定期更新</p>
 
 <ul>
-  <li><a href="https://medium.com/the-bayesian-trap/journey-of-sudo-6ba8fff75b5b" target="_blank">第一份工作：sudo</a></li>
-  <li><a href="https://medium.com/@eason1305/%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%B7%A5%E4%BD%9C-kumawash-1c08def17ad3" target="_blank">第一份工作：KumaWash</a></li>
-  <li><a href="https://blog.opasschang.com/2018/04/20/what-is-an-adult/" target="_blank">什麼是成熟，寫在從第一份工作離職之後</a></li>
-  <li><a href="https://medium.com/@kalanyei/%E5%9C%A8-17-%E7%9B%B4%E6%92%AD%E7%9A%84-365-%E5%A4%A9-ca5d9450d39e" target="_blank">在 17 直播的 365天</a></li>
-  <li><a href="https://medium.com/hulis-blog/4-years-review-7fb7edc52687" target="_blank">成為前端工程師的四週年回顧</a></li>
+  <li><a href="https://medium.com/the-bayesian-trap/journey-of-sudo-6ba8fff75b5b">第一份工作：sudo</a></li>
+  <li><a href="https://medium.com/@eason1305/%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%B7%A5%E4%BD%9C-kumawash-1c08def17ad3">第一份工作：KumaWash</a></li>
+  <li><a href="https://blog.opasschang.com/2018/04/20/what-is-an-adult/">什麼是成熟，寫在從第一份工作離職之後</a></li>
+  <li><a href="https://medium.com/@kalanyei/%E5%9C%A8-17-%E7%9B%B4%E6%92%AD%E7%9A%84-365-%E5%A4%A9-ca5d9450d39e">在 17 直播的 365 天</a></li>
+  <li><a href="https://medium.com/hulis-blog/4-years-review-7fb7edc52687">成為前端工程師的四週年回顧</a></li>
 </ul>
 
 </div>

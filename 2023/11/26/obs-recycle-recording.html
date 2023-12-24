@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -89,7 +101,7 @@
   <h1 class="post-title">OBS 如何做到循環錄影</h1>
   <span class="post-date">26 Nov 2023</span>
   <hr />
-  <p>上個月買了一張圓剛的影像擷取卡 <a href="https://www.avermedia.com/tw/product-detail/GC551G2" target="\_blank">GC551G2</a>，雖說目前暫無開實況的打算，不過終於是可以錄製 NS 的遊玩影片（內建只能錄 30 秒，太短了）。除此之外分享遊戲截圖也方便很多，甚至比 <a href="https://disp.cc/b/Gossiping/aiaG" target="\_blank">Genius 截圖法</a>還要快。</p>
+  <p>上個月買了一張圓剛的影像擷取卡 <a href="https://www.avermedia.com/tw/product-detail/GC551G2">GC551G2</a>，雖說目前暫無開實況的打算，不過終於是可以錄製 NS 的遊玩影片（內建只能錄 30 秒，太短了）。除此之外分享遊戲截圖也方便很多，甚至比 <a href="https://disp.cc/b/Gossiping/aiaG">Genius 截圖法</a>還要快。</p>
 
 <p>但我其實不打算整個遊玩過程全部錄影，而是希望保留原本的主機平台的錄影邏輯，就是按下存檔時保留最後幾分鐘的影片。為此花了點時間研究 OBS 如何做到循環錄影。</p>
 

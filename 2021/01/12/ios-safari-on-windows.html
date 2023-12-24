@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -98,7 +110,7 @@
 <h2 id="作法">作法</h2>
 
 <p>TL;TR 就安裝這個套件，照著裡面的 README 去走，就可以用了<br />
-<a href="https://github.com/RemoteDebug/remotedebug-ios-webkit-adapter" target="_blank">RemoteDebug/remotedebug-ios-webkit-adapter</a></p>
+<a href="https://github.com/RemoteDebug/remotedebug-ios-webkit-adapter">RemoteDebug/remotedebug-ios-webkit-adapter</a></p>
 
 <h3 id="安裝">安裝</h3>
 
@@ -106,24 +118,36 @@
   <li>
     <p>安裝 iTunes</p>
   </li>
-  <li>開啟 Powershell 然後執行:
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scoop bucket add extras
+  <li>
+    <p>開啟 Powershell 然後執行:</p>
+  </li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scoop bucket add extras
 scoop <span class="nb">install </span>ios-webkit-debug-proxy
-</code></pre></div>    </div>
-  </li>
-  <li>NPM Install
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>remotedebug-ios-webkit-adapter <span class="nt">-g</span>
-</code></pre></div>    </div>
-  </li>
+</code></pre></div></div>
+
+<ol>
+  <li>NPM Install</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>remotedebug-ios-webkit-adapter <span class="nt">-g</span>
+</code></pre></div></div>
+
+<ol>
   <li>在 iPhone 的 Safari 設定裡面允許遠端偵錯</li>
 </ol>
 
 <h3 id="執行">執行</h3>
+
 <ol>
-  <li>在 CMD 把背景服務 run 起來
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>remotedebug_ios_webkit_adapter <span class="nt">--port</span><span class="o">=</span>9000
-</code></pre></div>    </div>
-  </li>
+  <li>在 CMD 把背景服務 run 起來</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>remotedebug_ios_webkit_adapter <span class="nt">--port</span><span class="o">=</span>9000
+</code></pre></div></div>
+
+<ol>
   <li>在 Chrome 開啟 inspect 分頁 <code class="language-plaintext highlighter-rouge">chrome://inspect/#devices</code></li>
   <li>開工</li>
 </ol>

@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -119,7 +131,7 @@
 <h3 id="筆電-msi-modern-14">筆電： MSI Modern 14</h3>
 
 <p><img src="/public/res/2021/modren14.jpg" alt="" />
-<a href="https://tw.msi.com/Business-Productivity/Modern-14-B11X" target="_blank" class="ref">圖片來源:MSI 官網</a></p>
+<a href="https://tw.msi.com/Business-Productivity/Modern-14-B11X" class="ref">圖片來源:MSI 官網</a></p>
 
 <p>我在今年年初的時候終於下定決心把用了七年的筆電 Toshiba R930 淘汰了。我還滿喜歡 R930 的，過去幾年還一直說下次換電腦會繼續支持這個系列，結果沒想到 Toshiba 這個牌子就被賣掉了……</p>
 
@@ -132,7 +144,7 @@
 <p>基於個人對於品牌的好惡，以及預算的考量，最後看上了因為出了新一代機種而降價出清的 Fitbit Charge 4</p>
 
 <p><img src="/public/res/2021/fitbitcharge4.jpg" alt="" />
-<a href="https://www.fitbit.com/global/tw/products/trackers/charge4" target="_blank" class="ref">圖片來源:Fitbit 官網</a></p>
+<a href="https://www.fitbit.com/global/tw/products/trackers/charge4" class="ref">圖片來源:Fitbit 官網</a></p>
 
 <p>入手至今其實還不到一個月，能寫下來的心得有限</p>
 

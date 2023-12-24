@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -104,7 +116,7 @@
 
 <p>曾經一度有考慮過 Garmin 的產品，但他們家的設計風格有點太偏運動風了，我沒有很喜歡，覺得跟我的個人氣質不太符合？若他們未來有打算出類似 Garmin lily 這樣偏日常使用，但是是男用錶的設計的話，我會願意嘗試看看。
 <img src="/public/res/2022/lily.jpg" alt="" />
-<a href="https://www.garmin.com.tw/products/wearables/lily-darkbronze/" target="_blank" class="ref">圖片來源：Garmin lily</a></p>
+<a href="https://www.garmin.com.tw/products/wearables/lily-darkbronze/" class="ref">圖片來源：Garmin lily</a></p>
 
 <p>總之最後選上了打折出清的 Charge 4。</p>
 
@@ -195,8 +207,8 @@
 <p><img src="/public/res/2022/pixel-watch.jpg" alt="" /></p>
 
 <ul>
-  <li><a href="https://www.fitbit.com/global/tw/products/trackers/charge4" target="_blank" class="ref">圖片來源:Fitbit 官網</a></li>
-  <li><a href="https://store.google.com/tw/magazine/google_smartwatch?hl=zh-TW" target="_blank" class="ref">圖片來源:Google Store - Google Pixel Watch</a></li>
+  <li><a href="https://www.fitbit.com/global/tw/products/trackers/charge4" class="ref">圖片來源:Fitbit 官網</a></li>
+  <li><a href="https://store.google.com/tw/magazine/google_smartwatch?hl=zh-TW" class="ref">圖片來源:Google Store - Google Pixel Watch</a></li>
 </ul>
 
 </div>

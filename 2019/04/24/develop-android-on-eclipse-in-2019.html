@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -123,7 +135,7 @@
 
 <ul>
   <li>跟 Android Studio 共用 SDK</li>
-  <li>去<a href="https://developer.android.com/studio/#downloads" target="\_blank">AS 官網</a>下載最新的獨立 SDK Tools</li>
+  <li>去<a href="https://developer.android.com/studio/#downloads">AS 官網</a>下載最新的獨立 SDK Tools</li>
 </ul>
 
 <p>結果就是通通都不能用，只會顯示錯誤訊息</p>
@@ -134,7 +146,7 @@ The Android Developer Toolkit may not work properly.
 
 <h3 id="正確的作法">正確的作法</h3>
 
-<p>會出錯的原因是 Google 早就<a href="https://android-developers.googleblog.com/2016/11/support-ended-for-eclipse-android.html" target="\_blank">停止支援 ADT</a>了，現在的 SDK 都是專為 Android Studio 設計的，所以你要是用最新提供的 SDK 必死無疑。<strong>請獨立下載一個舊版的，並放在另一個資料夾裡面</strong></p>
+<p>會出錯的原因是 Google 早就<a href="https://android-developers.googleblog.com/2016/11/support-ended-for-eclipse-android.html">停止支援 ADT</a>了，現在的 SDK 都是專為 Android Studio 設計的，所以你要是用最新提供的 SDK 必死無疑。<strong>請獨立下載一個舊版的，並放在另一個資料夾裡面</strong></p>
 
 <p>舊版 SDK 下載連結：</p>
 

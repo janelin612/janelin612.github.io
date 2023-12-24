@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -248,7 +260,7 @@ SG0 結局則是演到在遙遠的 2025，岡部一行人終於湊齊了所有�
 <p>相較於無印我認為持平的評價，我非常喜歡 0 的改編。導演成功的把裂成兩大路線的分歧劇情重新建構成一段完整的故事，我完全沒有預期到與助手重逢的劇情還有真帆刪除 Amadeus 的橋段，動畫版可以改得如此令人心碎。</p>
 
 <p><img src="https://i.imgur.com/I6Wq62T.jpeg" alt="" />
-<a href="https://forum.gamer.com.tw/C.php?page=1&amp;bsn=17358&amp;snA=2335" class="ref" target="_blank">圖片來源 - 巴哈</a></p>
+<a href="https://forum.gamer.com.tw/C.php?page=1&amp;bsn=17358&amp;snA=2335" class="ref">圖片來源 - 巴哈</a></p>
 
 <p>比屋定真帆在動畫中的形象也更加完整，我覺得我看完動畫有更喜歡這個角色一點點。</p>
 

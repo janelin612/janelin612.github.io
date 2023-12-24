@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -103,7 +115,7 @@
 
 <p>視訊的部分蠻好解決的，只要安裝額外的 plugin 即可</p>
 
-<p><a href="https://obsproject.com/forum/resources/obs-virtualcam.539/" target="_blank">OBS-VirtualCam</a><br />
+<p><a href="https://obsproject.com/forum/resources/obs-virtualcam.539/">OBS-VirtualCam</a><br />
 裝好之後在 OBS 的上方工具列裡的<code class="language-plaintext highlighter-rouge">工具</code>或者右下的<code class="language-plaintext highlighter-rouge">控制項</code>都有按鈕可以啟動虛擬攝影機，啟動之後你 OBS 的預覽畫面就是實際輸出的畫面了。</p>
 
 <h2 id="音訊">音訊</h2>
@@ -155,8 +167,8 @@
 <p>虛擬音效卡我在網路上查到兩個軟體</p>
 
 <ul>
-  <li><a href="https://vb-audio.com/Cable/" target="_blank">VB-Audio</a></li>
-  <li><a href="https://vac.muzychenko.net/en/" target="_blank">Virtual Audio Cable (VAC)</a></li>
+  <li><a href="https://vb-audio.com/Cable/">VB-Audio</a></li>
+  <li><a href="https://vac.muzychenko.net/en/">Virtual Audio Cable (VAC)</a></li>
 </ul>
 
 <p>這兩家都可以用，然後都有一個共同的特色就是免費版只支援一路，要多路都要付費購買。於是我腦筋一轉，決定同時安裝這兩個軟體，藉此達成免費的兩路虛擬音效卡。</p>

@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -95,15 +107,19 @@
 
 <!-- more -->
 
-<h2 id="方法1-借助線上服務">方法1: 借助線上服務</h2>
-<p>你可以把你的網站上線之後，使用一些線上的服務掃描一遍，然後自動產生。<br />
-這樣的服務通常會有一些限制，但一般情況而言應該都是堪用的，例如這個網站就有提供這樣的服務：<a href="https://www.xml-sitemaps.com/" target="_blank">XML-Sitemaps.com</a></p>
+<h2 id="方法-1-借助線上服務">方法 1: 借助線上服務</h2>
 
-<h2 id="方法2-自己寫程式跑">方法2: 自己寫程式跑</h2>
+<p>你可以把你的網站上線之後，使用一些線上的服務掃描一遍，然後自動產生。<br />
+這樣的服務通常會有一些限制，但一般情況而言應該都是堪用的，例如這個網站就有提供這樣的服務：<a href="https://www.xml-sitemaps.com/">XML-Sitemaps.com</a></p>
+
+<h2 id="方法-2-自己寫程式跑">方法 2: 自己寫程式跑</h2>
+
 <p>我自己的案例比較特殊，我自己持有一個網址列表，所以我就寫了一小段程式把陣列轉成 xml 格式的檔案。</p>
 
-<h3 id="xml的格式">xml的格式</h3>
+<h3 id="xml-的格式">xml 的格式</h3>
+
 <p>一個最基礎的 sitemap 應該長得像這樣：</p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="nt">&lt;urlset</span> <span class="na">xmlns=</span><span class="s">"http://www.sitemaps.org/schemas/sitemap/0.9"</span><span class="nt">&gt;</span>
  <span class="nt">&lt;url&gt;</span>
@@ -114,6 +130,7 @@
  <span class="nt">&lt;/url&gt;</span>
 <span class="nt">&lt;/urlset&gt;</span>
 </code></pre></div></div>
+
 <ul>
   <li>以起始 <code class="language-plaintext highlighter-rouge">&lt;urlset&gt;</code> 標記做為開頭，並以結束 <code class="language-plaintext highlighter-rouge">&lt;/urlset&gt;</code> 標記做為結尾。</li>
   <li>指定 <code class="language-plaintext highlighter-rouge">&lt;urlset&gt;</code> 內的名稱領域 (通訊協定標準)。</li>
@@ -122,16 +139,20 @@
 </ul>
 
 <blockquote>
-  <p>以上說明取自 <a href="https://www.sitemaps.org/zh_TW/protocol.html" target="_blank">sitemaps.org</a></p>
+  <p>以上說明取自 <a href="https://www.sitemaps.org/zh_TW/protocol.html">sitemaps.org</a></p>
 </blockquote>
 
 <h3 id="撰寫程式">撰寫程式</h3>
+
 <p>了解 xml 規格後，就寫成 node.js 的程式吧！<br />
-其中 json-to-xml 的程式用到了 <a href="https://www.npmjs.com/package/xml-js" target="_blank">xml-js</a></p>
+其中 json-to-xml 的程式用到了 <a href="https://www.npmjs.com/package/xml-js">xml-js</a></p>
+
 <pre><code class="language-cmd">$ npm i xml-js
 </code></pre>
-<p>完整的 js 程式碼如下：
-<script src="https://gist.github.com/janelin612/0f689a91c12edf08f405044e74a1f39a.js"></script></p>
+
+<p>完整的 js 程式碼如下：</p>
+
+<script src="https://gist.github.com/janelin612/0f689a91c12edf08f405044e74a1f39a.js"></script>
 
 <ul>
   <li>輸出的時候帶兩個參數
@@ -143,14 +164,19 @@
 </ul>
 
 <h2 id="提交-sitemap">提交 Sitemap</h2>
+
 <p>寫好之後要記得提交啊</p>
 
 <h3 id="1偷懶的作法">1.偷懶的作法</h3>
+
 <p>你可以直接 ping 一個網址即可快速提交</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://www.google.com/ping?sitemap=YOUR_SITEMAP.xml
 </code></pre></div></div>
+
 <h3 id="2乖乖去-search-console-註冊網站">2.乖乖去 Search Console 註冊網站</h3>
-<p><a href="https://search.google.com/search-console/about" target="_blank">Google Search Console</a> 註冊了之後你未來可以來這裡看大家都用什麼搜尋關鍵字進你的網站，何樂而不為？</p>
+
+<p><a href="https://search.google.com/search-console/about">Google Search Console</a> 註冊了之後你未來可以來這裡看大家都用什麼搜尋關鍵字進你的網站，何樂而不為？</p>
 
 </div>
 

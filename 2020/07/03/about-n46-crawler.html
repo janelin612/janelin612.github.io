@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -103,7 +115,7 @@
 
 <ul>
   <li>用 Node.js 寫：<br />
-上班寫 Android，下班 Side-project 換個語言。在 Github 上找到了這個：<a href="https://github.com/bda-research/node-crawler" target="_blank"> bda-research /
+上班寫 Android，下班 Side-project 換個語言。在 Github 上找到了這個：<a href="https://github.com/bda-research/node-crawler"> bda-research /
 node-crawler </a>，爬蟲主要是依賴這個套件完成的。</li>
   <li>資料存成 JSON 格式：<br />
 原因主要還是懶，資料庫管理一直都是我的弱項，直覺就是逃避。加上我希望架成靜態網站，JSON 方便直接在前端處理</li>
@@ -139,12 +151,12 @@ node-crawler </a>，爬蟲主要是依賴這個套件完成的。</li>
 
 <p>所以雖然這樣爬起來不是很快，但應該是堪用了，我也怕速度再提升爬蟲會被網站擋下來。</p>
 
-<p>附上<a href="https://github.com/janelin612/n46-crawler/blob/master/src/n46-crawler.js" target="_blank">程式碼</a>，如果你真的有興趣的話。</p>
+<p>附上<a href="https://github.com/janelin612/n46-crawler/blob/master/src/n46-crawler.js">程式碼</a>，如果你真的有興趣的話。</p>
 
 <h2 id="開發閱讀用的網頁">開發閱讀用的網頁</h2>
 
 <p>這本來只是個後端爬蟲專案，沒想到隨手寫個簡單的閱讀器竟然花了我一大堆的時間…<br />
-<a href="https://janelin612.github.io/n46-crawler/" target="_blank">乃木坂 46 卒業メンバーのブログ</a></p>
+<a href="https://janelin612.github.io/n46-crawler/">乃木坂 46 卒業メンバーのブログ</a></p>
 
 <p>最原始的概念很簡單，就是一個 html 檔，打開可以讀取同目錄下的 JSON，就這樣。</p>
 
@@ -186,10 +198,10 @@ node-crawler </a>，爬蟲主要是依賴這個套件完成的。</li>
 
 <blockquote>
   <p>不知道 SSR 是什麼的同學可以閱讀一下這篇的第一段：<br />
-<a href="https://medium.com/@jackercleaninglab/ssr-nuxt-js-%E8%B6%85%E5%85%A5%E9%96%80-84a0823b45ed" target="_blank">SSR — Nuxt.js 超入門</a></p>
+<a href="https://medium.com/@jackercleaninglab/ssr-nuxt-js-%E8%B6%85%E5%85%A5%E9%96%80-84a0823b45ed">SSR — Nuxt.js 超入門</a></p>
 </blockquote>
 
-<p>但我只引入單檔，沒辦法使用 <a href="https://nuxtjs.org/" target="_blank">Nuxt.js</a> 幫我做好，所以這部份後來算是用手刻的方法硬著頭皮把它完成的。<br />
+<p>但我只引入單檔，沒辦法使用 <a href="https://nuxtjs.org/">Nuxt.js</a> 幫我做好，所以這部份後來算是用手刻的方法硬著頭皮把它完成的。<br />
 有賴於 Google 的搜尋引擎爬蟲可以執行 JS，所以我用了 Babel 把程式轉成 Google Bot 可以執行的版本加上預先填入部分資訊到 html 檔內完成 87% 像的 SSR，至少搜尋引擎可以辨識他們是不同的網頁，而不是大量重複內容然後降我排名。</p>
 
 <p>後來寫了一隻程式專門做這件事情，把資料預填好然後複製 html 到對應的資料夾內，並產生 Sitemap.xml，現在要手動的部分越來越少了。</p>
@@ -199,7 +211,7 @@ node-crawler </a>，爬蟲主要是依賴這個套件完成的。</li>
 <p>這應該是可以分享的吧？
 <img src="/public/res/2020/2020-07-02_231233.jpg" alt="" /></p>
 
-<p>然後第一名的搜尋關鍵字是<a href="https://www.google.com/search?q=%E8%A5%BF%E9%87%8E%E4%B8%83%E7%80%AC+%E3%83%96%E3%83%AD%E3%82%B0" target="_blank">西野七瀬 ブログ</a>，用個字去查排名比七瀨的官網還要前面，<del>希望官方不要宰了我</del></p>
+<p>然後第一名的搜尋關鍵字是<a href="https://www.google.com/search?q=%E8%A5%BF%E9%87%8E%E4%B8%83%E7%80%AC+%E3%83%96%E3%83%AD%E3%82%B0">西野七瀬 ブログ</a>，用個字去查排名比七瀨的官網還要前面，<del>希望官方不要宰了我</del></p>
 
 <p>至於最多人看的前五名分別是：</p>
 

@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -101,7 +113,7 @@
 
 <!-- more -->
 
-<p>查了一下<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event" target="_blank">MDN</a>：</p>
+<p>查了一下<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event">MDN</a>：</p>
 
 <blockquote>
   <p>The change event is fired for <code class="language-plaintext highlighter-rouge">input</code>, <code class="language-plaintext highlighter-rouge">select</code>, and <code class="language-plaintext highlighter-rouge">textarea</code> elements when an alteration to the element’s value is committed by the user.</p>
@@ -112,7 +124,7 @@
 <h2 id="mutationobserver">MutationObserver</h2>
 
 <p>真正符合需求的是這個東西，MutationObserver。
-一樣讀一下<a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/MutationObserver" target="_blank">MDN</a>，
+一樣讀一下<a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/MutationObserver">MDN</a>，
 它可以用來監聽目標的子節點是否有增減，以及目標本身屬性是否有變化。</p>
 
 <p>寫起來大概像這樣</p>

@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -96,7 +108,7 @@
 
 <h2 id="statically">Statically</h2>
 
-<p><a href="https://statically.io/" target="_blank">https://statically.io/</a></p>
+<p><a href="https://statically.io/">https://statically.io/</a></p>
 
 <p><img src="/public/res/2021/Statically.jpg" alt="" />
 看起來是個免費的 CDN 服務，甚至連註冊都不用？</p>
@@ -108,7 +120,7 @@
 
 <h2 id="napkin">Napkin</h2>
 
-<p><a href="https://www.napkin.io/" target="_blank">https://www.napkin.io/</a></p>
+<p><a href="https://www.napkin.io/">https://www.napkin.io/</a></p>
 
 <p><img src="/public/res/2021/Napkin.jpg" alt="" />
 直接在瀏覽器上寫後端程式碼的工具，簡易版的 Serverless 服務。</p>
@@ -120,7 +132,7 @@
 
 <h2 id="carbon">Carbon</h2>
 
-<p><a href="https://carbon.now.sh/" target="_blank">https://carbon.now.sh/</a></p>
+<p><a href="https://carbon.now.sh/">https://carbon.now.sh/</a></p>
 
 <p><img src="/public/res/2021/Carbon.jpg" alt="" /><br />
 Carbon 是一個把程式碼片段輸出成一張圖片的服務。<br />
@@ -129,7 +141,7 @@ Carbon 是一個把程式碼片段輸出成一張圖片的服務。<br />
 
 <h2 id="formspree">Formspree</h2>
 
-<p><a href="https://formspree.io/" target="_blank">https://formspree.io/</a></p>
+<p><a href="https://formspree.io/">https://formspree.io/</a></p>
 
 <p><img src="/public/res/2021/Formspree.jpg" alt="" />
 Formspree 是一個替靜態網站添加表單功能的服務。<br />

@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -108,7 +120,7 @@
 Fear the old blood. –Master Willem</p>
 </blockquote>
 
-<p><a href="https://www.youtube.com/playlist?list=PL7PA3hyhaHFK62zYOnrJ2Om30BYmIZLC3" target="\_blank">黑桐谷歌【血源诅咒】</a><br />
+<p><a href="https://www.youtube.com/playlist?list=PL7PA3hyhaHFK62zYOnrJ2Om30BYmIZLC3">黑桐谷歌【血源诅咒】</a><br />
 不用懷疑，你問十個玩家十個都會跟你推這個系列。主要是看他怎麼跑圖，他會很詳細的跟你說明哪邊有坑，還有怎麼開捷徑。至於怎麼打怪，除非你跟他選一樣的武器與配點邏輯，否則越往後推進參考價值會越來越低，自己打出心得比較實際。</p>
 
 <p>有個另外的流程小技巧一定要提一下，就是進場打王之前記得用 USB 備份存檔。這遊戲重複打王不痛苦，但打到彈盡援絕要去路邊農血瓶農子彈很痛苦，道具都用光了就回溯吧。最後要解結局獎盃也會需要這個技巧的。</p>
@@ -118,15 +130,15 @@ Fear the old blood. –Master Willem</p>
 <p>這遊戲沒有小地圖也沒有導航，偏偏魂系列的地圖又以錯綜複雜且環環相扣著稱，跑到後期常常會發現路打通了之後會通往早期的地區。<br />
 不過看地圖我覺得算是嚴重破壞遊戲體驗，<strong>下方提供的連結請斟酌點擊</strong>。</p>
 
-<p><a href="https://forum.gamer.com.tw/C.php?bsn=26478&amp;snA=867" target="\_blank">【地圖】初期與中期地圖</a><br />
+<p><a href="https://forum.gamer.com.tw/C.php?bsn=26478&amp;snA=867">【地圖】初期與中期地圖</a><br />
 巴哈姆特這篇文章提供了一張手繪風格的地圖，對於尋寶有相當大的幫助</p>
 
-<p><a href="https://bloodborne.wiki.fextralife.com/Overall+World+Maps" target="\_blank">Overall World Maps - Bloodborne</a><br />
+<p><a href="https://bloodborne.wiki.fextralife.com/Overall+World+Maps">Overall World Maps - Bloodborne</a><br />
 這個網站提供了相對位置嚴格考據的全地圖，對於跑圖沒啥幫助，但它會讓你意識到血源的地圖設計之精巧</p>
 
 <h2 id="人物配點">人物配點</h2>
 
-<p><a href="https://www.gamewikia.com/guide/117647" target="\_blank">《血源》屬性簡析及新手一周目加點推薦 血源怎麽加點</a><br />
+<p><a href="https://www.gamewikia.com/guide/117647">《血源》屬性簡析及新手一周目加點推薦 血源怎麽加點</a><br />
 個人參考的是這篇文章，最後主線通關時的最終配點如下：</p>
 
 <blockquote>
@@ -150,7 +162,7 @@ Fear the old blood. –Master Willem</p>
 
 <h3 id="全武器">全武器</h3>
 
-<p><a href="https://forum.gamer.com.tw/C.php?bsn=26478&amp;snA=535" target="\_blank">【情報】全武器獲得方式</a><br />
+<p><a href="https://forum.gamer.com.tw/C.php?bsn=26478&amp;snA=535">【情報】全武器獲得方式</a><br />
 這遊戲有兩把武器第一周目結局前不進地牢拿不到，一把是怪獸爪，另一把則是第一獵人的送葬之刃。同時也有好幾把武器是支線要解才會拿到的，要拚全武器的一定要注意支線流程。</p>
 
 <ul>
@@ -178,7 +190,7 @@ Fear the old blood. –Master Willem</p>
 
 <p>我來想要寫一段劇情解析和結局討論的，但實在是靈視不夠，越整理越多疑問，所以請再給我一點時間吧 XD</p>
 
-<p>最後附上我個人的通關紀錄，影片幾乎都有附上簡易的攻略心得，歡迎參考：<a href="https://www.youtube.com/playlist?list=PLOCJ6oStBbhMKaB-XbykW3L51VxjZdqxY" target="\_blank">Bloodborne 血源詛咒 - YouTube</a></p>
+<p>最後附上我個人的通關紀錄，影片幾乎都有附上簡易的攻略心得，歡迎參考：<a href="https://www.youtube.com/playlist?list=PLOCJ6oStBbhMKaB-XbykW3L51VxjZdqxY">Bloodborne 血源詛咒 - YouTube</a></p>
 
 <p><img src="/public/res/2019/bloodborne_doll.jpg" alt="" /></p>
 

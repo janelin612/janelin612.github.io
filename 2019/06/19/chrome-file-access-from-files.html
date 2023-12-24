@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -98,38 +110,42 @@
 
 <!-- more -->
 
-<h2 id="解法1--強制chrome允許file-access-from-files">解法1 : 強制chrome允許file-access-from-files</h2>
-<p>參考自<a href="https://cmatskas.com/interacting-with-local-data-files-using-chrome/" target="_blank">這個網站</a></p>
+<h2 id="解法-1--強制-chrome-允許-file-access-from-files">解法 1 : 強制 chrome 允許 file-access-from-files</h2>
+
+<p>參考自<a href="https://cmatskas.com/interacting-with-local-data-files-using-chrome/">這個網站</a></p>
 
 <ol>
   <li>關閉所有 chrome 的應用程式</li>
   <li>直接從 CMD 下指令
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>chrome.exe <span class="nt">--allow-file-access-from-file</span> 
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>chrome.exe <span class="nt">--allow-file-access-from-file</span>
 </code></pre></div>    </div>
   </li>
 </ol>
 
 <p>這樣可以讓 chrome 暫時允許讀取本機檔案，但缺點就是每次都要執行一次，而且瀏覽器關掉就失效了，很不方便。</p>
 
-<h2 id="解法2--架一個簡單的本地端server">解法2 : 架一個簡單的本地端server</h2>
+<h2 id="解法-2--架一個簡單的本地端-server">解法 2 : 架一個簡單的本地端 server</h2>
+
 <p>這算是一個比較正規的解法。<br />
-架伺服器的工具很多，如果你一時沒有什麼想法只想快速跑一個起來，那我推薦使用 <a href="https://www.npmjs.com/package/http-server" target="_blank">npm http-server</a>，他只需要兩行指令，一行安裝，一行執行：</p>
+架伺服器的工具很多，如果你一時沒有什麼想法只想快速跑一個起來，那我推薦使用 <a href="https://www.npmjs.com/package/http-server">npm http-server</a>，他只需要兩行指令，一行安裝，一行執行：</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">install </span>http-server <span class="nt">-g</span>
 <span class="nv">$ </span>http-server ./YOUR_FOLDER
 </code></pre></div></div>
+
 <p>就可以在<code class="language-plaintext highlighter-rouge">http://127.0.0.1:8080</code>看到你的網站了</p>
 
 <blockquote>
-  <p>不想用 node.js ? 這裡有一份推薦清單供你選擇：<a href="https://github.com/imgarylai/awesome-webservers" target="_blank">imgarylai/awesome-webservers
+  <p>不想用 node.js ? 這裡有一份推薦清單供你選擇：<a href="https://github.com/imgarylai/awesome-webservers">imgarylai/awesome-webservers
 </a></p>
 </blockquote>
 
-<h2 id="解法3--改用firefox"><del>解法3 : 改用Firefox</del></h2>
-<p><del>是的你沒有看錯，直接改用火狐就可以了ヽ(✿ﾟ▽ﾟ)ノ</del></p>
+<h2 id="解法-3--改用-firefox"><del>解法 3 : 改用 Firefox</del></h2>
+
+<p><del>是的你沒有看錯，直接改用火狐就可以了ヽ(✿ ﾟ ▽ ﾟ)ノ</del></p>
 
 <p>2021/07/02 補充： Firefox 也修正了，現在火狐一樣不支援，乖乖架站吧<br />
-<a href="https://discourse.mozilla.org/t/firefox-68-local-files-now-treated-as-cross-origin-1558299/42493" target="_blank">Firefox 68: local files now treated as cross-origin</a></p>
+<a href="https://discourse.mozilla.org/t/firefox-68-local-files-now-treated-as-cross-origin-1558299/42493">Firefox 68: local files now treated as cross-origin</a></p>
 
 </div>
 

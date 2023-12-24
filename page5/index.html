@@ -45,6 +45,18 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5K473GZ');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const domain = new URL(document.URL).hostname;
+      document.querySelectorAll(".content a").forEach((item) => {
+        const href = item.getAttribute("href");
+        if (!href.match(/(^\/)|(^#)/) && href.indexOf(domain) == -1) {
+          item.setAttribute("target", "_blank");
+        }
+      });
+    });
+  </script>
+  
 </head>
 
 
@@ -105,7 +117,7 @@
 <p>在開始之前，先分享一篇文章</p>
 
 <blockquote>
-  <p><a href="https://www.bnext.com.tw/article/57238/digital-ad-frauds" target="\_blank">年損 1,900 億元！小心數位廣告作弊，搞懂無效流量、避免行銷預算被詐騙 | 數位時代</a></p>
+  <p><a href="https://www.bnext.com.tw/article/57238/digital-ad-frauds">年損 1,900 億元！小心數位廣告作弊，搞懂無效流量、避免行銷預算被詐騙 | 數位時代</a></p>
 </blockquote>
 
 
