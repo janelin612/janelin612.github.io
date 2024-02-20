@@ -8,19 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
 
-<title>Vue.js在IE的相容性 | Intertidal</title>
-<meta name="description" content="交付的網站被客戶反映不支援IE，對此我原本是不抱持任何希望，覺得IE不可能可以用Vue，大概只能跟客戶吵架，或者是全部改寫了…但花了點時間仔細探..." />
+<title>新螢幕 BENQ-EX2710Q | Intertidal</title>
+<meta name="description" content="今年有計畫地要陸續汰換一些電腦桌上的 3C 產品，第一個達成目標的就是我的電腦螢幕。原本的螢幕用了差不多 10 年，雖然沒有什麼問題，但想要升級..." />
 <!-- facebook -->
-<meta property="og:url" content="https://janelin612.github.io/2018/01/08/vue-js-in-ie.html">
+<meta property="og:url" content="https://janelin612.github.io/2024/02/20/new-monitor-benq-ex2710q.html">
 <meta property="og:site_name" content="Intertidal">
-<meta property="og:title" content="Vue.js在IE的相容性 | Intertidal">
-<meta property="og:description" content="交付的網站被客戶反映不支援IE，對此我原本是不抱持任何希望，覺得IE不可能可以用Vue，大概只能跟客戶吵架，或者是全部改寫了…但花了點時間仔細探...">
+<meta property="og:title" content="新螢幕 BENQ-EX2710Q | Intertidal">
+<meta property="og:description" content="今年有計畫地要陸續汰換一些電腦桌上的 3C 產品，第一個達成目標的就是我的電腦螢幕。原本的螢幕用了差不多 10 年，雖然沒有什麼問題，但想要升級...">
 <meta property="og:type" content="article" />
 <meta property="og:image" content="https://janelin612.github.io/public/res/nk46le8.jpg">
 <!-- twitter -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue.js在IE的相容性 | Intertidal">
-<meta name="twitter:description" content="交付的網站被客戶反映不支援IE，對此我原本是不抱持任何希望，覺得IE不可能可以用Vue，大概只能跟客戶吵架，或者是全部改寫了…但花了點時間仔細探...">
+<meta name="twitter:title" content="新螢幕 BENQ-EX2710Q | Intertidal">
+<meta name="twitter:description" content="今年有計畫地要陸續汰換一些電腦桌上的 3C 產品，第一個達成目標的就是我的電腦螢幕。原本的螢幕用了差不多 10 年，雖然沒有什麼問題，但想要升級...">
   <meta name="msvalidate.01" content="D6451EE2AECEE8675E78CEEA635F67DA" />
   <!-- CSS -->
   <link rel="stylesheet" href="/public/css/poole.css">
@@ -32,7 +32,7 @@
     media="none" onload="if(media!='all')media='all'"
      />
   <!-- Canonical -->
-  <link rel="canonical" href="https://janelin612.github.io/2018/01/08/vue-js-in-ie.html" />
+  <link rel="canonical" href="https://janelin612.github.io/2024/02/20/new-monitor-benq-ex2710q.html" />
   <!-- Icons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
   <link rel="shortcut icon" href="/public/favicon.ico">
@@ -98,49 +98,56 @@
 
     <div class="content container">
       <div class="post">
-  <h1 class="post-title">Vue.js在IE的相容性</h1>
-  <span class="post-date">08 Jan 2018</span>
+  <h1 class="post-title">新螢幕 BENQ-EX2710Q</h1>
+  <span class="post-date">20 Feb 2024</span>
   <hr />
-  <p>交付的網站被客戶反映不支援IE，對此我原本是不抱持任何希望，覺得IE不可能可以用Vue，大概只能跟客戶吵架，或者是全部改寫了…</p>
+  <p>今年有計畫地要陸續汰換一些電腦桌上的 3C 產品，第一個達成目標的就是我的電腦螢幕。</p>
 
-<p>但花了點時間仔細探究原因，赫然發現其實Vue是可以在IE上面運作的，只是需要注意這幾件事情：</p>
+<p>原本的螢幕用了差不多 10 年，雖然沒有什麼問題，但想要升級一台好一點的，之後買遊戲機比較不會對不起他的性能。</p>
 
 <!-- more -->
 
-<h3 id="1-head宣告相容性">1. Head宣告相容性</h3>
+<h2 id="購買考量">購買考量</h2>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"ie=edge"</span><span class="nt">&gt;</span></code></pre></figure>
+<h3 id="尺寸">尺寸</h3>
 
-<p>html的head區塊要宣告<code class="language-plaintext highlighter-rouge">X-UA-Compatible</code>這個meta data，告訴IE使用最新的標準進行渲染</p>
+<p>我的舊螢幕是 27” 的，用起來沒什麼問題所以打算維持原尺寸，沒有要升級或降級。這個尺寸好像也沒有必要選曲面的。</p>
 
-<h3 id="2-不要使用箭頭函數arrow-function">2. 不要使用箭頭函數(Arrow Function)</h3>
-<p>此部分才是我程式掛掉的主要原因，我把它用在<code class="language-plaintext highlighter-rouge">vue-resource</code>的程式碼上，例如</p>
+<h3 id="解析度">解析度</h3>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$http</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">API_URL</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span>
-	<span class="p">(</span><span class="nx">res</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
-		<span class="c1">//do sometihng...</span>
-	<span class="p">},</span>
-	<span class="p">(</span><span class="nx">res</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
-		<span class="c1">//when error...</span>
-	<span class="p">}</span>
-<span class="p">)</span></code></pre></figure>
+<p>解析度的部分，主要是鎖定 2K(2560x1440) 的解析度，怕 4K 解析度在 27 吋螢幕上效益沒有那麼大，白花冤枉錢。</p>
 
-<p>其中有用到<code class="language-plaintext highlighter-rouge">=&gt;</code>的部分就是IE不支援的部分，要改回傳統的做法，乖乖傳一個callback進去</p>
+<h3 id="其他">其他</h3>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$http</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">API_URL</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span>
-	<span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
-		<span class="c1">//do sometihng...</span>
-	<span class="p">},</span>
-	<span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
-		<span class="c1">//when error...</span>
-	<span class="p">}</span>
-<span class="p">)</span></code></pre></figure>
+<ul>
+  <li>刷新率至少 120Hz</li>
+  <li>要有 VESA 孔，未來想安裝顯示器支架。</li>
+</ul>
 
-<h2 id="後記">後記</h2>
+<p>以上考量的產品，價位差不多落在 6k~9k，最後挑了 BENQ 的 EX2710Q</p>
 
-<p>目前測試的結果改成這樣我的畫面就正常顯示了，真是可喜可賀，不然如果全部要砍掉改回用jquery重寫一次我應該會哭倒在辦公桌前。</p>
+<p><img src="/public/res/2024/j2amuzs6z.jpg" alt="" /></p>
 
-<p>唯一的問題就是我只測了IE11，不知道可以相容到IE幾….希望客戶不會跟我說IE6要可以用 ・゜・(PД`q｡)・゜・</p>
+<h2 id="買了才注意到的一些瑣事">買了才注意到的一些瑣事</h2>
+
+<p>雖然購入之前有多方比較過，但最後還是發現有些事情我漏考慮了。</p>
+
+<h3 id="腳架設計">腳架設計</h3>
+
+<p>雖然我的新舊螢幕尺寸一樣，理應不會有不適應的問題。結果我錯了，由於腳架設計的差異，導致我的新螢幕面板其實比舊的更靠近我的臉，所以視覺上稍微有點壓迫感。同時三角形的腳架也占用了更多的桌面空間，需要重新調整東西擺放的位置。</p>
+
+<h3 id="螢幕亮度">螢幕亮度</h3>
+
+<p>BENQ 的這塊螢幕很漂亮，但總覺得亮度太高了，即使在設定把亮度降到 0 了還是有點過亮。過去我在電腦桌前只會開檯燈，換了新螢幕之後一併改掉這個壞習慣，乖乖開房間的燈，不然真的太刺眼了。</p>
+
+<h3 id="hdmi-分配器">HDMI 分配器</h3>
+
+<p>這就跟螢幕完全無關了。我原本的螢幕只有一個 HDMI 輸入，所以我上了三進一出的分配器，剛好給筆電、PS 跟 NS 使用。<br />
+現在新螢幕有兩個輸入所以我把電腦的獨立出來，PS、NS 維持接在分配器上，這樣遊戲機剛好可以一起通過擷取卡，而電腦也不會因為經過擷取卡導致 HDCP 內容無法播放。</p>
+
+<p><img src="/public/res/2024/yideb66uy.jpg" alt="" /></p>
+
+<p>千算萬算沒算到的是這樣拆分之後分配器電力不足，沒辦法運作…最後只好多拉了一條 USB 線給他供電，還好 EX2710Q 本身有 USB 孔不用拉太遠，不然我桌面真的要被電線淹沒了。</p>
 
 </div>
 
@@ -148,7 +155,7 @@
   <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div>
   <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
 </div>
-<div class="likecoin-embed likecoin-button" data-liker-id="janelin612" data-href="https://janelin612.github.io/2018/01/08/vue-js-in-ie.html"></div>
+<div class="likecoin-embed likecoin-button" data-liker-id="janelin612" data-href="https://janelin612.github.io/2024/02/20/new-monitor-benq-ex2710q.html"></div>
 <script src="https://static.like.co/sdk/v1/button.js"></script>
 <hr />
 
@@ -157,18 +164,11 @@
     
     <li>
       <small>Previous :</small>
-      <h3><a href="/2017/10/19/tomcat-csp.html">Tomcat Servlet 設定同源政策
-          <small>19 Oct 2017</small></a>
+      <h3><a href="/2023/12/23/look-back-2023.html">回顧 2023
+          <small>23 Dec 2023</small></a>
       </h3>
     </li>
     
-    
-    <li>
-      <small>Next :</small>
-      <h3><a href="/2018/03/28/buleprint-api.html">使用Blueprint撰寫API文件
-          <small>28 Mar 2018</small></a>
-      </h3>
-    </li>
     
   </ul>
 </div>
