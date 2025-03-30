@@ -15,4 +15,6 @@ img { max-height: 560px; }
 
 .likecoin-button { margin: 0 !important; }
 
+iframe { max-width: 100%; }
+
 /*# sourceMappingURL=tars.css.map */
