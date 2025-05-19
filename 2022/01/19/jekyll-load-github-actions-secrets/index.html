@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><title>Jekyll透過Github部署時傳入環境變數 | Intertidal</title><meta property="og:site_name" content="Jekyll透過Github部署時傳入環境變數 | Intertidal"><meta property="og:title" content="Jekyll透過Github部署時傳入環境變數 | Intertidal"><meta property="og:url" content="https://janelin612.github.io/2022/01/19/jekyll-load-github-actions-secrets/"><meta name="description" content="在 Github Pages 上使用 Jekyll 寫部落格已經好幾年了。過去在查閱 GA 的報表時，偶爾會看到一些奇怪"><meta property="og:description" name="twitter:description" content="在 Github Pages 上使用 Jekyll 寫部落格已經好幾年了。過去在查閱 GA 的報表時，偶爾會看到一些奇怪"><meta property="og:image" name="twitter:image" content="https://janelin612.github.io/static/nk46le8.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="article"><link rel="canonical" href="https://janelin612.github.io/2022/01/19/jekyll-load-github-actions-secrets/"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/apple-touch-icon-144-precomposed.png"><link rel="shortcut icon" href="/static/favicon.ico"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="stylesheet" type="text/css" href="/styles/highlight.css"><link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml"><style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap') </style><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><h1 class="title"><a href="/" alt="Intertidal" title="Intertidal" itemprop="headline">Intertidal</a></h1><h2 class="subtitle"> 潮間帶工作室</h2><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/about" alt="About Me" title="About Me" itemprop="url">About Me</a></li><li itemprop="name"><a href="/archive" alt="Archive" title="Archive" itemprop="url">Archive</a></li><li class="icon-list"> <a href="/atom.xml"> <img src="/static/icon/rss-feed-tag.svg" alt="" srcset=""></a><a target="_blank" rel="noopener" href="https://github.com/janelin612"> <img src="/static/icon/github-circle.svg" alt="" srcset=""></a><a href=""> <img src="/static/icon/mail.svg" alt="" srcset=""></a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><div class="content"><article class="full"><h1 itemprop="headline">Jekyll透過Github部署時傳入環境變數</h1><span class="post-meta"><time itemprop="datePublished" datetime="2022-01-18T16:00:00.000Z">2022-01-19</time></span><p>在 Github Pages 上使用 Jekyll 寫部落格已經好幾年了。<br>過去在查閱 GA 的報表時，偶爾會看到一些奇怪的流量，一路追查下去才發現原來是我的整個專案被人家搬去改造成他自己的部落格網站了。</p>
+<p>雖然有點無奈，不過畢竟專案是連原始碼完整公開在網路上發布的，我就算想要阻止也阻止不了。</p>
+<p>但我想至少嘗試把一些 ID 識別資訊從專案原始碼裡面移除，改成建置時才動態導入，這樣就算專案被人家全部搬走卻沒有清理乾淨，也不影響我的網站。</p>
+<span id="more"></span>
+
+<blockquote>
+<p><strong>2023&#x2F;2&#x2F;21 補充</strong><br>後來改成將原始碼專案存放在私人 repo，並透過 Github Action 推送建置完成的資料到公開 repo 的方式完成隱藏原始碼，所以以下方法仍舊可行，但已不再使用。<br>詳情請見：<a target="_blank" rel="noopener" href="https://github.com/cpina/github-action-push-to-another-repository">github-action-push-to-another-repository</a></p>
+</blockquote>
+<p>為了達成這樣的目的，我要完成的事情大致上分成兩塊：</p>
+<ol>
+<li>讓 Jekyll 可以讀取環境變數並渲染到頁面上</li>
+<li>從 Github Actions 傳入參數做為建置區的環境變數</li>
+</ol>
+<h2 id="讓-Jekyll-讀取環境變數"><a href="#讓-Jekyll-讀取環境變數" class="headerlink" title="讓 Jekyll 讀取環境變數"></a>讓 Jekyll 讀取環境變數</h2><p>此功能仰賴套件<code>jekyll-dotenv</code>做到</p>
+<ol>
+<li>在 <code>Gemfile</code> 加入套件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem &#x27;jekyll-dotenv&#x27;</span><br></pre></td></tr></table></figure></li>
+<li>在<code>_config.yml</code>宣告使用<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plugins:</span><br><span class="line">    - jekyll-dotenv</span><br></pre></td></tr></table></figure></li>
+<li>將環境變數寫到<code>.env</code>檔內<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MY_ID=123</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>完成後就可以在頁面上使用<code>&#123;&#123;"&#123;&#123; site.env.MY_ID "&#125;&#125;&#125;&#125;</code>的方式讀取到環境變數了</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.rubydoc.info/gems/jekyll-dotenv/0.2.0">jekyll-dotenv 官方說明文件</a></p>
+</blockquote>
+<h2 id="使用-Github-Actions-傳入變數"><a href="#使用-Github-Actions-傳入變數" class="headerlink" title="使用 Github Actions 傳入變數"></a>使用 Github Actions 傳入變數</h2><p>Github Actions 是 Github 自家的 CI&#x2F;CD 服務。雖然 Jekyll 的專案可以很簡單的直接從專案後台啟動 Pages 的部署，但現在既然要額外做點修改，那勢必得乖乖自己寫設定檔了。</p>
+<p>寫法參考自</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://jekyllrb.com/docs/continuous-integration/github-actions/">Jekyll 官方說明文件</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/marketplace/actions/jekyll-actions">jekyll-action - GitHub Action</a></li>
+</ul>
+<p>在<code>.github/workflows</code>新增檔案<code>github-pages.yml</code>，填入以下內容  </p>
+<img src="/static/2022/carbon-jekyll-yaml.png" class="full-height">
+
+<p>傳入變數的功能是從<code>19</code>行 <code>Export variables</code> 開始，他會從 repo 的設定裡拿出變數並寫入到建置環境的<code>.env</code>檔內</p>
+<blockquote>
+<p>其他的段落需要說明就參照上面的文件吧，幾乎都照抄的</p>
+</blockquote>
+<h2 id="在-Github-的專案設定填入變數"><a href="#在-Github-的專案設定填入變數" class="headerlink" title="在 Github 的專案設定填入變數"></a>在 Github 的專案設定填入變數</h2><p>最後別忘了去專案的設定區設定你的 Actions secrets，設定方法一樣參照官方文件啦</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository">Encrypted secrets - Creating encrypted secrets for a repository</a></p>
+</blockquote>
+<p>全部完成後你只要執行<code>git push</code>後，應該可以在<code>gh-pages</code>分支看到建置成果，若沒有任何問題，就去後台把 Pages 的 Source 指向<code>gh-pages</code>吧</p>
+</article><hr><div class="bmc-block"> <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a></div><iframe src="https://button.like.co/in/embed/janelin612/button?referrer=https%3A%2F%2Fjanelin612.github.io%2F2022%2F01%2F19%2Fjekyll-load-github-actions-secrets%2F" frameborder="0"> </iframe><hr><div class="related-posts"><div> <small> Previous: </small><div> <a href="/2022/02/15/yahoo-ads/">Yahoo廣告投放心得</a></div></div><div> <small> Next: </small><div><a href="/2021/12/25/look-back-2021/">回顧 2021</a></div></div></div></div></main></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><title>在有安裝haproxy的伺服器更新SSL憑證 | Intertidal</title><meta property="og:site_name" content="在有安裝haproxy的伺服器更新SSL憑證 | Intertidal"><meta property="og:title" content="在有安裝haproxy的伺服器更新SSL憑證 | Intertidal"><meta property="og:url" content="https://janelin612.github.io/2018/04/30/letsencrypt-with-haproxy/"><meta name="description" content="
+Let’s Encrypt 憑證每次有效期限三個月，今天剛好需要更新，由於強者我同事沒有把他寫成排程，所以只好慢慢來研"><meta property="og:description" name="twitter:description" content="
+Let’s Encrypt 憑證每次有效期限三個月，今天剛好需要更新，由於強者我同事沒有把他寫成排程，所以只好慢慢來研"><meta property="og:image" name="twitter:image" content="https://janelin612.github.io/static/2018/letsencrypt.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="article"><link rel="canonical" href="https://janelin612.github.io/2018/04/30/letsencrypt-with-haproxy/"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/apple-touch-icon-144-precomposed.png"><link rel="shortcut icon" href="/static/favicon.ico"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="stylesheet" type="text/css" href="/styles/highlight.css"><link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml"><style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap') </style><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><h1 class="title"><a href="/" alt="Intertidal" title="Intertidal" itemprop="headline">Intertidal</a></h1><h2 class="subtitle"> 潮間帶工作室</h2><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/about" alt="About Me" title="About Me" itemprop="url">About Me</a></li><li itemprop="name"><a href="/archive" alt="Archive" title="Archive" itemprop="url">Archive</a></li><li class="icon-list"> <a href="/atom.xml"> <img src="/static/icon/rss-feed-tag.svg" alt="" srcset=""></a><a target="_blank" rel="noopener" href="https://github.com/janelin612"> <img src="/static/icon/github-circle.svg" alt="" srcset=""></a><a href=""> <img src="/static/icon/mail.svg" alt="" srcset=""></a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><div class="content"><article class="full"><h1 itemprop="headline">在有安裝haproxy的伺服器更新SSL憑證</h1><span class="post-meta"><time itemprop="datePublished" datetime="2018-04-29T16:00:00.000Z">2018-04-30</time></span><p><img src="/static/2018/letsencrypt.jpg"></p>
+<p>Let’s Encrypt 憑證每次有效期限三個月，今天剛好需要更新，由於強者我同事沒有把他寫成排程，所以只好慢慢來研究怎麼更新了。</p>
+<p>之前每次更新都搞得人仰馬翻的，這次終於有那個閒工夫稍微紀錄一下工作流程</p>
+<span id="more"></span>
+
+<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
+<li><p>取得最高權限</p>
+<pre><code>$ sudo -i
+</code></pre>
+</li>
+<li><p>關閉 haproxy 服務</p>
+<pre><code>$ service haproxy stop
+</code></pre>
+</li>
+<li><p>執行<a target="_blank" rel="noopener" href="https://certbot.eff.org/">certbot</a></p>
+<pre><code>$ certbot renew
+</code></pre>
+<blockquote>
+<p>這一個步驟老是在出錯，下次遇到再來看看是否真的有解決問題了 (汗</p>
+</blockquote>
+</li>
+<li><p>把 renew 好的金鑰移到正確的地方</p>
+<pre><code>$ cd /etc/letsencrypt/live/YOUR.SITE.NAME
+$ cat fullchain.pem privkey.pem &gt; /etc/haproxy/certs/YOUR.SITE.NAME.pem
+</code></pre>
+<blockquote>
+<p>YOUR.SITE.NAME 記得替換成你們家的網域</p>
+</blockquote>
+</li>
+<li><p>重新啟動 haproxy</p>
+<pre><code>$ service haproxy start
+</code></pre>
+</li>
+</ol>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>以上的行為應該要寫成排程定時執行才對 (例如六個月過期那就每五個月執行一次之類的)<br>但我合理懷疑公司之前的 IT 同事選擇留一手，也就是<del>如果我離職了就沒有人有能力維護</del> ，那既然這樣我也從善如流，繼續這個陋習囉(?)</p>
+</article><hr><div class="bmc-block"> <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a></div><iframe src="https://button.like.co/in/embed/janelin612/button?referrer=https%3A%2F%2Fjanelin612.github.io%2F2018%2F04%2F30%2Fletsencrypt-with-haproxy%2F" frameborder="0"> </iframe><hr><div class="related-posts"><div> <small> Previous: </small><div> <a href="/2018/05/25/launch-a-website-from-zero/">從無到有把公司網站架起來</a></div></div><div> <small> Next: </small><div><a href="/2018/04/14/csharp-gitlab-ci/">C#.NET專案使用Gitlab CI部署至IIS</a></div></div></div></div></main></body></html>
