@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><title>使用OBS串接視訊通話 | Intertidal</title><meta property="og:site_name" content="使用OBS串接視訊通話 | Intertidal"><meta property="og:title" content="使用OBS串接視訊通話 | Intertidal"><meta property="og:url" content="https://janelin612.github.io/2020/12/08/obs-as-video-call/"><meta name="description" content="
+用 OBS 開直播的教學網路上應該是多到數不清，這裡簡單紀錄的是如果沒有要打直播訊號出去，而是想要接到 Line 啦、"><meta property="og:description" name="twitter:description" content="
+用 OBS 開直播的教學網路上應該是多到數不清，這裡簡單紀錄的是如果沒有要打直播訊號出去，而是想要接到 Line 啦、"><meta property="og:image" name="twitter:image" content="https://janelin612.github.io/static/2020/obs-vc.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="article"><link rel="canonical" href="https://janelin612.github.io/2020/12/08/obs-as-video-call/"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/apple-touch-icon-144-precomposed.png"><link rel="shortcut icon" href="/static/favicon.ico"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="stylesheet" type="text/css" href="/styles/highlight.css"><link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml"><style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap') </style><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><h1 class="title"><a href="/" alt="Intertidal" title="Intertidal" itemprop="headline">Intertidal</a></h1><h2 class="subtitle"> 潮間帶工作室</h2><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/about" alt="About Me" title="About Me" itemprop="url">About Me</a></li><li itemprop="name"><a href="/archive" alt="Archive" title="Archive" itemprop="url">Archive</a></li><li class="icon-list"> <a href="/atom.xml"> <img src="/static/icon/rss-feed-tag.svg" alt="" srcset=""></a><a target="_blank" rel="noopener" href="https://github.com/janelin612"> <img src="/static/icon/github-circle.svg" alt="" srcset=""></a><a href=""> <img src="/static/icon/mail.svg" alt="" srcset=""></a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><div class="content"><article class="full"><h1 itemprop="headline">使用OBS串接視訊通話</h1><span class="post-meta"><time itemprop="datePublished" datetime="2020-12-08T16:00:00.000Z">2020-12-09</time></span><p><img src="/static/2020/obs-vc.jpg"></p>
+<p>用 OBS 開直播的教學網路上應該是多到數不清，這裡簡單紀錄的是如果沒有要打直播訊號出去，而是想要接到 Line 啦、Skype 之類的網路視訊電話的話我是怎麼設定的。</p>
+<span id="more"></span>
+
+<h2 id="基礎思維"><a href="#基礎思維" class="headerlink" title="基礎思維"></a>基礎思維</h2><p>分別模擬出一台虛擬的視訊鏡頭和一支虛擬的麥克風，然後在軟體內把訊號源設定成他們，應該就完成了。</p>
+<h2 id="視訊"><a href="#視訊" class="headerlink" title="視訊"></a>視訊</h2><p>視訊的部分蠻好解決的，只要安裝額外的 plugin 即可</p>
+<p><a target="_blank" rel="noopener" href="https://obsproject.com/forum/resources/obs-virtualcam.539/">OBS-VirtualCam</a><br>裝好之後在 OBS 的上方工具列裡的<code>工具</code>或者右下的<code>控制項</code>都有按鈕可以啟動虛擬攝影機，啟動之後你 OBS 的預覽畫面就是實際輸出的畫面了。</p>
+<h2 id="音訊"><a href="#音訊" class="headerlink" title="音訊"></a>音訊</h2><p>音訊的部分我花了比較多時間在設定，因為我有以下幾個需求希望達成：</p>
+<ol>
+<li>最後輸出的結果包含電腦的音效 &amp; 我自己實體麥克風的收音</li>
+<li>我可以聽到自己電腦音效</li>
+<li>我不要聽到自己麥克風的聲音</li>
+<li>電腦的音效不要包含對方的聲音</li>
+</ol>
+<p>要達到以上幾點，測試了一大圈之後的結論是：<strong>我需要兩路的虛擬音效卡</strong></p>
+<h3 id="虛擬音效卡-virtual-audio-cable"><a href="#虛擬音效卡-virtual-audio-cable" class="headerlink" title="虛擬音效卡(virtual audio cable)"></a>虛擬音效卡(virtual audio cable)</h3><p>vac 會在你電腦上模擬出一對成對的喇叭、麥克風組合，你只要把聲音選擇用他模擬的喇叭輸出，你就可以在他對應的麥克風收到原封不動的訊號。</p>
+<p>基本上如果只有一路，就可以做到我的第一個需求了。</p>
+<blockquote>
+<p>電腦用 vac 輸出，同時用 vac 監聽我的麥克風，最後直接把 vac 的 input 指定成最後的麥克風</p>
+</blockquote>
+<p>但如果需要達到 2 跟後面的需求，那會需要兩路以上才能把聲音區隔開來。</p>
+<p><img src="/static/2020/obs01.png"><br>最後設定大概如上圖所示，紫色線表示該連結是在 OBS 內設定的，黑色線則是 Windows 的音效管理</p>
+<ul>
+<li>用 Windows 內建的音效管理選擇用耳機監聽送到第一路的音樂</li>
+<li>用 OBS 擷取麥克風跟第一路的輸出</li>
+<li>啟動 OBS 的監聽，並指派給第二路</li>
+<li>用第二路輸出監聽的聲音當成最終輸出</li>
+</ul>
+<blockquote>
+<p>備註 1: OBS 的監聽要在下面的音效混音器面板右鍵選擇<code>進階音訊屬性</code>，裡面可以開啟監聽。<br>而監聽的輸出選擇則是在<code>設定/音效</code>裡面指定<code>監測裝置</code></p>
+</blockquote>
+<blockquote>
+<p>備註 2: Windows 內建的監聽是在工作列對右下角的音量圖示點右鍵選<code>音效</code>，在錄製的分頁對麥克風的內容進行接聽設定。</p>
+</blockquote>
+<h3 id="解決方案"><a href="#解決方案" class="headerlink" title="解決方案"></a>解決方案</h3><p>虛擬音效卡我在網路上查到兩個軟體</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://vb-audio.com/Cable/">VB-Audio</a></li>
+<li><a target="_blank" rel="noopener" href="https://vac.muzychenko.net/en/">Virtual Audio Cable (VAC)</a></li>
+</ul>
+<p>這兩家都可以用，然後都有一個共同的特色就是免費版只支援一路，要多路都要付費購買。於是我腦筋一轉，決定同時安裝這兩個軟體，藉此達成免費的兩路虛擬音效卡。</p>
+<h3 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h3><ul>
+<li>如果你使用的通訊軟體有內建的降躁啦，消除回音之類的技術，記得通通關掉，不然你的聲音會怪怪的。</li>
+<li>如果有更好的做法麻煩請提供給我，不然我覺得現在的解法還是有點臃腫 : (</li>
+</ul>
+</article><hr><div class="bmc-block"> <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a></div><iframe src="https://button.like.co/in/embed/janelin612/button?referrer=https%3A%2F%2Fjanelin612.github.io%2F2020%2F12%2F08%2Fobs-as-video-call%2F" frameborder="0"> </iframe><hr><div class="related-posts"><div> <small> Previous: </small><div> <a href="/2021/01/11/ios-safari-on-windows/">在Windows上對ios的Safari進行偵錯</a></div></div><div> <small> Next: </small><div><a href="/2020/07/02/about-n46-crawler/">如何備份乃木坂畢業成員部落格</a></div></div></div></div></main></body></html>

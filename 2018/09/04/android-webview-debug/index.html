@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><title>對Android APP內的WebView進行偵錯 | Intertidal</title><meta property="og:site_name" content="對Android APP內的WebView進行偵錯 | Intertidal"><meta property="og:title" content="對Android APP內的WebView進行偵錯 | Intertidal"><meta property="og:url" content="https://janelin612.github.io/2018/09/04/android-webview-debug/"><meta name="description" content="紀錄一下從怎麼從WebView內找出前端的問題並把它解決"><meta property="og:description" name="twitter:description" content="紀錄一下從怎麼從WebView內找出前端的問題並把它解決"><meta property="og:image" name="twitter:image" content="https://janelin612.github.io/static/2018/2018-09-05_215920.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="article"><link rel="canonical" href="https://janelin612.github.io/2018/09/04/android-webview-debug/"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/apple-touch-icon-144-precomposed.png"><link rel="shortcut icon" href="/static/favicon.ico"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="stylesheet" type="text/css" href="/styles/highlight.css"><link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml"><style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap') </style><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><h1 class="title"><a href="/" alt="Intertidal" title="Intertidal" itemprop="headline">Intertidal</a></h1><h2 class="subtitle"> 潮間帶工作室</h2><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/about" alt="About Me" title="About Me" itemprop="url">About Me</a></li><li itemprop="name"><a href="/archive" alt="Archive" title="Archive" itemprop="url">Archive</a></li><li class="icon-list"> <a href="/atom.xml"> <img src="/static/icon/rss-feed-tag.svg" alt="" srcset=""></a><a target="_blank" rel="noopener" href="https://github.com/janelin612"> <img src="/static/icon/github-circle.svg" alt="" srcset=""></a><a href=""> <img src="/static/icon/mail.svg" alt="" srcset=""></a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><div class="content"><article class="full"><h1 itemprop="headline">對Android APP內的WebView進行偵錯</h1><span class="post-meta"><time itemprop="datePublished" datetime="2018-09-04T16:00:00.000Z">2018-09-05</time></span><p><img src="/static/2018/2018-09-05_215920.jpg"><br>早上收到 PM 訊息，說驗收時發現 APP 內的 WebView 沒有畫面<br>我打開也確實發現是一片空白</p>
+<p>最麻煩的就是這種問題，完全沒有任何提示….</p>
+<span id="more"></span>
+
+<h3 id="嘗試讀取錯誤訊息"><a href="#嘗試讀取錯誤訊息" class="headerlink" title="嘗試讀取錯誤訊息"></a>嘗試讀取錯誤訊息</h3><p>隨便估狗了一下，發現原來可以直接用電腦版的 Chrome 去對手機 APP 內的 Chrome 偵錯，這應該就是我需要的東西了。</p>
+<ol>
+<li>配置程式<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebView.setWebContentsDebuggingEnabled(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+對你的 Webview 呼叫此方法，即可允許從電腦版去讀取手機的 Chrome 資訊了</li>
+<li>手機用 USB 接上電腦，然後確定 USB 偵錯啟用了 (身為一個 Android Developer 這些應該都設定好了)</li>
+<li>開啟你的 Chrome，然後在網址列輸入 <code>chrome://inspect</code><br>一切順利的話即會在畫面中顯示你的 WebView 的標題，點選<strong>inspect</strong>即可啟用開發者工具。</li>
+</ol>
+<h3 id="召喚前端工程師"><a href="#召喚前端工程師" class="headerlink" title="召喚前端工程師"></a>召喚前端工程師</h3><p>進了開發者工具之後就是前端工程師的工作了。<br>那如果你跟我一樣很不幸的也是那個前端工程師的話，你最後應該要可以從 console 跟一堆 js 檔裡面找出問題的癥結點。</p>
+<p>我最後查到的原因是因為 WebView 內的<code>localstorage</code>不能用，所以噴了 NPE</p>
+<h3 id="正確解決問題"><a href="#正確解決問題" class="headerlink" title="正確解決問題"></a>正確解決問題</h3><p>對 WebView 設定允許使用<code>localstorage</code>即可解決問題：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">WebView</span> <span class="variable">webView</span> <span class="operator">=</span> (WebView) view.findViewById(R.id.webview);</span><br><span class="line">webView.getSettings().setJavaScriptEnabled(<span class="literal">true</span>); <span class="comment">//允許使用JS</span></span><br><span class="line">webView.getSettings().setDomStorageEnabled(<span class="literal">true</span>); <span class="comment">//允許使用localstorage</span></span><br></pre></td></tr></table></figure>
+
+<p>就這樣，客戶又可以繼續走驗收流程，我離結案以及尾款又更近一步了，真是可喜可賀。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li>遠程調試 WebView : <a target="_blank" rel="noopener" href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/webviews?hl=zh-tw">https://developers.google.com/web/tools/chrome-devtools/remote-debugging/webviews?hl=zh-tw</a></li>
+<li>Android webview &amp; localStorage : <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/5899087/android-webview-localstorage">https://stackoverflow.com/questions/5899087/android-webview-localstorage</a></li>
+</ul>
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "HowTo",
+    "name": "使用Google Chrome對Android APP內的WebView進行偵錯",
+    "step": [
+        {
+            "@type": "HowToStep",
+            "name": "配置程式碼",
+            "text": "對你的Webview呼叫setWebContentsDebuggingEnabled()方法"
+        },
+        {
+            "@type": "HowToStep",
+            "name": "啟用USB偵錯",
+            "text": "將手機連上電腦，並確定開發者模式內的USB偵錯已經啟用"
+        },
+        {
+            "@type": "HowToStep",
+            "name": "啟動Chrome",
+            "text": "於Chrome的網址列輸入chrome://inspect，即可進入控制台"
+        }
+    ]
+}
+</script>
+</article><hr><div class="bmc-block"> <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a></div><iframe src="https://button.like.co/in/embed/janelin612/button?referrer=https%3A%2F%2Fjanelin612.github.io%2F2018%2F09%2F04%2Fandroid-webview-debug%2F" frameborder="0"> </iframe><hr><div class="related-posts"><div> <small> Previous: </small><div> <a href="/2018/09/11/others-resignation/">別人的離職心得</a></div></div><div> <small> Next: </small><div><a href="/2018/08/15/php5-and-mysql8/">PHP5 與 MySQL8 的相容性問題</a></div></div></div></div></main></body></html>

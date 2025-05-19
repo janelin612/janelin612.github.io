@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><title>如何備份乃木坂畢業成員部落格 | Intertidal</title><meta property="og:site_name" content="如何備份乃木坂畢業成員部落格 | Intertidal"><meta property="og:title" content="如何備份乃木坂畢業成員部落格 | Intertidal"><meta property="og:url" content="https://janelin612.github.io/2020/07/02/about-n46-crawler/"><meta name="description" content="
+一直都有想寫這一篇，但因為具體上不知道要寫到多細所以遲遲沒有動筆。"><meta property="og:description" name="twitter:description" content="
+一直都有想寫這一篇，但因為具體上不知道要寫到多細所以遲遲沒有動筆。"><meta property="og:image" name="twitter:image" content="https://janelin612.github.io/n46-crawler/ogimg.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="article"><link rel="canonical" href="https://janelin612.github.io/2020/07/02/about-n46-crawler/"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/apple-touch-icon-144-precomposed.png"><link rel="shortcut icon" href="/static/favicon.ico"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="stylesheet" type="text/css" href="/styles/highlight.css"><link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml"><style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap') </style><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><h1 class="title"><a href="/" alt="Intertidal" title="Intertidal" itemprop="headline">Intertidal</a></h1><h2 class="subtitle"> 潮間帶工作室</h2><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/about" alt="About Me" title="About Me" itemprop="url">About Me</a></li><li itemprop="name"><a href="/archive" alt="Archive" title="Archive" itemprop="url">Archive</a></li><li class="icon-list"> <a href="/atom.xml"> <img src="/static/icon/rss-feed-tag.svg" alt="" srcset=""></a><a target="_blank" rel="noopener" href="https://github.com/janelin612"> <img src="/static/icon/github-circle.svg" alt="" srcset=""></a><a href=""> <img src="/static/icon/mail.svg" alt="" srcset=""></a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><div class="content"><article class="full"><h1 itemprop="headline">如何備份乃木坂畢業成員部落格</h1><span class="post-meta"><time itemprop="datePublished" datetime="2020-07-02T16:00:00.000Z">2020-07-03</time></span><p><img src="https://janelin612.github.io/n46-crawler/ogimg.jpg"></p>
+<p>一直都有想寫這一篇，但因為具體上不知道要寫到多細所以遲遲沒有動筆。</p>
+<span id="more"></span>
+
+<h2 id="緣起"><a href="#緣起" class="headerlink" title="緣起"></a>緣起</h2><p>小弟 2017 年中因為接觸 16 單入坑，當時自然是已經沒有橋本的部落格可以看了，所以當年年底伊藤万理華畢業的時候就想說不然來把部落格文章通通拉一份下來好了，以後說不定忽然會想看。</p>
+<p>那時候草草規劃了幾個決定：</p>
+<ul>
+<li>用 Node.js 寫：<br>上班寫 Android，下班 Side-project 換個語言。在 Github 上找到了這個：<a target="_blank" rel="noopener" href="https://github.com/bda-research/node-crawler"> bda-research &#x2F;<br>node-crawler </a>，爬蟲主要是依賴這個套件完成的。</li>
+<li>資料存成 JSON 格式：<br>原因主要還是懶，資料庫管理一直都是我的弱項，直覺就是逃避。加上我希望架成靜態網站，JSON 方便直接在前端處理</li>
+<li>不保存底下的留言：<br><del>其他人講了什麼我才不在乎</del> 由於上面提到的，資料型態是 JSON，如果再把留言全部拉下來 JSON 檔真的會太大</li>
+<li>圖片要全部下載：<br>雖然專案容量因此暴增，但是是值得的</li>
+<li>採用成員宣布畢業才一口氣下載的設計：<br>其實比較好的做法應該是架一台伺服器，每次有人發文就下載一篇，這樣才能存到原始的大圖 (部落格發表後一陣子圖片會被壓縮，鳥設計)，但這樣很多架構都要改掉，還是一個字：懶</li>
+</ul>
+<h2 id="爬蟲流程"><a href="#爬蟲流程" class="headerlink" title="爬蟲流程"></a>爬蟲流程</h2><blockquote>
+<p><strong>2022 補充</strong>：底下的流程已經因為官網在 2022 年改版過而完全失效了，看看就好</p>
+</blockquote>
+<ol>
+<li>指定某個成員之後爬取年月的列表</li>
+<li>進入每個月份爬取該月總分頁數</li>
+<li>於每個分頁爬取標題清單</li>
+<li>下載清單的所有文章</li>
+</ol>
+<p>之所以設計這樣流程，原因是因為我發現如果邏輯改成打開最新一篇之後一直爬上一篇，有機會掛掉，掛掉的原因分成兩種</p>
+<ol>
+<li>網站設計的問題：<br>好像上一頁不能無限的按回到第一篇文章(分頁數疑似有上限)</li>
+<li>文章內文會有問題：<br>部落格本質上是 UGC(用戶原創內容)，如果成員把文章的 html 編輯壞了雖然在網站上可以顯示，但爬蟲會掛掉 XD 為了避免任何一篇文章出錯就把整個爬蟲弄停真的是煞費苦心…</li>
+</ol>
+<p>所以雖然這樣爬起來不是很快，但應該是堪用了，我也怕速度再提升爬蟲會被網站擋下來。</p>
+<p>附上<a target="_blank" rel="noopener" href="https://github.com/janelin612/n46-crawler/blob/master/src/n46-crawler.js">程式碼</a>，如果你真的有興趣的話。</p>
+<h2 id="開發閱讀用的網頁"><a href="#開發閱讀用的網頁" class="headerlink" title="開發閱讀用的網頁"></a>開發閱讀用的網頁</h2><p>這本來只是個後端爬蟲專案，沒想到隨手寫個簡單的閱讀器竟然花了我一大堆的時間…<br><a href="https://janelin612.github.io/n46-crawler/">乃木坂 46 卒業メンバーのブログ</a></p>
+<p>最原始的概念很簡單，就是一個 html 檔，打開可以讀取同目錄下的 JSON，就這樣。</p>
+<p><img src="/static/2020/2020-07-02_222459.jpg"></p>
+<blockquote>
+<p>其實第一版的畫面跟現在沒有太多改變</p>
+</blockquote>
+<p>畫面是用 Vue.js 兜出來的，由於前述原因所以也沒有用<code>vue-cli</code>開專案，直接引入 js 檔隨隨便便就開工了。<br>但寫一寫發現了一些問題…</p>
+<h3 id="Chrome-的file-access-from-files"><a href="#Chrome-的file-access-from-files" class="headerlink" title="Chrome 的file-access-from-files"></a>Chrome 的<code>file-access-from-files</code></h3><p>這問題一開始是 Chrome 獨有的，我一直都是 Firefox 的使用者，很後來才注意到我最初的構想用一個單純的 html 文件當閱讀器是行不通的，因為 Chrome 不允許在檔案內存取另一個檔案（現在 Firefox 也不支援了），為此我後來還特別寫了一篇文章聊怎麼處理這件事：</p>
+<blockquote>
+<a href="/2019/06/18/chrome-file-access-from-files/" title="處理Chrome無法讀取本地端文件問題">處理 Chrome 無法讀取本地端文件問題</a></blockquote>
+<p>這問題的解法就是要架站，那既然要架站乾脆就直接丟上 github pages 的服務吧。</p>
+<h3 id="要認真經營嗎？"><a href="#要認真經營嗎？" class="headerlink" title="要認真經營嗎？"></a>要認真經營嗎？</h3><p>這東西毫無疑問的有著作權問題，所以我起初設了幾個規則</p>
+<ol>
+<li>不放廣告</li>
+<li>不讓搜尋引擎索引</li>
+<li>不塞 GA(Google Analytics)</li>
+</ol>
+<p>但後來基於個人的好奇心<del>以及虛榮心</del>，除了第一點之外剩下的都做了…</p>
+<h4 id="搜尋引擎優化"><a href="#搜尋引擎優化" class="headerlink" title="搜尋引擎優化"></a>搜尋引擎優化</h4><p>去 Google 註冊一個網站很簡單，但要被真的搜尋到可不容易。<br>對前端框架跟 SEO 有點概念的人可能會猜到問題點，沒有錯，我需要做 SSR(Server side rendering)</p>
+<blockquote>
+<p>不知道 SSR 是什麼的同學可以閱讀一下這篇的第一段：<br><a target="_blank" rel="noopener" href="https://medium.com/@jackercleaninglab/ssr-nuxt-js-%E8%B6%85%E5%85%A5%E9%96%80-84a0823b45ed">SSR — Nuxt.js 超入門</a></p>
+</blockquote>
+<p>但我只引入單檔，沒辦法使用 <a target="_blank" rel="noopener" href="https://nuxtjs.org/">Nuxt.js</a> 幫我做好，所以這部份後來算是用手刻的方法硬著頭皮把它完成的。<br>有賴於 Google 的搜尋引擎爬蟲可以執行 JS，所以我用了 Babel 把程式轉成 Google Bot 可以執行的版本加上預先填入部分資訊到 html 檔內完成 87% 像的 SSR，至少搜尋引擎可以辨識他們是不同的網頁，而不是大量重複內容然後降我排名。</p>
+<p>後來寫了一隻程式專門做這件事情，把資料預填好然後複製 html 到對應的資料夾內，並產生 Sitemap.xml，現在要手動的部分越來越少了。</p>
+<h4 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h4><p>這應該是可以分享的吧？<br><img src="/static/2020/2020-07-02_231233.jpg"></p>
+<p>然後第一名的搜尋關鍵字是<a target="_blank" rel="noopener" href="https://www.google.com/search?q=%E8%A5%BF%E9%87%8E%E4%B8%83%E7%80%AC+%E3%83%96%E3%83%AD%E3%82%B0">西野七瀬 ブログ</a>，用個字去查排名比七瀨的官網還要前面，<del>希望官方不要宰了我</del></p>
+<p>至於最多人看的前五名分別是：</p>
+<p><img src="/static/2020/2020-07-04_180738.jpg"></p>
+<h3 id="RWD"><a href="#RWD" class="headerlink" title="RWD"></a>RWD</h3><p>掛了 GA 之後發現大部分的使用者都是使用手機，所以開始著手處理 RWD<br>為了精簡要做的事情，我選擇把左手邊兩塊（成員資料、文章列表）做成浮動的，需要的時候滑出來，要看文章的時候會向左收闔，完全使用 CSS 達成，最後的成果我還蠻喜歡的。</p>
+<h2 id="未來方向"><a href="#未來方向" class="headerlink" title="未來方向"></a>未來方向</h2><p>爬蟲本身沒啥好改的了，只要乃木坂的官網沒有大改版我應該就不會再去改它。之前有額外寫一個櫸坂 46 的版本，可以運作，但我沒有實際在用，寫好玩的。</p>
+<p>但網站本身倒是蠻多事情可以做的</p>
+<ul>
+<li>買一個域名：<br>目前使用 github pages 給的預設名稱，變成會跟我現在這個部落格互相干擾 SEO，GA 資料也都混在一起，更重要的是網址直接就是我的 github 帳號名稱實在是有點赤裸，未來看要幫我的部落格換一個域名，還是幫這個站換域名。</li>
+<li>用 Nuxt.js 完全改寫：<br>前面提到克難的 SSR，終極解法還是整個網站全部改寫一遍，目前有在嘗試了，只是遇到各種問題呈現一個半放棄的狀態，再給我一點時間吧。<blockquote>
+<p><strong>後續更新</strong>：<a href="/2021/07/20/turn-into-nuxtjs/" title="用Nuxt.js改寫舊的專案">用 Nuxt.js 改寫舊的專案</a></p>
+</blockquote>
+</li>
+<li>建資料庫、後端程式：<br>現在存成 json 最大的問題是要一口氣下載全部的文章才能顯示，浪費很多時間跟流量，還是要有一個後端才行。但這個真的很麻煩我覺得應該只是提一下，永遠不會去做 XD</li>
+<li>往前追加成員：<br>現存最早的資料是橋本的，看能不能至少補個深川麻衣的。但這等於要去爬別人爬的第二手資料，爬蟲要全部重寫，也不是一件容易的事情。</li>
+</ul>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>這篇本來寫了三分之一就擺著，是昨天就這麼剛好在推特看到睽違了三年的橋本的消息才想到該來把它完成。</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">奈々未ちゃんが<br>CELENAスタート初日にお花を持って来てくれた😭✨<br><br>あれからずーっとずーっと<br>綺麗で可愛いよ😌✨<br><br>選んでくれたお花の色も<br>センスが良すぎる🥺💕<br><br>本当にありがとう😭<br>これからもよろしくお願いします🙏<a target="_blank" rel="noopener" href="https://twitter.com/hashtag/%E6%A9%8B%E6%9C%AC%E5%A5%88%E3%80%85%E6%9C%AA?src=hash&amp;ref_src=twsrc%5Etfw">#橋本奈々未</a>　<a target="_blank" rel="noopener" href="https://twitter.com/hashtag/%E7%BE%8E%E5%AE%B9%E5%AE%A4?src=hash&amp;ref_src=twsrc%5Etfw">#美容室</a> <a target="_blank" rel="noopener" href="https://twitter.com/hashtag/%E7%BE%8E%E5%AE%B9%E5%B8%AB?src=hash&amp;ref_src=twsrc%5Etfw">#美容師</a> <a target="_blank" rel="noopener" href="https://twitter.com/hashtag/%E9%9D%92%E5%B1%B1?src=hash&amp;ref_src=twsrc%5Etfw">#青山</a> <a target="_blank" rel="noopener" href="https://twitter.com/hashtag/%E8%A1%A8%E5%8F%82%E9%81%93?src=hash&amp;ref_src=twsrc%5Etfw">#表参道</a> <a target="_blank" rel="noopener" href="https://twitter.com/hashtag/%E3%83%88%E3%83%AA%E3%83%BC%E3%83%88%E3%83%A1%E3%83%B3%E3%83%88?src=hash&amp;ref_src=twsrc%5Etfw">#トリートメント</a> <a target="_blank" rel="noopener" href="https://t.co/mOWg93bF5U">pic.twitter.com/mOWg93bF5U</a></p>&mdash; kanami (@kanami_k_820) <a target="_blank" rel="noopener" href="https://twitter.com/kanami_k_820/status/1278308851977031681?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</article><hr><div class="bmc-block"> <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a></div><iframe src="https://button.like.co/in/embed/janelin612/button?referrer=https%3A%2F%2Fjanelin612.github.io%2F2020%2F07%2F02%2Fabout-n46-crawler%2F" frameborder="0"> </iframe><hr><div class="related-posts"><div> <small> Previous: </small><div> <a href="/2020/12/08/obs-as-video-call/">使用OBS串接視訊通話</a></div></div><div> <small> Next: </small><div><a href="/2020/06/29/webpack-from-exist-project/">將Webpack套用至現存的專案</a></div></div></div></div></main></body></html>
