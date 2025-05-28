@@ -646,6 +646,12 @@ main .pagination {
 main .pagination a {
   padding: 8px;
 }
+main .page ul {
+  padding: 4px 0 4px 16px;
+}
+main .page li {
+  padding: 3px 0;
+}
 main article img {
   border-radius: 3px;
   height: auto;
@@ -656,6 +662,12 @@ main article img {
 main article h2 {
   border-left: solid #2980b9 6px;
   padding: 8px 16px;
+}
+main article ul {
+  padding: 4px 0 4px 16px;
+}
+main article li {
+  padding: 2px 0;
 }
 main article.item {
   border-bottom: 1px solid rgba(0,0,0,0.15);
@@ -689,13 +701,7 @@ main article.item:after {
   box-shadow: #f8f8f8 0 0 0 5px;
 }
 main article.full h2 {
-  margin: 0;
-}
-main article.full ul {
-  padding: 4px 0 4px 16px;
-}
-main article.full li {
-  padding: 4px 0;
+  margin: 1rem 0;
 }
 main article.full a {
   text-decoration: none;
@@ -711,7 +717,7 @@ main article.full blockquote {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  margin: 1em 0;
+  margin: 1.5rem 0;
   padding: 0 0 0 1em;
   border-left: #666 0.3em solid;
   color: #666;
@@ -1050,7 +1056,10 @@ h3 {
   font-size: 2.33rem;
   margin-top: 1.4rem;
 }
-h4,
+h4 {
+  font-size: 1.85rem;
+  margin-top: 1.2rem;
+}
 h5,
 h6 {
   font-size: 1.67rem;
@@ -1094,7 +1103,7 @@ ul,
 ol,
 dl,
 table {
-  margin: 16px 0;
+  margin: 12px 0;
 }
 ol ol,
 ul ul,
