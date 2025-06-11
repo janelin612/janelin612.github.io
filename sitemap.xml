@@ -44,7 +44,7 @@
   <url>
     <loc>https://janelin612.github.io/2025/06/02/2025-nagoya/</loc>
     
-    <lastmod>Thu Jun 05 2025 00:15:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Wed Jun 11 2025 00:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -52,7 +52,7 @@
   <url>
     <loc>https://janelin612.github.io/about/</loc>
     
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-06-11</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -60,7 +60,7 @@
   <url>
     <loc>https://janelin612.github.io/archive/</loc>
     
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-06-11</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -181,14 +181,6 @@
     <loc>https://janelin612.github.io/2024/05/21/switch-to-s24/</loc>
     
     <lastmod>Thu Sep 19 2024 23:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2019/08/29/bloodborne/</loc>
-    
-    <lastmod>2019-08-28</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -333,14 +325,6 @@
     <loc>https://janelin612.github.io/2022/03/10/manage-kobo-books-on-notion/</loc>
     
     <lastmod>Thu Nov 03 2022 16:40:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2018/03/28/buleprint-api/</loc>
-    
-    <lastmod>2018-03-27</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -514,6 +498,14 @@
   </url>
   
   <url>
+    <loc>https://janelin612.github.io/2019/08/29/bloodborne/</loc>
+    
+    <lastmod>2019-08-28</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>https://janelin612.github.io/2016/07/20/about-transfer/</loc>
     
     <lastmod>2016-07-19</lastmod>
@@ -593,10 +585,18 @@
     <priority>0.8</priority>
   </url>
   
+  <url>
+    <loc>https://janelin612.github.io/2018/03/28/buleprint-api/</loc>
+    
+    <lastmod>2018-03-27</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
 
   <url>
     <loc>https://janelin612.github.io/</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-06-11</lastmod>
     <priority>1.0</priority>
   </url>
 
