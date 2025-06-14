@@ -1376,6 +1376,9 @@ img.full-height {
   list-style: none;
   font-size: 80%;
 }
+#side-nav .nav2.active {
+  font-weight: bold;
+}
 #side-nav .nav3 {
   list-style: none;
   font-size: 70%;
