@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><meta property="og:site_name" content="Intertidal 潮間帶工作室"><meta property="og:type" content="article"><title>Notion Formula 2.0 變數功能(lets) | Intertidal</title><meta property="og:title" content="Notion Formula 2.0 變數功能(lets) | Intertidal"><meta property="og:url" content="https://janelin612.github.io/2025/06/19/notion-formula-lets/"><meta name="description" content="平常有在 Notion 自建資料庫，用來記錄股票的買賣還有計算損益。前陣子 0050 說要分割，因為有點擔心這件事情會把我的表格弄壞，所以重新檢"><meta property="og:description" name="twitter:description" content="平常有在 Notion 自建資料庫，用來記錄股票的買賣還有計算損益。前陣子 0050 說要分割，因為有點擔心這件事情會把我的表格弄壞，所以重新檢"><meta property="og:image" name="twitter:image" content="https://janelin612.github.io/static/nk46le8.jpg"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">{
+  "@context" : "https://schema.org",
+  "@type" : "WebSite",
+  "name" : "Intertidal 潮間帶工作室",
+  "url" : "https://janelin612.github.io"
+}</script><link rel="canonical" href="https://janelin612.github.io/2025/06/19/notion-formula-lets/"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/apple-touch-icon-144-precomposed.png"><link rel="shortcut icon" href="/static/favicon.ico"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="stylesheet" type="text/css" href="/styles/highlight.css"><link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&amp;display=swap" media="none" onload="if(media!='all')media='all'"><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5K473GZ');</script><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="https://schema.org/WebPage"><noscript> <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5K473GZ" frameborder="0" style="display:none;visibility:hidden">      </iframe></noscript><header itemscope itemtype="https://schema.org/WPHeader"><h1 class="title"><a href="/" alt="Intertidal" title="Intertidal" itemprop="headline">Intertidal</a></h1><h2 class="subtitle"> 潮間帶工作室</h2><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/about" alt="About Me" title="About Me" itemprop="url">About Me</a></li><li itemprop="name"><a href="/archive" alt="Archive" title="Archive" itemprop="url">Archive</a></li><li class="icon-list"> <a href="/atom.xml"> <img src="/static/icon/rss-feed-tag.svg" alt="" srcset=""></a><a target="_blank" rel="noopener" href="https://github.com/janelin612"> <img src="/static/icon/github-circle.svg" alt="" srcset=""></a><a href="mailto:janelin612@gmail.com"> <img src="/static/icon/mail.svg" alt="" srcset=""></a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><div class="content"><article class="full"><h1>Notion Formula 2.0 變數功能(lets)</h1><span class="post-meta"><time>2025-06-19</time></span><p>平常有在 Notion 自建資料庫，用來記錄股票的買賣還有計算損益。<br>前陣子 0050 說要分割，因為有點擔心這件事情會把我的表格弄壞，所以重新檢視了一下我寫的公式，順便用後來更新的 2.0 版 formula 改寫一遍。</p>
+<blockquote>
+<p>好奇查了一下 Formula 2.0 已經是兩年前的東西了，我到底多久沒有更新資訊？</p>
+</blockquote>
+<span id="more"></span>
+
+<p>用到公式計算的欄位其實很簡單：交易成本。也就是當我手動輸入股數跟股價之後，它會自動幫我把手續費、證交稅算出來。只是這其中也牽扯到一些簡易的判斷邏輯(例如只有賣出才有證交稅)，所以用原本的 formula 寫出來有點難以閱讀。</p>
+<p>後來出的變數功能很好的改善了這點，只是他寫起來跟一般寫程式很不一樣，需要花點時間讓頭腦轉換一下。</p>
+<h2 id="變數-lets-介紹"><a href="#變數-lets-介紹" class="headerlink" title="變數 lets 介紹"></a>變數 lets 介紹</h2><p>根據官方範例，變數的寫法如下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">lets</span>(</span><br><span class="line">  arg1, value1, <span class="comment">//var arg1 = value1;</span></span><br><span class="line">  arg2, value2, <span class="comment">//var arg2 = value2;</span></span><br><span class="line">  arg1 + arg2   <span class="comment">//return arg1+arg2;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>前面的參數兩兩一對，第一個是變數名稱，第二個是要存在變數裡面的值，或運算式。最後一個參數是輸出結果。</p>
+<p>所以這個東西一定是奇數個參數(2N+1)。</p>
+<h3 id="實際需求"><a href="#實際需求" class="headerlink" title="實際需求"></a>實際需求</h3><p>回到我的需求，實際寫起來長這樣</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">lets</span>(</span><br><span class="line">  amount, <span class="title function_">prop</span>(<span class="string">&quot;股數&quot;</span>)*<span class="title function_">prop</span>(<span class="string">&quot;成交價&quot;</span>),</span><br><span class="line">  fee, amount*手續費公式,</span><br><span class="line">  tax, amount*證交稅公式,</span><br><span class="line">  <span class="keyword">if</span>(<span class="title function_">prop</span>(<span class="string">&quot;類別&quot;</span>)==<span class="string">&quot;賣出&quot;</span>, fee+tax, fee)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>省略了點東西，但應該不難閱讀：先把總價計算出來放在第一個變數，然後分別用總價計算手續費與證交稅，一樣存在各自的變數裡，最後一行的計算階段判斷該筆交易費用是純手續費還是要加證交稅。</p>
+<p>這邊可以注意到的小細節是，前面定義好的變數<code>amount</code>，下個參數<code>fee</code>馬上就可以拿出來用了，不是只有最後的輸出階段才能用。</p>
+<p>至於最後的<code>if</code>函數，應該不用特別介紹吧？他就是三元運算子</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a&gt;b ? a : b;</span></span><br><span class="line"><span class="keyword">if</span>(a&gt;b, a, b)</span><br></pre></td></tr></table></figure>
+
+<h2 id="股票分割呢？"><a href="#股票分割呢？" class="headerlink" title="股票分割呢？"></a>股票分割呢？</h2><p>回到最初的困擾：我要怎麼紀錄股票分割？我最後的做法是在分割日記一筆賣出全部股票，然後在分割完成後用新的價格買入新的張數。</p>
+<p>只是這樣我的交易成本公式又變得更複雜了，因為我還要判斷這兩筆虛擬交易，沒有任何交易費用。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.notion.com/help/guides/new-formulas-whats-changed">Formulas 2.0: How to use Notion’s new and improved formulas with your existing setups</a></p>
+</article><hr><div class="bmc-block"> <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a></div><iframe src="https://button.like.co/in/embed/janelin612/button?referrer=https%3A%2F%2Fjanelin612.github.io%2F2025%2F06%2F19%2Fnotion-formula-lets%2F" frameborder="0"> </iframe><hr><div class="related-posts"><div> <small> Next: </small><div><a href="/2025/06/02/2025-nagoya/">2025名古屋自由行：又是為了賽馬嗎</a></div></div></div></div><div id="side-nav"><div class="head">目錄</div></div><script src="/static/js/side-nav.js"></script><script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Notion Formula 2.0 變數功能(lets)",
+    "image": ["https://janelin612.github.io/static/nk46le8.jpg"],
+    "datePublished": "2025-06-19T00:00:00+08:00",
+    "dateModified": "2025-06-19T22:00:00+08:00",
+    "author": [
+        {
+            "@type": "Person",
+            "name": "Tars",
+            "url": "https://janelin612.github.io/about/"
+        }
+    ]
+}</script></main></body></html>

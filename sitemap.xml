@@ -2,30 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://janelin612.github.io/archive/</loc>
-    
-    <lastmod>2025-06-14</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2023/08/24/steinsgate0/</loc>
-    
-    <lastmod>Thu Sep 07 2023 20:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2023/10/18/firebase-image-hosting/</loc>
-    
-    <lastmod>Wed Oct 18 2023 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
     <loc>https://janelin612.github.io/2023/11/26/obs-recycle-recording/</loc>
     
     <lastmod>Sun Nov 26 2023 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
@@ -122,25 +98,25 @@
   </url>
   
   <url>
+    <loc>https://janelin612.github.io/2025/06/19/notion-formula-lets/</loc>
+    
+    <lastmod>Thu Jun 19 2025 22:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>https://janelin612.github.io/about/</loc>
     
-    <lastmod>2025-06-14</lastmod>
+    <lastmod>2025-06-19</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2021/05/18/virtual-background/</loc>
+    <loc>https://janelin612.github.io/archive/</loc>
     
-    <lastmod>Wed Jun 09 2021 19:11:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2021/06/24/split-large-text-file/</loc>
-    
-    <lastmod>2021-06-23</lastmod>
+    <lastmod>2025-06-19</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -258,25 +234,17 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2019/03/12/ducky-one2-skyline/</loc>
+    <loc>https://janelin612.github.io/2023/08/24/steinsgate0/</loc>
     
-    <lastmod>2019-03-11</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2019/04/11/android-studio-keymap/</loc>
-    
-    <lastmod>2019-04-10</lastmod>
+    <lastmod>Thu Sep 07 2023 20:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2019/04/24/develop-android-on-eclipse-in-2019/</loc>
+    <loc>https://janelin612.github.io/2023/10/18/firebase-image-hosting/</loc>
     
-    <lastmod>2019-04-23</lastmod>
+    <lastmod>Wed Oct 18 2023 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -418,81 +386,17 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2016/07/20/about-transfer/</loc>
+    <loc>https://janelin612.github.io/2021/05/18/virtual-background/</loc>
     
-    <lastmod>2016-07-19</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2016/07/23/android-proguard/</loc>
-    
-    <lastmod>2016-07-22</lastmod>
+    <lastmod>Wed Jun 09 2021 19:11:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2017/01/11/git-modify-author/</loc>
+    <loc>https://janelin612.github.io/2021/06/24/split-large-text-file/</loc>
     
-    <lastmod>2017-01-10</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2017/02/16/android-compile-aar-file/</loc>
-    
-    <lastmod>2017-02-15</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2017/02/16/android-unsatisfiedlinkerror/</loc>
-    
-    <lastmod>2017-02-15</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2017/02/23/about-firebase/</loc>
-    
-    <lastmod>2017-02-22</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2017/03/14/check-googleplay-in-firebase/</loc>
-    
-    <lastmod>2017-03-13</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2017/08/03/tomcat-with-gitlab-ci/</loc>
-    
-    <lastmod>2017-08-02</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2017/10/19/tomcat-csp/</loc>
-    
-    <lastmod>2017-10-18</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2018/01/08/vue-js-in-ie/</loc>
-    
-    <lastmod>2018-01-07</lastmod>
+    <lastmod>2021-06-23</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -593,10 +497,114 @@
     <priority>0.8</priority>
   </url>
   
+  <url>
+    <loc>https://janelin612.github.io/2019/03/12/ducky-one2-skyline/</loc>
+    
+    <lastmod>2019-03-11</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2019/04/11/android-studio-keymap/</loc>
+    
+    <lastmod>2019-04-10</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2019/04/24/develop-android-on-eclipse-in-2019/</loc>
+    
+    <lastmod>2019-04-23</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2016/07/20/about-transfer/</loc>
+    
+    <lastmod>2016-07-19</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2016/07/23/android-proguard/</loc>
+    
+    <lastmod>2016-07-22</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2017/01/11/git-modify-author/</loc>
+    
+    <lastmod>2017-01-10</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2017/02/16/android-compile-aar-file/</loc>
+    
+    <lastmod>2017-02-15</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2017/02/16/android-unsatisfiedlinkerror/</loc>
+    
+    <lastmod>2017-02-15</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2017/02/23/about-firebase/</loc>
+    
+    <lastmod>2017-02-22</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2017/03/14/check-googleplay-in-firebase/</loc>
+    
+    <lastmod>2017-03-13</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2017/08/03/tomcat-with-gitlab-ci/</loc>
+    
+    <lastmod>2017-08-02</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2017/10/19/tomcat-csp/</loc>
+    
+    <lastmod>2017-10-18</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2018/01/08/vue-js-in-ie/</loc>
+    
+    <lastmod>2018-01-07</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
 
   <url>
     <loc>https://janelin612.github.io/</loc>
-    <lastmod>2025-06-14</lastmod>
+    <lastmod>2025-06-19</lastmod>
     <priority>1.0</priority>
   </url>
 

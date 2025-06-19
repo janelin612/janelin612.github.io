@@ -6,7 +6,7 @@
   <link href="https://janelin612.github.io/atom.xml" rel="self"/>
   
   <link href="https://janelin612.github.io/"/>
-  <updated>2025-06-14T11:10:23.764Z</updated>
+  <updated>2025-06-19T15:19:57.756Z</updated>
   <id>https://janelin612.github.io/</id>
   
   <author>
@@ -17,11 +17,29 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Notion Formula 2.0 變數功能(lets)</title>
+    <link href="https://janelin612.github.io/2025/06/19/notion-formula-lets/"/>
+    <id>https://janelin612.github.io/2025/06/19/notion-formula-lets/</id>
+    <published>2025-06-18T16:00:00.000Z</published>
+    <updated>2025-06-19T15:19:57.756Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;平常有在 Notion 自建資料庫，用來記錄股票的買賣還有計算損益。&lt;br&gt;前陣子 0050 說要分割，因為有點擔心這件事情會把我的表格弄壞，所以重新檢視了一下我寫的公式，順便用後來更新的 2.0 版 formula 改寫一遍。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;好奇查了一下 Formula 2.0 已經是兩年前的東西了，我到底多久沒有更新資訊？&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>2025名古屋自由行：又是為了賽馬嗎</title>
     <link href="https://janelin612.github.io/2025/06/02/2025-nagoya/"/>
     <id>https://janelin612.github.io/2025/06/02/2025-nagoya/</id>
     <published>2025-06-01T16:00:00.000Z</published>
-    <updated>2025-06-14T11:10:23.764Z</updated>
+    <updated>2025-06-19T15:19:57.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;img src=&quot;/static/2025/nagoya/h1uzzpiei.jpg&quot;&gt;&lt;/p&gt;
@@ -40,7 +58,7 @@
     <link href="https://janelin612.github.io/2025/05/21/jekyll-to-hexo/"/>
     <id>https://janelin612.github.io/2025/05/21/jekyll-to-hexo/</id>
     <published>2025-05-20T16:00:00.000Z</published>
-    <updated>2025-06-14T11:10:23.764Z</updated>
+    <updated>2025-06-19T15:19:57.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;前陣子終於下定決心把部落格引擎從 Jekyll 換成 Hexo，兩者同為靜態網站生成框架，雖然概念是一樣的，但肯定不是把舊文章複製貼上過來就能上線的，前前後後還是花了不少時間處理。&lt;/p&gt;</summary>
@@ -55,7 +73,7 @@
     <link href="https://janelin612.github.io/2025/03/28/aokana/"/>
     <id>https://janelin612.github.io/2025/03/28/aokana/</id>
     <published>2025-03-27T16:00:00.000Z</published>
-    <updated>2025-06-14T11:10:23.764Z</updated>
+    <updated>2025-06-19T15:19:57.756Z</updated>
     
     
     <summary type="html">趁著剛玩完對各路線還有記憶，記錄一下四位主角倉科明日香、鳶澤美咲、有坂真白、市之瀨莉佳四條路線，以及最後真結局的想法。</summary>
@@ -72,7 +90,7 @@
     <link href="https://janelin612.github.io/2024/12/22/look-back-2024/"/>
     <id>https://janelin612.github.io/2024/12/22/look-back-2024/</id>
     <published>2024-12-21T16:00:00.000Z</published>
-    <updated>2025-06-14T11:10:23.764Z</updated>
+    <updated>2025-06-19T15:19:57.756Z</updated>
     
     
     <summary type="html">去年回顧的結尾，我覺得我的生活停滯不前，需要來點改變，結果今年還真的迎來了重大改變，雖然好像不是我預期的樣子，但總之願望確實不能亂許。</summary>
@@ -89,7 +107,7 @@
     <link href="https://janelin612.github.io/2024/11/17/duolingo-365-days/"/>
     <id>https://janelin612.github.io/2024/11/17/duolingo-365-days/</id>
     <published>2024-11-16T16:00:00.000Z</published>
-    <updated>2025-06-14T11:10:23.764Z</updated>
+    <updated>2025-06-19T15:19:57.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;我在上週達成了用 Duolingo 學習日文整整 365 天連勝的任務，除了開心發文跟朋友分享之外，也簡單紀錄一下這一年來的學習心得。&lt;/p&gt;
@@ -107,7 +125,7 @@
     <link href="https://janelin612.github.io/2024/09/09/2024-tokyo/"/>
     <id>https://janelin612.github.io/2024/09/09/2024-tokyo/</id>
     <published>2024-09-08T16:00:00.000Z</published>
-    <updated>2025-06-14T11:10:23.764Z</updated>
+    <updated>2025-06-19T15:19:57.756Z</updated>
     
     
     <summary type="html">遊記主要分為魔物獵人展、東京競馬場與池袋MyGO動畫巡禮三個主題，畢竟隨著東京去過的次數越來越多，漸漸的遊記也變得沒必要流水帳似的把每天去哪都寫下來了</summary>
@@ -124,7 +142,7 @@
     <link href="https://janelin612.github.io/2024/05/21/switch-to-s24/"/>
     <id>https://janelin612.github.io/2024/05/21/switch-to-s24/</id>
     <published>2024-05-20T16:00:00.000Z</published>
-    <updated>2025-06-14T11:10:23.764Z</updated>
+    <updated>2025-06-19T15:19:57.756Z</updated>
     
     
     <summary type="html">上週把我用了五年的 Google Pixel 3 換成了 Samsung S24，簡單記錄一下換機心得與轉移資料遇到的一些事情</summary>
@@ -141,7 +159,7 @@
     <link href="https://janelin612.github.io/2024/05/11/gr3x-wireless-api/"/>
     <id>https://janelin612.github.io/2024/05/11/gr3x-wireless-api/</id>
     <published>2024-05-10T16:00:00.000Z</published>
-    <updated>2025-06-14T11:10:23.764Z</updated>
+    <updated>2025-06-19T15:19:57.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;img src=&quot;/static/2024/d8bxfk1v7.jpg&quot;&gt;&lt;/p&gt;
@@ -160,27 +178,11 @@
     <link href="https://janelin612.github.io/2024/02/21/fx-prefix-service-hijacked/"/>
     <id>https://janelin612.github.io/2024/02/21/fx-prefix-service-hijacked/</id>
     <published>2024-02-20T16:00:00.000Z</published>
-    <updated>2025-06-14T11:10:23.764Z</updated>
+    <updated>2025-06-19T15:19:57.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;昨天在我待的幾個 DC 群都有人轉貼一篇文章，說 Discord 常用的 fx 開頭的縮圖預覽服務被駭了，大家要小心。&lt;/p&gt;
 &lt;p&gt;我不想用「我不知道真假，總之大家小心」這樣的說詞去繼續轉貼未知的情報，既然這個議題我有能力查證，就自己研究一下吧。&lt;/p&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>開箱新螢幕BENQ-EX2710Q使用心得</title>
-    <link href="https://janelin612.github.io/2024/02/20/new-monitor-benq-ex2710q/"/>
-    <id>https://janelin612.github.io/2024/02/20/new-monitor-benq-ex2710q/</id>
-    <published>2024-02-19T16:00:00.000Z</published>
-    <updated>2025-06-14T11:10:23.764Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;今年有計畫地要陸續汰換一些電腦桌上的 3C 產品，第一個達成目標的就是我的電腦螢幕。&lt;/p&gt;
-&lt;p&gt;原本的螢幕用了超過 10 年，從念書用到出社會。雖然沒有什麼問題，但想要升級一台好一點的，之後買新的遊戲主機比較不會對不起他的性能。&lt;/p&gt;</summary>
     
     
     
