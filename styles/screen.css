@@ -669,6 +669,51 @@ main article ul {
 main article li {
   padding: 2px 0;
 }
+main article blockquote {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1.5rem 0;
+  padding: 0 0 0 1em;
+  border-left: #666 0.3em solid;
+  color: #666;
+}
+main article blockquote footer {
+  text-align: left;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #404040;
+  line-height: 1.6em;
+  font-size: 0.9em;
+}
+main article blockquote p {
+  margin: 0.4em 0;
+}
+main article blockquote small {
+  display: inline-block;
+  margin: 0.8em 0 0.8em 1.5em;
+  font-size: 0.9rem;
+  color: #f8f8f8;
+}
+main article blockquote small:before {
+  content: '\2014 \00A0';
+}
+main article blockquote ol,
+main article blockquote ul {
+  font-style: italic;
+}
+main article blockquote cite {
+  font-weight: bold;
+}
+main article blockquote cite:before {
+  content: '—';
+  padding: 0 0.3em;
+}
+main article blockquote cite a {
+  color: $link-article-color;
+  font-weight: normal;
+}
 main article.item {
   border-bottom: 1px solid rgba(0,0,0,0.15);
   color: #404040;
@@ -712,51 +757,6 @@ main article.full a:hover {
 }
 main article.full p + img {
   margin-top: 0;
-}
-main article.full blockquote {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 1.5rem 0;
-  padding: 0 0 0 1em;
-  border-left: #666 0.3em solid;
-  color: #666;
-}
-main article.full blockquote footer {
-  text-align: left;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: #404040;
-  line-height: 1.6em;
-  font-size: 0.9em;
-}
-main article.full blockquote p {
-  margin: 0.4em 0;
-}
-main article.full blockquote small {
-  display: inline-block;
-  margin: 0.8em 0 0.8em 1.5em;
-  font-size: 0.9rem;
-  color: #f8f8f8;
-}
-main article.full blockquote small:before {
-  content: '\2014 \00A0';
-}
-main article.full blockquote ol,
-main article.full blockquote ul {
-  font-style: italic;
-}
-main article.full blockquote cite {
-  font-weight: bold;
-}
-main article.full blockquote cite:before {
-  content: '—';
-  padding: 0 0.3em;
-}
-main article.full blockquote cite a {
-  color: $link-article-color;
-  font-weight: normal;
 }
 main article.full .noshadow {
   -webkit-box-shadow: none;
