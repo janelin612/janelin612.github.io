@@ -2,89 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://janelin612.github.io/2025/03/28/aokana/</loc>
-    
-    <lastmod>Sun Mar 30 2025 21:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2025/05/21/jekyll-to-hexo/</loc>
-    
-    <lastmod>Wed May 21 2025 22:30:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2025/06/02/2025-nagoya/</loc>
-    
-    <lastmod>Wed Jun 11 2025 13:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2025/06/19/notion-formula-lets/</loc>
-    
-    <lastmod>Thu Jun 19 2025 22:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
     <loc>https://janelin612.github.io/archive/</loc>
     
-    <lastmod>2025-08-10</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/about/</loc>
-    
-    <lastmod>2025-08-10</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2023/02/02/xenoblade3/</loc>
-    
-    <lastmod>Mon Feb 06 2023 21:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2023/07/05/password-manage/</loc>
-    
-    <lastmod>Wed Jul 05 2023 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2023/07/16/steinsgate/</loc>
-    
-    <lastmod>Sun Jul 16 2023 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2023/08/24/steinsgate0/</loc>
-    
-    <lastmod>Thu Sep 07 2023 20:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2023/10/18/firebase-image-hosting/</loc>
-    
-    <lastmod>Wed Oct 18 2023 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>2025-09-14</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -98,17 +18,17 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2024/02/20/new-monitor-benq-ex2710q/</loc>
+    <loc>https://janelin612.github.io/2023/12/23/look-back-2023/</loc>
     
-    <lastmod>Tue Dec 24 2024 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sun Dec 24 2023 21:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2023/12/23/look-back-2023/</loc>
+    <loc>https://janelin612.github.io/2024/02/20/new-monitor-benq-ex2710q/</loc>
     
-    <lastmod>Sun Dec 24 2023 21:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Tue Dec 24 2024 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -130,17 +50,17 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2024/09/09/2024-tokyo/</loc>
+    <loc>https://janelin612.github.io/2024/05/21/switch-to-s24/</loc>
     
-    <lastmod>Sat Sep 21 2024 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Thu Sep 19 2024 23:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2024/05/21/switch-to-s24/</loc>
+    <loc>https://janelin612.github.io/2024/09/09/2024-tokyo/</loc>
     
-    <lastmod>Thu Sep 19 2024 23:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sat Sep 21 2024 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -162,57 +82,41 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2020/02/22/kobo-libra-h2o/</loc>
+    <loc>https://janelin612.github.io/2025/03/28/aokana/</loc>
     
-    <lastmod>2020-02-21</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2020/07/03/about-n46-crawler/</loc>
-    
-    <lastmod>Fri Dec 16 2022 16:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sun Mar 30 2025 21:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2020/06/30/webpack-from-exist-project/</loc>
+    <loc>https://janelin612.github.io/2025/05/21/jekyll-to-hexo/</loc>
     
-    <lastmod>2020-06-29</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2020/12/09/obs-as-video-call/</loc>
-    
-    <lastmod>Fri Jun 18 2021 09:46:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Wed May 21 2025 22:30:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2021/01/12/ios-safari-on-windows/</loc>
+    <loc>https://janelin612.github.io/2025/06/19/notion-formula-lets/</loc>
     
-    <lastmod>2021-01-11</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2021/05/18/virtual-background/</loc>
-    
-    <lastmod>Wed Jun 09 2021 19:11:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Thu Jun 19 2025 22:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2021/06/24/split-large-text-file/</loc>
+    <loc>https://janelin612.github.io/2025/06/02/2025-nagoya/</loc>
     
-    <lastmod>2021-06-23</lastmod>
+    <lastmod>Sun Sep 14 2025 11:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/about/</loc>
+    
+    <lastmod>2025-09-14</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -306,81 +210,41 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2018/08/16/php5-and-mysql8/</loc>
+    <loc>https://janelin612.github.io/2023/02/02/xenoblade3/</loc>
     
-    <lastmod>2018-08-15</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2018/09/05/android-webview-debug/</loc>
-    
-    <lastmod>2018-09-04</lastmod>
+    <lastmod>Mon Feb 06 2023 21:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2018/06/28/wordpress-on-windows-iis/</loc>
+    <loc>https://janelin612.github.io/2023/07/05/password-manage/</loc>
     
-    <lastmod>2018-06-27</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2018/09/12/others-resignation/</loc>
-    
-    <lastmod>2018-09-11</lastmod>
+    <lastmod>Wed Jul 05 2023 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2018/10/21/using-sass-in-jekyll/</loc>
+    <loc>https://janelin612.github.io/2023/07/16/steinsgate/</loc>
     
-    <lastmod>2018-10-20</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2018/12/25/gitlab-502-error/</loc>
-    
-    <lastmod>2018-12-24</lastmod>
+    <lastmod>Sun Jul 16 2023 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2019/03/12/android-studio-svn/</loc>
+    <loc>https://janelin612.github.io/2023/08/24/steinsgate0/</loc>
     
-    <lastmod>2019-03-11</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2019/03/12/ducky-one2-skyline/</loc>
-    
-    <lastmod>2019-03-11</lastmod>
+    <lastmod>Thu Sep 07 2023 20:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2019/04/11/android-studio-keymap/</loc>
+    <loc>https://janelin612.github.io/2023/10/18/firebase-image-hosting/</loc>
     
-    <lastmod>2019-04-10</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2019/04/24/develop-android-on-eclipse-in-2019/</loc>
-    
-    <lastmod>2019-04-23</lastmod>
+    <lastmod>Wed Oct 18 2023 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -418,17 +282,17 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2019/07/07/chinese-characters-decoding/</loc>
+    <loc>https://janelin612.github.io/2019/07/31/manully-sitemap/</loc>
     
-    <lastmod>2019-07-06</lastmod>
+    <lastmod>2019-07-30</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2019/07/31/manully-sitemap/</loc>
+    <loc>https://janelin612.github.io/2019/07/07/chinese-characters-decoding/</loc>
     
-    <lastmod>2019-07-30</lastmod>
+    <lastmod>2019-07-06</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -482,25 +346,57 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2016/07/20/about-transfer/</loc>
+    <loc>https://janelin612.github.io/2020/02/22/kobo-libra-h2o/</loc>
     
-    <lastmod>2016-07-19</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2016/07/23/android-proguard/</loc>
-    
-    <lastmod>2016-07-22</lastmod>
+    <lastmod>2020-02-21</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2017/01/11/git-modify-author/</loc>
+    <loc>https://janelin612.github.io/2020/06/30/webpack-from-exist-project/</loc>
     
-    <lastmod>2017-01-10</lastmod>
+    <lastmod>2020-06-29</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2020/07/03/about-n46-crawler/</loc>
+    
+    <lastmod>Fri Dec 16 2022 16:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2020/12/09/obs-as-video-call/</loc>
+    
+    <lastmod>Fri Jun 18 2021 09:46:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2021/01/12/ios-safari-on-windows/</loc>
+    
+    <lastmod>2021-01-11</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2021/05/18/virtual-background/</loc>
+    
+    <lastmod>Wed Jun 09 2021 19:11:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2021/06/24/split-large-text-file/</loc>
+    
+    <lastmod>2021-06-23</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -601,10 +497,114 @@
     <priority>0.8</priority>
   </url>
   
+  <url>
+    <loc>https://janelin612.github.io/2018/06/28/wordpress-on-windows-iis/</loc>
+    
+    <lastmod>2018-06-27</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2018/08/16/php5-and-mysql8/</loc>
+    
+    <lastmod>2018-08-15</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2018/09/05/android-webview-debug/</loc>
+    
+    <lastmod>2018-09-04</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2018/09/12/others-resignation/</loc>
+    
+    <lastmod>2018-09-11</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2018/10/21/using-sass-in-jekyll/</loc>
+    
+    <lastmod>2018-10-20</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2018/12/25/gitlab-502-error/</loc>
+    
+    <lastmod>2018-12-24</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2019/03/12/android-studio-svn/</loc>
+    
+    <lastmod>2019-03-11</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2019/03/12/ducky-one2-skyline/</loc>
+    
+    <lastmod>2019-03-11</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2019/04/11/android-studio-keymap/</loc>
+    
+    <lastmod>2019-04-10</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2019/04/24/develop-android-on-eclipse-in-2019/</loc>
+    
+    <lastmod>2019-04-23</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2016/07/20/about-transfer/</loc>
+    
+    <lastmod>2016-07-19</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2016/07/23/android-proguard/</loc>
+    
+    <lastmod>2016-07-22</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2017/01/11/git-modify-author/</loc>
+    
+    <lastmod>2017-01-10</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
 
   <url>
     <loc>https://janelin612.github.io/</loc>
-    <lastmod>2025-08-10</lastmod>
+    <lastmod>2025-09-14</lastmod>
     <priority>1.0</priority>
   </url>
 
