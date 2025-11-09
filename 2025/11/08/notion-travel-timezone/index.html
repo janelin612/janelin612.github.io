@@ -14,16 +14,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>真的是還好我非常快就注意到了，不然直接照顯示時間走的話，連車都沒搭上。</p>
 <span id="more"></span>
 
-<p>你或許會覺得這件事情不難解決，一開始規劃行程的時候就設定成日本時區不就好了？但這會產生另一個問題：當你還在安排行程的階段，時間顯示又差一個小時。</p>
-<blockquote>
-<p>例如我表定日本時間 9:00 要搭車，在台灣安排行程時，Notion 會顯示 8:00</p>
-</blockquote>
+<h3 id="內建的時區問題"><a href="#內建的時區問題" class="headerlink" title="內建的時區問題"></a>內建的時區問題</h3><p>你或許會覺得這件事情不難解決，一開始規劃行程的時候就設定成日本時區不就好了？</p>
+<p>但這會產生另一個問題：當你還在規畫行程的階段，時間顯示又是錯的。例如我表定日本時間 15:30 入境，行程表上卻會顯示 14:30<br><img src="/static/2025/pu3mua9vb.jpg"></p>
 <p>記得我前一年的旅遊行程表沒有遇過這種時差問題，不知道時區功能是不是今年才加的。總之我挺希望 Notion 可以提供一個不帶時區的 Datetime 格式。畢竟旅遊我在意的就是當地時間，不需要它幫我換算台灣時區是幾點。</p>
-<h2 id="解決辦法"><a href="#解決辦法" class="headerlink" title="解決辦法"></a>解決辦法</h2><h3 id="固定-Notion-的-APP-時區"><a href="#固定-Notion-的-APP-時區" class="headerlink" title="固定 Notion 的 APP 時區"></a>固定 Notion 的 APP 時區</h3><p>這個方法應該是可行，既然我不希望行程表的時區亂跑，那我直接把程式鎖死在 +8 時區不就得了？</p>
-<p>結果我在 PC 版應用程式有看到這個指定時區的功能，但 Android APP 裡面卻找不到，有點擔心到時候抵達當地發現這個設定沒有帶過去就白忙一場，又要再一筆一筆改。</p>
+<h2 id="解決辦法"><a href="#解決辦法" class="headerlink" title="解決辦法"></a>解決辦法</h2><h3 id="固定-Notion-的-APP-時區"><a href="#固定-Notion-的-APP-時區" class="headerlink" title="固定 Notion 的 APP 時區"></a>固定 Notion 的 APP 時區</h3><p>這個做法應該是最直觀的，既然我不希望行程表的時區亂跑，那我直接把程式鎖死在 +8 時區不就得了？</p>
+<p>結果我在 PC 版應用程式有看到這個指定時區的功能，但 Android APP 裡面卻找不到，有點擔心到時候抵達當地發現這個設定只有在電腦上生效就糟糕了，又要再一筆一筆改。</p>
+<p><img src="/static/2025/39gzx8rlc.jpg"></p>
 <h3 id="用純文字欄位紀錄時間"><a href="#用純文字欄位紀錄時間" class="headerlink" title="用純文字欄位紀錄時間"></a>用純文字欄位紀錄時間</h3><p>這是 ChatGPT 建議的，如果旅行過程不涉及多次時區轉換(例如我整趟行程都在日本)，那可以 Datetime 欄位只用來記錄日期，幾點幾分直接用另一個純文字欄位紀錄。</p>
-<p>但我後來沒有採用，我覺得不夠完美，畢竟這樣我使用日曆模式檢視的時候會一團亂。</p>
-<h3 id="用公式欄位固定輸出指定時區時間"><a href="#用公式欄位固定輸出指定時區時間" class="headerlink" title="用公式欄位固定輸出指定時區時間"></a>用公式欄位固定輸出指定時區時間</h3><p>我後來決定採用這個做法，新增一個 Formula，用來用指定時區輸出我儲存的 Datetime 數值。</p>
+<p>但我後來沒有採用，我覺得不夠完美，至少這樣會導致我使用日曆模式檢視的時候會一團亂。</p>
+<h3 id="用公式欄位固定輸出指定時區時間"><a href="#用公式欄位固定輸出指定時區時間" class="headerlink" title="用公式欄位固定輸出指定時區時間"></a>用公式欄位固定輸出指定時區時間</h3><p>這是我最後的做法，新增一個 Formula，用指定時區輸出我儲存的 Datetime 數值。</p>
 <p>Notion 的 Formula，輸出時間的時候可以多傳一個參數，用來指定時區：</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">prop</span>(<span class="string">&quot;Datetime&quot;</span>).<span class="title function_">dateStart</span>().<span class="title function_">formatDate</span>(<span class="string">&quot;MM/DD HH:mm&quot;</span>, <span class="string">&quot;UTC+8&quot;</span>);</span><br><span class="line"><span class="title function_">prop</span>(<span class="string">&quot;Datetime&quot;</span>).<span class="title function_">dateEnd</span>().<span class="title function_">formatDate</span>(<span class="string">&quot;HH:mm&quot;</span>, <span class="string">&quot;UTC+8&quot;</span>);</span><br></pre></td></tr></table></figure>
 
@@ -36,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "headline": "Notion 旅遊時區問題",
     "image": ["https://janelin612.github.io/static/nk46le8.jpg"],
     "datePublished": "2025-11-08T00:00:00+08:00",
-    "dateModified": "2025-11-08T19:00:00+08:00",
+    "dateModified": "2025-11-09T11:30:00+08:00",
     "author": [
         {
             "@type": "Person",
