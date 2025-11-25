@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://janelin612.github.io/2024/12/22/look-back-2024/</loc>
+    <loc>https://janelin612.github.io/2024/11/17/duolingo-365-days/</loc>
     
-    <lastmod>Tue Dec 24 2024 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sun Dec 22 2024 18:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2025/03/28/aokana/</loc>
+    <loc>https://janelin612.github.io/2024/12/22/look-back-2024/</loc>
     
-    <lastmod>Sun Mar 30 2025 21:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Tue Dec 24 2024 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -52,7 +52,15 @@
   <url>
     <loc>https://janelin612.github.io/2025/11/23/2025-kansai/</loc>
     
-    <lastmod>Mon Nov 24 2025 10:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Tue Nov 25 2025 09:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2025/03/28/aokana/</loc>
+    
+    <lastmod>Sun Mar 30 2025 21:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -60,7 +68,7 @@
   <url>
     <loc>https://janelin612.github.io/about/</loc>
     
-    <lastmod>2025-11-24</lastmod>
+    <lastmod>2025-11-25</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -68,7 +76,7 @@
   <url>
     <loc>https://janelin612.github.io/archive/</loc>
     
-    <lastmod>2025-11-24</lastmod>
+    <lastmod>2025-11-25</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -194,14 +202,6 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2024/11/17/duolingo-365-days/</loc>
-    
-    <lastmod>Sun Dec 22 2024 18:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
     <loc>https://janelin612.github.io/2019/10/01/google-pixel-3/</loc>
     
     <lastmod>2019-09-30</lastmod>
@@ -282,14 +282,6 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2021/07/21/turn-into-nuxtjs/</loc>
-    
-    <lastmod>Wed Jul 21 2021 19:55:00 GMT+0800 (Taipei Standard Time)</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
     <loc>https://janelin612.github.io/2021/08/04/services-be-useful-someday/</loc>
     
     <lastmod>Thu Nov 17 2022 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
@@ -346,17 +338,9 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2018/04/14/csharp-gitlab-ci/</loc>
+    <loc>https://janelin612.github.io/2021/07/21/turn-into-nuxtjs/</loc>
     
-    <lastmod>2018-04-13</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://janelin612.github.io/2018/04/30/letsencrypt-with-haproxy/</loc>
-    
-    <lastmod>2018-04-29</lastmod>
+    <lastmod>Wed Jul 21 2021 19:55:00 GMT+0800 (Taipei Standard Time)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -378,9 +362,9 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2018/08/16/php5-and-mysql8/</loc>
+    <loc>https://janelin612.github.io/2018/04/30/letsencrypt-with-haproxy/</loc>
     
-    <lastmod>2018-08-15</lastmod>
+    <lastmod>2018-04-29</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -389,6 +373,14 @@
     <loc>https://janelin612.github.io/2018/09/05/android-webview-debug/</loc>
     
     <lastmod>2018-09-04</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janelin612.github.io/2018/08/16/php5-and-mysql8/</loc>
+    
+    <lastmod>2018-08-15</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -434,17 +426,17 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2019/04/11/android-studio-keymap/</loc>
+    <loc>https://janelin612.github.io/2019/04/24/develop-android-on-eclipse-in-2019/</loc>
     
-    <lastmod>2019-04-10</lastmod>
+    <lastmod>2019-04-23</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2019/04/24/develop-android-on-eclipse-in-2019/</loc>
+    <loc>https://janelin612.github.io/2019/04/11/android-studio-keymap/</loc>
     
-    <lastmod>2019-04-23</lastmod>
+    <lastmod>2019-04-10</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -490,17 +482,17 @@
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2019/08/02/listening-podcast/</loc>
+    <loc>https://janelin612.github.io/2019/07/31/manully-sitemap/</loc>
     
-    <lastmod>2019-08-01</lastmod>
+    <lastmod>2019-07-30</lastmod>
     
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://janelin612.github.io/2019/07/31/manully-sitemap/</loc>
+    <loc>https://janelin612.github.io/2019/08/02/listening-podcast/</loc>
     
-    <lastmod>2019-07-30</lastmod>
+    <lastmod>2019-08-01</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -617,10 +609,18 @@
     <priority>0.8</priority>
   </url>
   
+  <url>
+    <loc>https://janelin612.github.io/2018/04/14/csharp-gitlab-ci/</loc>
+    
+    <lastmod>2018-04-13</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
 
   <url>
     <loc>https://janelin612.github.io/</loc>
-    <lastmod>2025-11-24</lastmod>
+    <lastmod>2025-11-25</lastmod>
     <priority>1.0</priority>
   </url>
 
