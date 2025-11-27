@@ -4,15 +4,7 @@
   <url>
     <loc>https://namako.tw/about/</loc>
     
-    <lastmod>2025-11-27</lastmod>
-    
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://namako.tw/archive/</loc>
-    
-    <lastmod>2025-11-27</lastmod>
+    <lastmod>2025-11-26</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -20,7 +12,7 @@
   <url>
     <loc>https://namako.tw/2025/11/23/2025-kansai/</loc>
     
-    <lastmod>Thu Nov 27 2025 22:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Thu Nov 27 2025 22:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -28,7 +20,7 @@
   <url>
     <loc>https://namako.tw/2025/11/08/notion-travel-timezone/</loc>
     
-    <lastmod>Sun Nov 09 2025 11:30:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sun Nov 09 2025 11:30:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -36,7 +28,7 @@
   <url>
     <loc>https://namako.tw/2025/06/19/notion-formula-lets/</loc>
     
-    <lastmod>Thu Jun 19 2025 22:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Thu Jun 19 2025 22:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -44,7 +36,7 @@
   <url>
     <loc>https://namako.tw/2025/06/02/2025-nagoya/</loc>
     
-    <lastmod>Sun Sep 14 2025 11:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sun Sep 14 2025 11:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -52,7 +44,15 @@
   <url>
     <loc>https://namako.tw/2025/05/21/jekyll-to-hexo/</loc>
     
-    <lastmod>Wed May 21 2025 22:30:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Wed May 21 2025 22:30:00 GMT+0800 (台北標準時間)</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://namako.tw/archive/</loc>
+    
+    <lastmod>2025-04-27</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -60,7 +60,7 @@
   <url>
     <loc>https://namako.tw/2025/03/28/aokana/</loc>
     
-    <lastmod>Sun Mar 30 2025 21:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sun Mar 30 2025 21:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -68,7 +68,7 @@
   <url>
     <loc>https://namako.tw/2024/12/22/look-back-2024/</loc>
     
-    <lastmod>Tue Dec 24 2024 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Tue Dec 24 2024 12:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -76,7 +76,7 @@
   <url>
     <loc>https://namako.tw/2024/11/17/duolingo-365-days/</loc>
     
-    <lastmod>Sun Dec 22 2024 18:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sun Dec 22 2024 18:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -84,7 +84,7 @@
   <url>
     <loc>https://namako.tw/2024/09/09/2024-tokyo/</loc>
     
-    <lastmod>Sat Sep 21 2024 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sat Sep 21 2024 12:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -92,7 +92,7 @@
   <url>
     <loc>https://namako.tw/2024/05/21/switch-to-s24/</loc>
     
-    <lastmod>Thu Sep 19 2024 23:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Thu Sep 19 2024 23:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -100,7 +100,7 @@
   <url>
     <loc>https://namako.tw/2024/05/11/gr3x-wireless-api/</loc>
     
-    <lastmod>Sat May 11 2024 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sat May 11 2024 19:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -108,7 +108,7 @@
   <url>
     <loc>https://namako.tw/2024/02/21/fx-prefix-service-hijacked/</loc>
     
-    <lastmod>Wed Feb 21 2024 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Wed Feb 21 2024 12:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -116,7 +116,7 @@
   <url>
     <loc>https://namako.tw/2024/02/20/new-monitor-benq-ex2710q/</loc>
     
-    <lastmod>Tue Dec 24 2024 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Tue Dec 24 2024 12:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -124,7 +124,7 @@
   <url>
     <loc>https://namako.tw/2023/12/23/look-back-2023/</loc>
     
-    <lastmod>Sun Dec 24 2023 21:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sun Dec 24 2023 21:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -132,7 +132,7 @@
   <url>
     <loc>https://namako.tw/2023/11/26/obs-recycle-recording/</loc>
     
-    <lastmod>Sun Nov 26 2023 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sun Nov 26 2023 19:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -140,7 +140,7 @@
   <url>
     <loc>https://namako.tw/2023/10/18/firebase-image-hosting/</loc>
     
-    <lastmod>Wed Oct 18 2023 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Wed Oct 18 2023 19:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -148,7 +148,7 @@
   <url>
     <loc>https://namako.tw/2023/08/24/steinsgate0/</loc>
     
-    <lastmod>Thu Sep 07 2023 20:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Thu Sep 07 2023 20:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -156,7 +156,7 @@
   <url>
     <loc>https://namako.tw/2023/07/16/steinsgate/</loc>
     
-    <lastmod>Sun Jul 16 2023 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Sun Jul 16 2023 19:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -164,7 +164,7 @@
   <url>
     <loc>https://namako.tw/2023/07/05/password-manage/</loc>
     
-    <lastmod>Wed Jul 05 2023 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Wed Jul 05 2023 12:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -172,7 +172,7 @@
   <url>
     <loc>https://namako.tw/2023/02/02/xenoblade3/</loc>
     
-    <lastmod>Mon Feb 06 2023 21:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Mon Feb 06 2023 21:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -180,7 +180,7 @@
   <url>
     <loc>https://namako.tw/2022/12/21/look-back-2022/</loc>
     
-    <lastmod>Tue Dec 27 2022 10:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Tue Dec 27 2022 10:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -188,7 +188,7 @@
   <url>
     <loc>https://namako.tw/2022/09/02/xgp-games-review/</loc>
     
-    <lastmod>Fri Sep 02 2022 19:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Fri Sep 02 2022 19:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -196,7 +196,7 @@
   <url>
     <loc>https://namako.tw/2022/07/25/download-m3u8-stream-file/</loc>
     
-    <lastmod>Mon Jul 25 2022 13:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Mon Jul 25 2022 13:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -204,7 +204,7 @@
   <url>
     <loc>https://namako.tw/2022/06/01/fitbit-charge-4/</loc>
     
-    <lastmod>Tue Mar 14 2023 09:30:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Tue Mar 14 2023 09:30:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -212,7 +212,7 @@
   <url>
     <loc>https://namako.tw/2022/03/10/manage-kobo-books-on-notion/</loc>
     
-    <lastmod>Thu Nov 03 2022 16:40:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Thu Nov 03 2022 16:40:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -220,7 +220,7 @@
   <url>
     <loc>https://namako.tw/2022/02/15/yahoo-ads/</loc>
     
-    <lastmod>Wed Feb 16 2022 16:40:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Wed Feb 16 2022 16:40:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -228,7 +228,7 @@
   <url>
     <loc>https://namako.tw/2022/01/19/jekyll-load-github-actions-secrets/</loc>
     
-    <lastmod>Tue Feb 21 2023 09:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Tue Feb 21 2023 09:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -236,7 +236,7 @@
   <url>
     <loc>https://namako.tw/2021/12/25/look-back-2021/</loc>
     
-    <lastmod>Mon Dec 27 2021 10:50:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Mon Dec 27 2021 10:50:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -244,7 +244,7 @@
   <url>
     <loc>https://namako.tw/2021/11/05/detect-dom-change-event/</loc>
     
-    <lastmod>Fri Nov 05 2021 09:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Fri Nov 05 2021 09:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -252,7 +252,7 @@
   <url>
     <loc>https://namako.tw/2021/08/04/services-be-useful-someday/</loc>
     
-    <lastmod>Thu Nov 17 2022 12:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Thu Nov 17 2022 12:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -260,7 +260,7 @@
   <url>
     <loc>https://namako.tw/2021/07/21/turn-into-nuxtjs/</loc>
     
-    <lastmod>Wed Jul 21 2021 19:55:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Wed Jul 21 2021 19:55:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -276,7 +276,7 @@
   <url>
     <loc>https://namako.tw/2021/05/18/virtual-background/</loc>
     
-    <lastmod>Wed Jun 09 2021 19:11:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Wed Jun 09 2021 19:11:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -292,7 +292,7 @@
   <url>
     <loc>https://namako.tw/2020/12/09/obs-as-video-call/</loc>
     
-    <lastmod>Fri Jun 18 2021 09:46:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Fri Jun 18 2021 09:46:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -300,7 +300,7 @@
   <url>
     <loc>https://namako.tw/2020/07/03/about-n46-crawler/</loc>
     
-    <lastmod>Fri Dec 16 2022 16:00:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Fri Dec 16 2022 16:00:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -388,7 +388,7 @@
   <url>
     <loc>https://namako.tw/2019/06/19/chrome-file-access-from-files/</loc>
     
-    <lastmod>Fri Jul 02 2021 19:40:00 GMT+0800 (Taipei Standard Time)</lastmod>
+    <lastmod>Fri Jul 02 2021 19:40:00 GMT+0800 (台北標準時間)</lastmod>
     
     <priority>0.8</priority>
   </url>

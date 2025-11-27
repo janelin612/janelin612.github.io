@@ -5,77 +5,7 @@
   "@type" : "WebSite",
   "name" : "Namako 海參的潮間帶工作室",
   "url" : "https://namako.tw"
-}</script><link rel="canonical" href="https://namako.tw/2017/08/03/tomcat-with-gitlab-ci/"><link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png"><link rel="shortcut icon" href="/static/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="stylesheet" type="text/css" href="/styles/highlight.css"><link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&amp;display=swap" media="none" onload="if(media!='all')media='all'"><script async src="https://www.googletagmanager.com/gtag/js?id=G-39XVPM0ZVN"></script><script>window.dataLayer = window.dataLayer || [];
+}</script><link rel="canonical" href="https://namako.tw/2017/08/03/tomcat-with-gitlab-ci/"><meta http-equiv="refresh" content="0; url=https://namako.tw/2017/08/03/tomcat-with-gitlab-ci/"><link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png"><link rel="shortcut icon" href="/static/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="stylesheet" type="text/css" href="/styles/highlight.css"><link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&amp;display=swap" media="none" onload="if(media!='all')media='all'"><script async src="https://www.googletagmanager.com/gtag/js?id=G-39XVPM0ZVN"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-39XVPM0ZVN');</script><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="https://schema.org/WebPage"><noscript> <iframe src="https://www.googletagmanager.com/ns.html?id=G-39XVPM0ZVN" frameborder="0" style="display:none;visibility:hidden">      </iframe></noscript><header itemscope itemtype="https://schema.org/WPHeader"><h1 class="title"><a href="/" alt="Namako" title="Namako" itemprop="headline">Namako</a></h1><h2 class="subtitle"> 海參的潮間帶工作室</h2><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/about" alt="About Me" title="About Me" itemprop="url">About Me</a></li><li itemprop="name"><a href="/archive" alt="Archive" title="Archive" itemprop="url">Archive</a></li><li class="icon-list"> <a href="/atom.xml"> <img src="/static/icon/rss-feed-tag.svg" alt="" srcset=""></a><a target="_blank" rel="noopener" href="https://github.com/janelin612"> <img src="/static/icon/github-circle.svg" alt="" srcset=""></a><a href="mailto:janelin612@gmail.com"> <img src="/static/icon/mail.svg" alt="" srcset=""></a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><div class="content"><article class="full"><h1>Tomcat + Gitlab CI 配置持續整合環境</h1><span class="post-meta"><time>2017-08-03</time></span><p><img src="/static/2018/WAzZmtT.jpg"></p>
-<p>自從公司 gitlab 架起來之後，一直想要來試試看有沒有辦法實現自動部署 j2ee 的 web application 到客戶家的 tomcat server 上。<br>經過一整個下午的奮鬥，於是有了這篇簡單的紀錄。</p>
-<span id="more"></span>
-
-<h2 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h2><ul>
-<li>GitLab Community Edition 9.3.4</li>
-<li>jre 1.6</li>
-<li>tomcat 6.0.35</li>
-</ul>
-<h2 id="第一部分：從-CMD-編譯-WAR-檔"><a href="#第一部分：從-CMD-編譯-WAR-檔" class="headerlink" title="第一部分：從 CMD 編譯 WAR 檔"></a>第一部分：從 CMD 編譯 WAR 檔</h2><p>一直以來這個專案都是用 Eclipse 開發，所以要生成 war 檔也是直接從 Eclipse 中對專案按右鍵執行匯出的方式處理，因此想要整進 CI 第一個要搞定的就是這個。</p>
-<h3 id="1-編譯純-Java-檔的部分"><a href="#1-編譯純-Java-檔的部分" class="headerlink" title="1.編譯純 Java 檔的部分"></a>1.編譯純 Java 檔的部分</h3><p>專案除了 jsp 的檔案之外，還有一些 <code>.java</code> 檔需要先編譯好，再一起包進去。此部分就是很單純的 Java 編譯，指令如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ./src</span><br><span class="line">find -name &quot;*.java&quot; &gt; sources.txt</span><br><span class="line">javac @sources.txt  -encoding UTF-8 -cp &quot;Test.jar:../WebContent/WEB-INF/lib/*&quot; -d &quot;../WebContent/WEB-INF/classes&quot;</span><br><span class="line">rm sources.txt</span><br></pre></td></tr></table></figure>
-
-<p>大致上的意思就是切進 <code>./src</code> 的資料夾底下，然後把所有副檔名是 <code>.java</code> 的檔案整理成一份清單，最後照這份清單依序編譯。</p>
-<ul>
-<li><code>-encoding</code> 用來指定編碼，我用的是 UTF-8</li>
-<li><code>-cp</code> 用來指定所有有用到的 <code>.jar</code> 檔所在的位置</li>
-<li><code>-d</code> 用來指定編好的 <code>.class</code> 檔要放在哪個資料夾</li>
-</ul>
-<h3 id="2-將整個專案封裝成-WAR-檔"><a href="#2-將整個專案封裝成-WAR-檔" class="headerlink" title="2.將整個專案封裝成 WAR 檔"></a>2.將整個專案封裝成 WAR 檔</h3><p>上網估狗了各種資料，最後整理出來的 command line 指令如下:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ./WebContent</span><br><span class="line">jar -cvf &#123;PROJECT_NAME&#125;.war * WEB-INF</span><br></pre></td></tr></table></figure>
-
-<p>也就是先進到專案根目錄的下一層<code>/WebContent</code>內，其他的 Eclipse 相關的東西通通不編譯進去，然後才下包裝的指令。參數的部分稍微解釋一下</p>
-<ul>
-<li><code>-v</code> 是用來將細節 print 出來，可下可不下，<code>-c</code> 跟 <code>-f</code> 則是一定要的東西</li>
-<li>第二個是 war 檔的檔名，自己決定吧</li>
-<li><code>*</code> 意味著整個目錄 (<code>./WebContent/*</code>) 內的東西通通都要進去</li>
-<li><code>WEB-INF</code> 則是自己指定自己的 manifest 檔案所在目錄 (<code>./WebContent/WEB-INF</code>) ，這部分由於 Eclipse 幫我建好了，所以我如果沒有指定的話，部署上去之後會無法啟動</li>
-</ul>
-<p>執行完後應該可以在目錄看到你的 war 檔了，可以拿去部署看看能否成功 ：D</p>
-<h2 id="第二部分：Tomcat-環境準備"><a href="#第二部分：Tomcat-環境準備" class="headerlink" title="第二部分：Tomcat 環境準備"></a>第二部分：Tomcat 環境準備</h2><p>tomcat 需要準備的部分只有開放透過 http request 就可以完成 undeploy &amp; deploy 的功能即可。</p>
-<ol>
-<li>編輯使用者權限：透過 vim 開啟設定檔 <code>TOMCAT_ROOT\conf\tomcat-user.xml</code> 改成如下面所示</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;utf-8&#x27;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tomcat-users</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">&quot;manager&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">&quot;manager-gui&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">&quot;manager-script&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">user</span> <span class="attr">username</span>=<span class="string">&quot;USER_NAME&quot;</span> <span class="attr">password</span>=<span class="string">&quot;USER_PW&quot;</span> <span class="attr">roles</span>=<span class="string">&quot;manager-gui,manager-script&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tomcat-users</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>就是新增一個 rolename 叫做 manager-script ，然後指定給你的 user</p>
-<ol start="2">
-<li>存檔，然後重啟 tomcat</li>
-</ol>
-<p>完成設定後即可以使用此兩個網址進行 undeploy &amp; deploy 的動作：<br>http:&#x2F;&#x2F;{USER}:{PW}@{SERVER_URL}:{PORT}&#x2F;manager&#x2F;undeploy?path&#x3D;&#x2F;{WAR_PATH}<br>http:&#x2F;&#x2F;{USER}:{PW}@{SERVER_URL}:{PORT}&#x2F;manager&#x2F;deploy?path&#x3D;&#x2F;{WAR_PATH}&amp;update&#x3D;true</p>
-<h2 id="第三部分：gitlab-ci"><a href="#第三部分：gitlab-ci" class="headerlink" title="第三部分：gitlab-ci"></a>第三部分：gitlab-ci</h2><p>其實同事已經幫我做掉這一塊最麻煩的事情，也就是準備一個 Runner 。<br>因此這個部分我也沒辦法紀錄些什麼，只知道東西似乎是用 Docker 架起來的 XD</p>
-<p>在 Runner 已經準備好的情況，唯一需要做的事情就是在專案根目錄新增<code>.gitlab-ci.yml</code>檔即可，我寫出來的檔案如下</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">image:</span> <span class="string">java:6</span></span><br><span class="line"></span><br><span class="line"><span class="attr">stages:</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="string">build</span></span><br><span class="line"></span><br><span class="line"><span class="attr">build:</span></span><br><span class="line"><span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="string">linux</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">master</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">cd</span> <span class="string">./src</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">find</span> <span class="string">-name</span> <span class="string">&quot;\*.java&quot;</span> <span class="string">&gt;</span> <span class="string">sources.txt</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">javac</span> <span class="string">@sources.txt</span> <span class="string">-encoding</span> <span class="string">UTF-8</span> <span class="string">-cp</span> <span class="string">&quot;Test.jar:../WebContent/WEB-INF/lib/\*&quot;</span> <span class="string">-d</span> <span class="string">&quot;../WebContent/WEB-INF/classes&quot;</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">rm</span> <span class="string">sources.txt</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">cd</span> <span class="string">../WebContent</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">jar</span> <span class="string">-cvf</span> &#123;<span class="string">PROJECT_NAME</span>&#125;<span class="string">.war</span> <span class="string">\*</span> <span class="string">WEB-INF</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">curl</span> <span class="string">&quot;UNDEPLOY_URL_AS_ABOVE&quot;</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">curl</span> <span class="string">--upload-file</span> <span class="string">./&#123;PROJECT_NAME&#125;.war</span> <span class="string">&quot;DEPLOY_URL_AS_ABOVE&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>一樣稍微解釋一下我覺得需要說明的部分</p>
-<ul>
-<li><code>image</code> 的部分指定了要用 java 1.6 進行編譯</li>
-<li><code>tags</code> 我上了<code>linux</code>字樣，此部分要跟 Runner 配合。因為我們公司備了兩台 Runner ，一台是 Windows 一台是 Linux ，所以我需要指定強制用帶有<code>linux</code>這個 tag 的那台 Runner 編譯</li>
-<li><code>only master</code> 應該還算好懂，只有 master 有動作時會觸發</li>
-<li>剩下的 <code>script</code> 指令就理解成會在 cmd 執行的東西就可以了</li>
-</ul>
-<p>以上，寫完之後 <code>git push master</code> 然後就可以去 gitlab 網站上看執行的結果了。</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><ol>
-<li>其實我猜 Runner 才是最難搞的部分，結果我剛好可以撿同事現成的東西來用，省下了不少工啊 XD</li>
-<li>改天再來把 slack 的 webhook 掛上去，未來可以直接從 slack 上面看到部署結果</li>
-</ol>
-</article><hr><div class="bmc-block"> <div class="bmc-greeting">Hi 喜歡這篇文章的話 可以按個讚或請我喝杯咖啡</div><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/janelin612"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a></div><iframe src="https://button.like.co/in/embed/janelin612/button?referrer=https%3A%2F%2Fnamako.tw%2F2017%2F08%2F03%2Ftomcat-with-gitlab-ci%2F" frameborder="0"> </iframe><hr><div class="related-posts"><div> <small> Previous: </small><div> <a href="/2017/10/19/tomcat-csp/">Tomcat Servlet 設定同源政策</a></div></div><div> <small> Next: </small><div><a href="/2017/03/14/check-googleplay-in-firebase/">Firebase檢查GooglePlayService是否可用</a></div></div></div></div><div id="side-nav"><div class="head">目錄</div></div><script src="/static/js/side-nav.js"></script><script type="application/ld+json">{
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Tomcat + Gitlab CI 配置持續整合環境",
-    "image": ["https://namako.tw/static/2018/WAzZmtT.jpg"],
-    "datePublished": "2017-08-03T00:00:00+08:00",
-    "author": [
-        {
-            "@type": "Person",
-            "name": "Tars",
-            "url": "https://namako.tw/about/"
-        }
-    ]
-}   </script></main></body></html>
+gtag('config', 'G-39XVPM0ZVN');</script><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="https://schema.org/WebPage"></body></html>
